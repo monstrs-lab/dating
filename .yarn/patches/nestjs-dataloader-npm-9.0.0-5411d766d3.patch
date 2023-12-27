@@ -1,0 +1,25 @@
+diff --git a/dist/index.d.ts b/dist/index.d.ts
+index 23278d5fb5538351dd8e4e6fa63314f06f2c3759..8d2e208235dbfda281b203a0db6790b190a0c023 100644
+--- a/dist/index.d.ts
++++ b/dist/index.d.ts
+@@ -1,6 +1,6 @@
+ import { CallHandler, ExecutionContext, NestInterceptor, Type } from '@nestjs/common';
+ import { ModuleRef } from '@nestjs/core';
+-import * as DataLoader from 'dataloader';
++import DataLoader from 'dataloader';
+ import { Observable } from 'rxjs';
+ /**
+  * This interface will be used to generate the initial data loader.
+diff --git a/package.json b/package.json
+index c8eafa78c9b0172418dfcc2ff886c3e6dfc51618..93a4024434631198b7a7b7aae4e8109787ce172f 100644
+--- a/package.json
++++ b/package.json
+@@ -45,7 +45,7 @@
+     "typeorm-factory": "^0.0.14",
+     "typescript": "4.7.4"
+   },
+-  "types": "index.d.ts",
++  "types": "dist/index.d.ts",
+   "jest": {
+     "transform": {
+       "^.+\\.tsx?$": "ts-jest"

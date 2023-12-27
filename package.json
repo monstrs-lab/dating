@@ -1,0 +1,28 @@
+{
+  "name": "dating",
+  "private": true,
+  "type": "module",
+  "resolutions": {
+    "@opentelemetry/api-logs": "0.40.0",
+    "@opentelemetry/core": "1.14.0",
+    "graphql-request@npm:^6.0.0": "patch:graphql-request@npm%3A6.1.0#~/.yarn/patches/graphql-request-npm-6.1.0-d265ce919d.patch",
+    "pg": "8.10.0"
+  },
+  "devDependencies": {
+    "@monstrs/tools-runtime": "^0.2.19",
+    "@types/node": "^20.6.0",
+    "@types/react": "^18.2.45",
+    "@types/react-dom": "^18.2.18",
+    "husky": "8.0.3",
+    "typescript": "^5.3.3"
+  },
+  "packageManager": "yarn@4.0.2",
+  "tools": {
+    "schematic": {
+      "collection": "@monstrs/schematics",
+      "schematic": "project",
+      "type": "project",
+      "migration": "1645009327658"
+    }
+  }
+}

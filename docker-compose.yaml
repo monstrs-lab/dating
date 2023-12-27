@@ -1,0 +1,97 @@
+version: '3.8'
+
+services:
+  yarn:
+    image: node:19.9
+    working_dir: /workspace
+    volumes:
+      - ./:/workspace
+      - unplugged:/workspace/.yarn/unplugged
+    entrypoint: yarn
+
+  db:
+    image: bitnami/postgresql
+    volumes:
+      - .config/db:/docker-entrypoint-initdb.d
+    environment:
+      - POSTGRESQL_PASSWORD=password
+      - POSTGRESQL_DATABASE=db
+    ports:
+      - 5432:5432
+
+  redis:
+    image: bitnami/redis
+    environment:
+      - REDIS_PASSWORD=password
+    ports:
+      - 6379:6379
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.3.2
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - 22181:2181
+
+  kafka:
+    image: confluentinc/cp-kafka:7.3.2
+    depends_on:
+      - zookeeper
+    ports:
+      - 29092:29092
+      - 9092:9092
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_INTERNAL:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092,PLAINTEXT_INTERNAL://broker:29092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+
+  kratos-migrate:
+    image: monstrs/kratos:latest
+    depends_on:
+      - db
+    environment:
+      - DSN=postgres://postgres:password@db:5432/kratos?sslmode=disable&max_conns=20&max_idle_conns=4
+    volumes:
+      - type: bind
+        source: .config/kratos
+        target: /etc/config/kratos
+    command: -c /etc/config/kratos/kratos.yaml migrate sql -e --yes
+    restart: on-failure
+
+  kratos:
+    image: monstrs/kratos:latest
+    depends_on:
+      - kratos-migrate
+      - mailslurper
+      - db
+    ports:
+      - '4433:4433'
+      - '4434:4434'
+    restart: unless-stopped
+    environment:
+      - DSN=postgres://postgres:password@db:5432/kratos?sslmode=disable&max_conns=20&max_idle_conns=4
+      - LOG_LEVEL=trace
+    command: serve -c /etc/config/kratos/kratos.yaml --dev --watch-courier
+    volumes:
+      - type: bind
+        source: .config/kratos
+        target: /etc/config/kratos
+    networks:
+      default:
+        aliases:
+          - kratos-public
+          - kratos-admin
+
+  mailslurper:
+    image: oryd/mailslurper:latest-smtps
+    ports:
+      - '4436:4436'
+      - '4437:4437'
+
+volumes:
+  unplugged:

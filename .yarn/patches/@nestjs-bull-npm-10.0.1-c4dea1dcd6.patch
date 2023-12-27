@@ -1,0 +1,13 @@
+diff --git a/dist/bull.providers.js b/dist/bull.providers.js
+index ff438769541629a8b00953d87be3c2172ad87d08..c80e3e6153b4513b0d3aeeba22d69383f971d693 100644
+--- a/dist/bull.providers.js
++++ b/dist/bull.providers.js
+@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
+ exports.createQueueProviders = exports.createQueueOptionProviders = void 0;
+ const bull_shared_1 = require("@nestjs/bull-shared");
+ const common_1 = require("@nestjs/common");
+-const Bull = require("bull");
++const bull = require("bull"); const Bull = bull.default || bull;
+ const utils_1 = require("./utils");
+ const is_advanced_processor_util_1 = require("./utils/is-advanced-processor.util");
+ const is_advanced_separate_processor_util_1 = require("./utils/is-advanced-separate-processor.util");

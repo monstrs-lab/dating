@@ -1,0 +1,17 @@
+diff --git a/package.json b/package.json
+index 7d02cebc221bbaf11acc02301fc81102681fcd27..5220ac55dfc786b58df31af2ebba674adabe8c33 100644
+--- a/package.json
++++ b/package.json
+@@ -13,6 +13,12 @@
+         "types": "./build/esm/index.d.ts",
+         "default": "./build/esm/index.js"
+       }
++    },
++    "./build/esm/types.js": {
++      "import": {
++        "types": "./build/esm/types.d.ts",
++        "default": "./build/esm/types.js"
++      }
+     }
+   },
+   "types": "./build/esm/index.d.ts",
