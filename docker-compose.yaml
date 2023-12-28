@@ -51,7 +51,7 @@ services:
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
 
   kratos-migrate:
-    image: monstrs/kratos:latest
+    image: oryd/kratos:latest
     depends_on:
       - db
     environment:
@@ -64,7 +64,7 @@ services:
     restart: on-failure
 
   kratos:
-    image: monstrs/kratos:latest
+    image: oryd/kratos:latest
     depends_on:
       - kratos-migrate
       - mailslurper
