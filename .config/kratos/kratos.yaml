@@ -25,6 +25,7 @@ selfservice:
     - http://127.0.0.1:3000
     - http://localhost:19006/Callback
     - http://127.0.0.1:19006/Callback
+    - exp://localhost:8081/--/Callback
 
   methods:
     password:

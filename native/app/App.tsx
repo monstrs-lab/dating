@@ -1,3 +1,5 @@
+import 'react-native-url-polyfill/auto'
+
 import type { ReactElement } from 'react'
 
 import { AuthProvider }      from '@monstrs/react-native-kratos'
@@ -13,7 +15,7 @@ export default (): ReactElement => (
     value={
       new FrontendApi(
         new Configuration({
-          basePath: 'http://localhost:4433',
+          basePath: 'http://192.168.0.101:4433',
           baseOptions: {
             withCredentials: false,
             timeout: 10000,

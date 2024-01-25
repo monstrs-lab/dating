@@ -14,6 +14,7 @@ import React                        from 'react'
 
 import { LoginScreen }              from './auth/screens'
 import { RegistrationScreen }       from './auth/screens'
+import { IntroScreen }              from './intro/screens'
 
 const Stack = createStackNavigator<RootStackParamList>()
 
@@ -28,6 +29,7 @@ export type RootStackParamList = {
   Callback: {
     code?: string
   }
+  Intro: undefined
 }
 
 export const Navigation = (): ReactElement => {
@@ -46,8 +48,15 @@ export const Navigation = (): ReactElement => {
               headerShown: isAuthenticated,
             }}
           >
-            <Stack.Screen name='Login' component={LoginScreen} initialParams={{}} />
-            <Stack.Screen name='Registration' component={RegistrationScreen} />
+            {/* eslint-disable-next-line react/jsx-no-leaked-render */}
+            {isAuthenticated ? (
+              <Stack.Screen name='Intro' component={IntroScreen} />
+            ) : (
+              <>
+                <Stack.Screen name='Login' component={LoginScreen} initialParams={{}} />
+                <Stack.Screen name='Registration' component={RegistrationScreen} />
+              </>
+            )}
           </Stack.Navigator>
         </NavigationContainer>
       </TouchableWithoutFeedback>
