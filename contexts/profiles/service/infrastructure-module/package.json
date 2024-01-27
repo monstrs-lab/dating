@@ -1,0 +1,87 @@
+{
+  "name": "@profiles/infrastructure-module",
+  "version": "0.0.1",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": "./src/index.ts"
+  },
+  "main": "src/index.ts",
+  "scripts": {
+    "orm": "node --loader ts-node/esm --loader $(pwd)/../../../../.pnp.loader.mjs --loader $(pwd)/../../../../.pnp-ts.loader.mjs $(yarn bin mikro-orm)"
+  },
+  "dependencies": {
+    "@monstrs/logger": "^0.0.20",
+    "@monstrs/mikro-orm-query-builder": "^0.0.9",
+    "@monstrs/nestjs-connectrpc-errors": "^0.0.3",
+    "@monstrs/nestjs-validation": "^0.1.1",
+    "@monstrs/rpc-query-payloads": "^0.0.15",
+    "@profiles/domain-module": "workspace:0.0.1",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@bufbuild/protobuf": "^1.7.0",
+    "@connectrpc/connect": "^1.3.0",
+    "@connectrpc/connect-node": "^1.3.0",
+    "@mikro-orm/cli": "^6.0.5",
+    "@mikro-orm/core": "^6.0.5",
+    "@mikro-orm/entity-generator": "^6.0.5",
+    "@mikro-orm/knex": "^6.0.5",
+    "@mikro-orm/migrations": "^6.0.5",
+    "@mikro-orm/nestjs": "^5.2.3",
+    "@mikro-orm/postgresql": "^6.0.5",
+    "@mikro-orm/seeder": "^6.0.5",
+    "@monstrs/base-types": "^0.0.2",
+    "@monstrs/nestjs-connectrpc": "^0.0.3",
+    "@monstrs/nestjs-mikro-orm-config": "^0.1.3",
+    "@nestjs/common": "^10.3.1",
+    "@nestjs/core": "^10.3.1",
+    "@nestjs/cqrs": "^10.2.6",
+    "@nestjs/microservices": "^10.3.1",
+    "@nestjs/platform-express": "^10.3.1",
+    "@nestjs/testing": "^10.3.1",
+    "@profiles/application-module": "workspace:0.0.1",
+    "@profiles/profiles-rpc": "workspace:0.0.1",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.11.7",
+    "@types/uuid": "^9.0.8",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.1",
+    "reflect-metadata": "^0.2.1",
+    "rxjs": "^7.8.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  },
+  "peerDependencies": {
+    "@bufbuild/protobuf": "^1.5.0",
+    "@connectrpc/connect": "^1.1.3",
+    "@connectrpc/connect-node": "^1.1.3",
+    "@mikro-orm/cli": "^6",
+    "@mikro-orm/core": "^6",
+    "@mikro-orm/entity-generator": "^6",
+    "@mikro-orm/knex": "^6",
+    "@mikro-orm/migrations": "^6",
+    "@mikro-orm/nestjs": "^5",
+    "@mikro-orm/postgresql": "^6",
+    "@mikro-orm/seeder": "^6",
+    "@monstrs/nestjs-connectrpc": "^0.0.3",
+    "@nestjs/common": "^10",
+    "@nestjs/core": "^10",
+    "@nestjs/cqrs": "^10",
+    "@nestjs/microservices": "^10",
+    "@profiles/application-module": "workspace:0.0.1",
+    "@profiles/profiles-rpc": "workspace:0.0.1",
+    "class-transformer": "^0.5",
+    "class-validator": "^0.14",
+    "reflect-metadata": "^0.2",
+    "rxjs": "^7"
+  },
+  "mikro-orm": {
+    "useTsNode": true,
+    "configPaths": [
+      "./src/mikro-orm.config.ts"
+    ]
+  }
+}

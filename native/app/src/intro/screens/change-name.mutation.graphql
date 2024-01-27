@@ -1,0 +1,13 @@
+mutation changeProfileName($name: String!) {
+  changeProfileName(input: { name: $name }) {
+    result {
+      ...ProfileFragment
+    }
+    errors {
+      name {
+        id
+        message
+      }
+    }
+  }
+}

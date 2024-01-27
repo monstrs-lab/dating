@@ -93,5 +93,29 @@ services:
       - '4436:4436'
       - '4437:4437'
 
+  oathkeeper:
+    image: oryd/oathkeeper:latest
+    ports:
+      - '4455:4455'
+      - '4456:4456'
+    command: serve --config=/etc/config/oathkeeper/config.yaml
+    volumes:
+      - type: bind
+        source: .config/oathkeeper
+        target: /etc/config/oathkeeper
+
+  standalone:
+    image: node:19.9
+    depends_on:
+      - kafka
+      - db
+    working_dir: /workspace
+    volumes:
+      - ./:/workspace
+    entrypoint: yarn workspace @dating/standalone-service-entrypoint dev
+    environment:
+      - KAFKA_BROKERS=kafka:29092
+      - DB_HOST=db
+
 volumes:
   unplugged:

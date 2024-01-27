@@ -2,6 +2,11 @@
   "name": "dating",
   "private": true,
   "type": "module",
+  "workspaces": [
+    "applications/**/*",
+    "contexts/**/*",
+    "shared/**/*"
+  ],
   "resolutions": {
     "@opentelemetry/api-logs": "0.40.0",
     "@opentelemetry/core": "1.14.0",
@@ -10,10 +15,9 @@
   },
   "devDependencies": {
     "@monstrs/tools-runtime": "^0.2.19",
-    "@types/node": "^20.6.0",
-    "@types/react": "^18.2.45",
+    "@types/node": "^20.11.7",
+    "@types/react": "^18.2.48",
     "@types/react-dom": "^18.2.18",
-    "husky": "8.0.3",
     "typescript": "^5.3.3"
   },
   "packageManager": "yarn@4.0.2",

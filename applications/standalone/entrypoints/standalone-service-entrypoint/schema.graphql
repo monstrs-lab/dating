@@ -1,0 +1,63 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type ValidationError {
+  id: String!
+  message: String!
+}
+
+type SelectProfileGenderErrors {
+  gender: ValidationError
+}
+
+type ChangeProfileNameErrors {
+  name: ValidationError
+}
+
+type Profile {
+  id: String!
+  gender: ProfileGender
+  name: String
+}
+
+enum ProfileGender {
+  MALE
+  FEMALE
+}
+
+type MyProfile {
+  info: Profile!
+}
+
+type SelectProfileGenderResponse {
+  result: Profile
+  errors: SelectProfileGenderErrors
+}
+
+type ChangeProfileNameResponse {
+  result: Profile
+  errors: ChangeProfileNameErrors
+}
+
+type User {
+  id: String!
+  profile: MyProfile!
+}
+
+type Query {
+  my: User!
+}
+
+type Mutation {
+  selectProfileGender(input: SelectProfileGenderInput!): SelectProfileGenderResponse!
+  changeProfileName(input: ChangeProfileNameInput!): ChangeProfileNameResponse!
+}
+
+input SelectProfileGenderInput {
+  gender: ProfileGender!
+}
+
+input ChangeProfileNameInput {
+  name: String!
+}

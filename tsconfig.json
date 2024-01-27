@@ -32,10 +32,7 @@
     "project.types.d.ts",
     "applications/**/*",
     "contexts/**/*",
-    "identity/**/*",
     "native/**/*",
-    "shared/**/*",
-    "app/**/*",
-    "ui/**/*"
+    "shared/**/*"
   ]
 }

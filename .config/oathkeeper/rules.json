@@ -1,0 +1,30 @@
+[
+  {
+    "id": "allow-x-session-token",
+    "upstream": {
+      "url": "http://standalone:3000"
+    },
+    "match": {
+      "url": "http://<127.0.0.1|localhost>:4455/",
+      "methods": ["GET", "POST"]
+    },
+    "authenticators": [
+      {
+        "handler": "bearer_token"
+      }
+    ],
+    "authorizer": {
+      "handler": "allow"
+    },
+    "mutators": [
+      {
+        "handler": "header",
+        "config": {
+          "headers": {
+            "X-User": "{{ print .Subject }}"
+          }
+        }
+      }
+    ]
+  }
+]

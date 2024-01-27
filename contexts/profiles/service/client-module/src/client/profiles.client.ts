@@ -1,0 +1,45 @@
+/* eslint-disable @typescript-eslint/consistent-type-imports */
+
+import type { PromiseClient }    from '@connectrpc/connect'
+import type { ProfileGender }    from '@profiles/profiles-rpc'
+import type { ProfilesService }  from '@profiles/profiles-rpc'
+import type { Profile }          from '@profiles/profiles-rpc'
+
+import { Inject }                from '@nestjs/common'
+import { Injectable }            from '@nestjs/common'
+
+import { PROFILES_CLIENT_TOKEN } from '../constants/index.js'
+import { ProfilesDataLoader }    from '../dataloaders/index.js'
+
+@Injectable()
+export class ProfilesClient {
+  constructor(
+    @Inject(PROFILES_CLIENT_TOKEN) protected readonly client: PromiseClient<typeof ProfilesService>,
+    private readonly profilesDataLoader: ProfilesDataLoader
+  ) {}
+
+  async selectProfileGender(
+    profileId: string,
+    gender: ProfileGender
+  ): Promise<{ result?: Profile }> {
+    return this.client.selectProfileGender({
+      profileId,
+      gender,
+    })
+  }
+
+  async changeProfileName(profileId: string, name: string): Promise<{ result?: Profile }> {
+    return this.client.changeProfileName({
+      profileId,
+      name,
+    })
+  }
+
+  async loadProfile(profileId: string): Promise<Profile> {
+    return this.profilesDataLoader.load(profileId)
+  }
+
+  async loadProfiles(profileIds: Array<string>): Promise<Array<Error | Profile>> {
+    return this.profilesDataLoader.loadMany(profileIds)
+  }
+}

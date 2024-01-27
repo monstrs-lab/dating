@@ -1,0 +1,13 @@
+mutation selectProfileGender($gender: ProfileGender!) {
+  selectProfileGender(input: { gender: $gender }) {
+    result {
+      ...ProfileFragment
+    }
+    errors {
+      gender {
+        id
+        message
+      }
+    }
+  }
+}

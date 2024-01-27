@@ -1,0 +1,9 @@
+query myProfile {
+  my {
+    profile {
+      info {
+        ...ProfileFragment
+      }
+    }
+  }
+}

@@ -1,0 +1,49 @@
+log:
+  level: debug
+
+serve:
+  proxy:
+    port: 4455
+  api:
+    port: 4456
+
+access_rules:
+  repositories:
+    - file:///etc/config/oathkeeper/rules.json
+
+errors:
+  fallback:
+    - json
+  handlers:
+    json:
+      enabled: true
+      config:
+        verbose: true
+
+mutators:
+  header:
+    enabled: true
+    config:
+      headers:
+        X-User: '{{ print .Subject }}'
+  noop:
+    enabled: true
+
+authorizers:
+  allow:
+    enabled: true
+
+authenticators:
+  anonymous:
+    enabled: true
+    config:
+      subject: guest
+
+  bearer_token:
+    enabled: true
+    config:
+      check_session_url: http://kratos:4433/sessions/whoami
+      preserve_path: true
+      force_method: GET
+      extra_from: '@this'
+      subject_from: 'identity.id'

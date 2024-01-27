@@ -9,6 +9,7 @@ import { Configuration }     from '@ory/client'
 import React                 from 'react'
 
 import { Navigation }        from './src/navigation.component'
+import { ProfileProvider }   from './src/shared'
 
 export default (): ReactElement => (
   <SdkProvider
@@ -25,7 +26,9 @@ export default (): ReactElement => (
     }
   >
     <AuthProvider>
-      <Navigation />
+      <ProfileProvider>
+        <Navigation />
+      </ProfileProvider>
     </AuthProvider>
   </SdkProvider>
 )
