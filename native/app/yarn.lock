@@ -5053,6 +5053,8 @@ __metadata:
     "@types/react-dom": "npm:~18.2.18"
     expo: "npm:~49.0.21"
     expo-auth-session: "npm:~5.0.2"
+    expo-location: "npm:^16.5.2"
+    expo-permissions: "npm:^14.4.0"
     expo-secure-store: "npm:~12.3.1"
     expo-status-bar: "npm:~1.6.0"
     graphql: "npm:^16.8.1"
@@ -5786,6 +5788,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"expo-location@npm:^16.5.2":
+  version: 16.5.2
+  resolution: "expo-location@npm:16.5.2"
+  peerDependencies:
+    expo: "*"
+  checksum: b881f267e7805525a4892a94e300c02a764fda3b85b6e5190991a3edb92d48dfda2f5c912fbf107bba061785c9535f464272c58a6f2217da05908d2d9c11aa6e
+  languageName: node
+  linkType: hard
+
 "expo-modules-autolinking@npm:1.5.1":
   version: 1.5.1
   resolution: "expo-modules-autolinking@npm:1.5.1"
@@ -5809,6 +5820,15 @@ __metadata:
     compare-versions: "npm:^3.4.0"
     invariant: "npm:^2.2.4"
   checksum: d28260bc4df77816619cbf703afedc8267bf102f4184daede76c85c8b330f6baaad881cd18cdb3a381481fc0a0eb925f1452aa02d5460e6697658e931734026b
+  languageName: node
+  linkType: hard
+
+"expo-permissions@npm:^14.4.0":
+  version: 14.4.0
+  resolution: "expo-permissions@npm:14.4.0"
+  peerDependencies:
+    expo: "*"
+  checksum: 05f12cc80bedfd74c3fc9979f10fa99309e781512f081565922043d232e25c13f0361c918f5896780b29fa80a9ab93a1521881e44c56a895c7129ad56ddc3264
   languageName: node
   linkType: hard
 

@@ -1,3 +1,4 @@
-export * from './select-gender.screen'
-export * from './change-name.screen'
+export * from './fill-geoposition.screen'
+export * from './fill-gender.screen'
+export * from './fill-name.screen'
 export * from './intro.screen'

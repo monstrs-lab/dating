@@ -1,3 +1,4 @@
-export * from './select-profile-gender.command.js'
+export * from './fill-profile-geoposition.command.js'
+export * from './fill-profile-gender.command.js'
+export * from './fill-profile-name.command.js'
 export * from './create-profile.command.js'
-export * from './change-profile-name.command.js'

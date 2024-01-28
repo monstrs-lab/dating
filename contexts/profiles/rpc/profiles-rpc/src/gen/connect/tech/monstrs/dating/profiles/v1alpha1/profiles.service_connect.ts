@@ -3,14 +3,16 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { MethodKind }                  from '@bufbuild/protobuf'
+import { MethodKind }                     from '@bufbuild/protobuf'
 
-import { ChangeProfileNameRequest }    from './profiles.service_pb.js'
-import { ChangeProfileNameResponse }   from './profiles.service_pb.js'
-import { ListProfilesRequest }         from './profiles.service_pb.js'
-import { ListProfilesResponse }        from './profiles.service_pb.js'
-import { SelectProfileGenderRequest }  from './profiles.service_pb.js'
-import { SelectProfileGenderResponse } from './profiles.service_pb.js'
+import { FillProfileGenderRequest }       from './profiles.service_pb.js'
+import { FillProfileGenderResponse }      from './profiles.service_pb.js'
+import { FillProfileGeopositionRequest }  from './profiles.service_pb.js'
+import { FillProfileGeopositionResponse } from './profiles.service_pb.js'
+import { FillProfileNameRequest }         from './profiles.service_pb.js'
+import { FillProfileNameResponse }        from './profiles.service_pb.js'
+import { ListProfilesRequest }            from './profiles.service_pb.js'
+import { ListProfilesResponse }           from './profiles.service_pb.js'
 
 /**
  * @generated from service tech.monstrs.dating.profiles.v1alpha1.ProfilesService
@@ -19,21 +21,30 @@ export const ProfilesService = {
   typeName: 'tech.monstrs.dating.profiles.v1alpha1.ProfilesService',
   methods: {
     /**
-     * @generated from rpc tech.monstrs.dating.profiles.v1alpha1.ProfilesService.SelectProfileGender
+     * @generated from rpc tech.monstrs.dating.profiles.v1alpha1.ProfilesService.FillProfileGeoposition
      */
-    selectProfileGender: {
-      name: 'SelectProfileGender',
-      I: SelectProfileGenderRequest,
-      O: SelectProfileGenderResponse,
+    fillProfileGeoposition: {
+      name: 'FillProfileGeoposition',
+      I: FillProfileGeopositionRequest,
+      O: FillProfileGeopositionResponse,
       kind: MethodKind.Unary,
     },
     /**
-     * @generated from rpc tech.monstrs.dating.profiles.v1alpha1.ProfilesService.ChangeProfileName
+     * @generated from rpc tech.monstrs.dating.profiles.v1alpha1.ProfilesService.FillProfileGender
      */
-    changeProfileName: {
-      name: 'ChangeProfileName',
-      I: ChangeProfileNameRequest,
-      O: ChangeProfileNameResponse,
+    fillProfileGender: {
+      name: 'FillProfileGender',
+      I: FillProfileGenderRequest,
+      O: FillProfileGenderResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc tech.monstrs.dating.profiles.v1alpha1.ProfilesService.FillProfileName
+     */
+    fillProfileName: {
+      name: 'FillProfileName',
+      I: FillProfileNameRequest,
+      O: FillProfileNameResponse,
       kind: MethodKind.Unary,
     },
     /**

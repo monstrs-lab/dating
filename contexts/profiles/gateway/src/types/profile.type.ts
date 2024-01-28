@@ -13,4 +13,7 @@ export class Profile {
 
   @Field({ nullable: true })
   name?: string
+
+  @Field({ nullable: true })
+  location?: string
 }

@@ -1,0 +1,17 @@
+mutation fillProfileGeoposition($latitude: Float!, $longitude: Float!) {
+  fillProfileGeoposition(input: { latitude: $latitude, longitude: $longitude }) {
+    result {
+      ...ProfileFragment
+    }
+    errors {
+      latitude {
+        id
+        message
+      }
+      longitude {
+        id
+        message
+      }
+    }
+  }
+}

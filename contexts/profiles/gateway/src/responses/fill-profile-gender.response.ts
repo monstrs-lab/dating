@@ -1,14 +1,14 @@
 import { Field }                   from '@nestjs/graphql'
 import { ObjectType }              from '@nestjs/graphql'
 
-import { ChangeProfileNameErrors } from '../errors/index.js'
+import { FillProfileGenderErrors } from '../errors/index.js'
 import { Profile }                 from '../types/index.js'
 
 @ObjectType()
-export class ChangeProfileNameResponse {
+export class FillProfileGenderResponse {
   @Field(() => Profile, { nullable: true })
   result?: Profile
 
-  @Field(() => ChangeProfileNameErrors, { nullable: true })
-  errors?: ChangeProfileNameErrors
+  @Field(() => FillProfileGenderErrors, { nullable: true })
+  errors?: FillProfileGenderErrors
 }

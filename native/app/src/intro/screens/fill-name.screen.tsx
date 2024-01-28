@@ -14,26 +14,26 @@ import React                       from 'react'
 import { useProfile }              from '../../shared'
 import operations                  from '../../operations'
 
-export type ChangeNameScreenProps = StackScreenProps<RootStackParamList, 'ChangeName'>
+export type FillNameScreenProps = StackScreenProps<RootStackParamList, 'FillName'>
 
-export const ChangeNameScreen = ({ navigation }: ChangeNameScreenProps): ReactElement => {
+export const FillNameScreen = ({ navigation }: FillNameScreenProps): ReactElement => {
   const [name, setName] = useState<string>('')
   const [nameValidationError, setNameValidationError] = useState<string | undefined>(undefined)
   const [inProgress, setInProgress] = useState<boolean>(false)
   const { setProfile } = useProfile()
 
-  const onChangeName = useCallback(async () => {
+  const onFillName = useCallback(async () => {
     setInProgress(true)
 
     try {
-      const { changeProfileName } = await operations.changeProfileName({ name })
+      const { fillProfileName } = await operations.fillProfileName({ name })
 
-      if (changeProfileName.errors?.name) {
-        setNameValidationError(changeProfileName.errors.name.message)
-      } else if (changeProfileName.result) {
-        setProfile(changeProfileName.result)
+      if (fillProfileName.errors?.name) {
+        setNameValidationError(fillProfileName.errors.name.message)
+      } else if (fillProfileName.result) {
+        setProfile(fillProfileName.result)
 
-        navigation.navigate({ key: 'Main' })
+        navigation.navigate('FillGeoposition')
       }
     } finally {
       setInProgress(false)
@@ -55,7 +55,7 @@ export const ChangeNameScreen = ({ navigation }: ChangeNameScreenProps): ReactEl
         <Pressable
           disabled={inProgress}
           onPress={() => {
-            onChangeName()
+            onFillName()
           }}
         >
           <Text>Выбрать</Text>

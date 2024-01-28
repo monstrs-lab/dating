@@ -10,29 +10,29 @@ import { useState }                from 'react'
 import { useCallback }             from 'react'
 import React                       from 'react'
 // @ts-expect-error
-import SwitchSelector              from 'react-native-switch-selector'
+import SwitchFillor                from 'react-native-switch-selector'
 
 import { ProfileGender }           from '../../operations'
 import { useProfile }              from '../../shared'
 import operations                  from '../../operations'
 
-export type SelectGenderScreenProps = StackScreenProps<RootStackParamList, 'SelectGender'>
+export type FillGenderScreenProps = StackScreenProps<RootStackParamList, 'FillGender'>
 
-export const SelectGenderScreen = ({ navigation }: SelectGenderScreenProps): ReactElement => {
+export const FillGenderScreen = ({ navigation }: FillGenderScreenProps): ReactElement => {
   const { setProfile } = useProfile()
   const [gender, setGender] = useState<ProfileGender>(ProfileGender.Male)
   const [inProgress, setInProgress] = useState<boolean>(false)
 
-  const onSelect = useCallback(async () => {
+  const onFill = useCallback(async () => {
     setInProgress(true)
 
     try {
-      const { selectProfileGender } = await operations.selectProfileGender({ gender })
+      const { fillProfileGender } = await operations.fillProfileGender({ gender })
 
-      if (selectProfileGender.result) {
-        setProfile(selectProfileGender.result)
+      if (fillProfileGender.result) {
+        setProfile(fillProfileGender.result)
 
-        navigation.navigate('ChangeName')
+        navigation.navigate('FillName')
       }
     } finally {
       setInProgress(false)
@@ -45,7 +45,7 @@ export const SelectGenderScreen = ({ navigation }: SelectGenderScreenProps): Rea
         <Text style={{ paddingTop: 40, paddingBottom: 16 }}>Выберите пол</Text>
       </View>
       <View>
-        <SwitchSelector
+        <SwitchFillor
           initial={0}
           accessibilityLabel='gender-switch-selector'
           options={[
@@ -59,7 +59,7 @@ export const SelectGenderScreen = ({ navigation }: SelectGenderScreenProps): Rea
         <Pressable
           disabled={inProgress}
           onPress={() => {
-            onSelect()
+            onFill()
           }}
         >
           <Text>Выбрать</Text>

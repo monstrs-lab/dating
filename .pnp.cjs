@@ -7800,6 +7800,7 @@ const RAW_RUNTIME_STATE =
           ["@types/nestjs__cqrs", null],\
           ["@types/nestjs__microservices", null],\
           ["@types/node", "npm:20.11.7"],\
+          ["@types/node-geocoder", "npm:4.2.6"],\
           ["@types/profiles__application-module", null],\
           ["@types/profiles__profiles-rpc", null],\
           ["@types/reflect-metadata", null],\
@@ -7807,6 +7808,7 @@ const RAW_RUNTIME_STATE =
           ["@types/uuid", "npm:9.0.8"],\
           ["class-transformer", "npm:0.5.1"],\
           ["class-validator", "npm:0.14.1"],\
+          ["node-geocoder", "npm:4.2.0"],\
           ["reflect-metadata", "npm:0.2.1"],\
           ["rxjs", "npm:7.8.1"],\
           ["ts-node", "virtual:e1efbd49cb2e064eb9dfd28661d72d2a9cd22d06d5e51905c8c5404fda76fb472189dcbf1802584070b8312b377ad26762d5aa2d09319c82d0c6b5a51dd5eace#npm:10.9.2"],\
@@ -7893,9 +7895,11 @@ const RAW_RUNTIME_STATE =
           ["@profiles/profiles-rpc", "virtual:c987121f9ed0f59e958509c1df188d3825500753f413e67a69fcb3967157cd24ac97ed31c8f1879cf1caea51739660d0934e0d9a54b832bdbf49c420e1523c7d#workspace:contexts/profiles/rpc/profiles-rpc"],\
           ["@types/express", "npm:4.17.21"],\
           ["@types/node", "npm:20.11.7"],\
+          ["@types/node-geocoder", "npm:4.2.6"],\
           ["@types/uuid", "npm:9.0.8"],\
           ["class-transformer", "npm:0.5.1"],\
           ["class-validator", "npm:0.14.1"],\
+          ["node-geocoder", "npm:4.2.0"],\
           ["reflect-metadata", "npm:0.2.1"],\
           ["rxjs", "npm:7.8.1"],\
           ["ts-node", "virtual:e1efbd49cb2e064eb9dfd28661d72d2a9cd22d06d5e51905c8c5404fda76fb472189dcbf1802584070b8312b377ad26762d5aa2d09319c82d0c6b5a51dd5eace#npm:10.9.2"],\
@@ -8808,6 +8812,17 @@ const RAW_RUNTIME_STATE =
           ["@types/node-fetch", "npm:2.6.11"],\
           ["@types/node", "npm:20.11.7"],\
           ["form-data", "npm:4.0.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@types/node-geocoder", [\
+      ["npm:4.2.6", {\
+        "packageLocation": "./.yarn/cache/@types-node-geocoder-npm-4.2.6-93f828a336-f2eacd09f5.zip/node_modules/@types/node-geocoder/",\
+        "packageDependencies": [\
+          ["@types/node-geocoder", "npm:4.2.6"],\
+          ["@types/node", "npm:20.11.7"],\
+          ["@types/node-fetch", "npm:2.6.11"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -10304,6 +10319,15 @@ const RAW_RUNTIME_STATE =
           ["buffer", "npm:6.0.3"],\
           ["inherits", "npm:2.0.4"],\
           ["readable-stream", "npm:4.5.2"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["bluebird", [\
+      ["npm:3.7.2", {\
+        "packageLocation": "./.yarn/cache/bluebird-npm-3.7.2-6a54136ee3-680de03adc.zip/node_modules/bluebird/",\
+        "packageDependencies": [\
+          ["bluebird", "npm:3.7.2"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -15958,6 +15982,17 @@ const RAW_RUNTIME_STATE =
         "packagePeers": [\
           "@types/encoding",\
           "encoding"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["node-geocoder", [\
+      ["npm:4.2.0", {\
+        "packageLocation": "./.yarn/cache/node-geocoder-npm-4.2.0-13fdf2005e-feb53bfe6c.zip/node_modules/node-geocoder/",\
+        "packageDependencies": [\
+          ["node-geocoder", "npm:4.2.0"],\
+          ["bluebird", "npm:3.7.2"],\
+          ["node-fetch", "virtual:2969f4334bafc5ba89e678c1ebd666d5f60c18d034f87ccaa5a08c7c0fcfacd98a87518db9f2dfc772e9862882b0521a6b9face4730838b953ffd4801cba9e5f#npm:2.7.0"]\
         ],\
         "linkType": "HARD"\
       }]\

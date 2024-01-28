@@ -1,5 +1,5 @@
-mutation changeProfileName($name: String!) {
-  changeProfileName(input: { name: $name }) {
+mutation fillProfileName($name: String!) {
+  fillProfileName(input: { name: $name }) {
     result {
       ...ProfileFragment
     }

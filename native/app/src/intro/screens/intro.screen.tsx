@@ -19,11 +19,14 @@ export const IntroScreen = ({ navigation }: IntroScreenProps): ReactElement => {
   useEffect(() => {
     if (profile) {
       if (profile.gender !== ProfileGender.Female && profile.gender !== ProfileGender.Male) {
-        navigation.navigate('SelectGender')
+        navigation.navigate('FillGender')
       } else if (!profile.name) {
-        navigation.navigate('ChangeName')
+        navigation.navigate('FillName')
+      } else if (!profile.location) {
+        navigation.navigate('FillGeoposition')
       } else {
-        navigation.navigate({ key: 'Main' })
+        // @ts-expect-error
+        navigation.navigate('Main')
       }
     }
   }, [profile, navigation])

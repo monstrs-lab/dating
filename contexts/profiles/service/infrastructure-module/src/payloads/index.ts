@@ -1,3 +1,4 @@
-export * from './select-profile-gender.payload.js'
-export * from './change-profile-name.payload.js'
+export * from './fill-profile-geoposition.payload.js'
+export * from './fill-profile-gender.payload.js'
+export * from './fill-profile-name.payload.js'
 export * from './list-profiles.payload.js'

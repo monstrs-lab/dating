@@ -1,5 +1,5 @@
-mutation selectProfileGender($gender: ProfileGender!) {
-  selectProfileGender(input: { gender: $gender }) {
+mutation fillProfileGender($gender: ProfileGender!) {
+  fillProfileGender(input: { gender: $gender }) {
     result {
       ...ProfileFragment
     }

@@ -40,6 +40,55 @@ proto3.util.setEnumType(ProfileGender, 'tech.monstrs.dating.profiles.v1alpha1.Pr
 ])
 
 /**
+ * @generated from message tech.monstrs.dating.profiles.v1alpha1.ProfileGeoposition
+ */
+export class ProfileGeoposition extends Message<ProfileGeoposition> {
+  /**
+   * @generated from field: float latitude = 1;
+   */
+  latitude = 0
+
+  /**
+   * @generated from field: float longitude = 2;
+   */
+  longitude = 0
+
+  constructor(data?: PartialMessage<ProfileGeoposition>) {
+    super()
+    proto3.util.initPartial(data, this)
+  }
+
+  static readonly runtime: typeof proto3 = proto3
+  static readonly typeName = 'tech.monstrs.dating.profiles.v1alpha1.ProfileGeoposition'
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: 'latitude', kind: 'scalar', T: 2 /* ScalarType.FLOAT */ },
+    { no: 2, name: 'longitude', kind: 'scalar', T: 2 /* ScalarType.FLOAT */ },
+  ])
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ProfileGeoposition {
+    return new ProfileGeoposition().fromBinary(bytes, options)
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ProfileGeoposition {
+    return new ProfileGeoposition().fromJson(jsonValue, options)
+  }
+
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): ProfileGeoposition {
+    return new ProfileGeoposition().fromJsonString(jsonString, options)
+  }
+
+  static equals(
+    a: ProfileGeoposition | PlainMessage<ProfileGeoposition> | undefined,
+    b: ProfileGeoposition | PlainMessage<ProfileGeoposition> | undefined
+  ): boolean {
+    return proto3.util.equals(ProfileGeoposition, a, b)
+  }
+}
+
+/**
  * @generated from message tech.monstrs.dating.profiles.v1alpha1.Profile
  */
 export class Profile extends Message<Profile> {
@@ -59,7 +108,17 @@ export class Profile extends Message<Profile> {
   name?: string
 
   /**
-   * @generated from field: google.protobuf.Timestamp created_at = 4;
+   * @generated from field: optional string location = 4;
+   */
+  location?: string
+
+  /**
+   * @generated from field: optional tech.monstrs.dating.profiles.v1alpha1.ProfileGeoposition geoposition = 5;
+   */
+  geoposition?: ProfileGeoposition
+
+  /**
+   * @generated from field: google.protobuf.Timestamp created_at = 6;
    */
   createdAt?: Timestamp
 
@@ -74,7 +133,9 @@ export class Profile extends Message<Profile> {
     { no: 1, name: 'id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
     { no: 2, name: 'gender', kind: 'enum', T: proto3.getEnumType(ProfileGender), opt: true },
     { no: 3, name: 'name', kind: 'scalar', T: 9 /* ScalarType.STRING */, opt: true },
-    { no: 4, name: 'created_at', kind: 'message', T: Timestamp },
+    { no: 4, name: 'location', kind: 'scalar', T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 5, name: 'geoposition', kind: 'message', T: ProfileGeoposition, opt: true },
+    { no: 6, name: 'created_at', kind: 'message', T: Timestamp },
   ])
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Profile {
@@ -98,9 +159,119 @@ export class Profile extends Message<Profile> {
 }
 
 /**
- * @generated from message tech.monstrs.dating.profiles.v1alpha1.SelectProfileGenderRequest
+ * @generated from message tech.monstrs.dating.profiles.v1alpha1.FillProfileGeopositionRequest
  */
-export class SelectProfileGenderRequest extends Message<SelectProfileGenderRequest> {
+export class FillProfileGeopositionRequest extends Message<FillProfileGeopositionRequest> {
+  /**
+   * @generated from field: string profile_id = 1;
+   */
+  profileId = ''
+
+  /**
+   * @generated from field: float latitude = 2;
+   */
+  latitude = 0
+
+  /**
+   * @generated from field: float longitude = 3;
+   */
+  longitude = 0
+
+  constructor(data?: PartialMessage<FillProfileGeopositionRequest>) {
+    super()
+    proto3.util.initPartial(data, this)
+  }
+
+  static readonly runtime: typeof proto3 = proto3
+  static readonly typeName = 'tech.monstrs.dating.profiles.v1alpha1.FillProfileGeopositionRequest'
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: 'profile_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'latitude', kind: 'scalar', T: 2 /* ScalarType.FLOAT */ },
+    { no: 3, name: 'longitude', kind: 'scalar', T: 2 /* ScalarType.FLOAT */ },
+  ])
+
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): FillProfileGeopositionRequest {
+    return new FillProfileGeopositionRequest().fromBinary(bytes, options)
+  }
+
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): FillProfileGeopositionRequest {
+    return new FillProfileGeopositionRequest().fromJson(jsonValue, options)
+  }
+
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): FillProfileGeopositionRequest {
+    return new FillProfileGeopositionRequest().fromJsonString(jsonString, options)
+  }
+
+  static equals(
+    a: FillProfileGeopositionRequest | PlainMessage<FillProfileGeopositionRequest> | undefined,
+    b: FillProfileGeopositionRequest | PlainMessage<FillProfileGeopositionRequest> | undefined
+  ): boolean {
+    return proto3.util.equals(FillProfileGeopositionRequest, a, b)
+  }
+}
+
+/**
+ * @generated from message tech.monstrs.dating.profiles.v1alpha1.FillProfileGeopositionResponse
+ */
+export class FillProfileGeopositionResponse extends Message<FillProfileGeopositionResponse> {
+  /**
+   * @generated from field: tech.monstrs.dating.profiles.v1alpha1.Profile result = 1;
+   */
+  result?: Profile
+
+  constructor(data?: PartialMessage<FillProfileGeopositionResponse>) {
+    super()
+    proto3.util.initPartial(data, this)
+  }
+
+  static readonly runtime: typeof proto3 = proto3
+  static readonly typeName = 'tech.monstrs.dating.profiles.v1alpha1.FillProfileGeopositionResponse'
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: 'result', kind: 'message', T: Profile },
+  ])
+
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): FillProfileGeopositionResponse {
+    return new FillProfileGeopositionResponse().fromBinary(bytes, options)
+  }
+
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): FillProfileGeopositionResponse {
+    return new FillProfileGeopositionResponse().fromJson(jsonValue, options)
+  }
+
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): FillProfileGeopositionResponse {
+    return new FillProfileGeopositionResponse().fromJsonString(jsonString, options)
+  }
+
+  static equals(
+    a: FillProfileGeopositionResponse | PlainMessage<FillProfileGeopositionResponse> | undefined,
+    b: FillProfileGeopositionResponse | PlainMessage<FillProfileGeopositionResponse> | undefined
+  ): boolean {
+    return proto3.util.equals(FillProfileGeopositionResponse, a, b)
+  }
+}
+
+/**
+ * @generated from message tech.monstrs.dating.profiles.v1alpha1.FillProfileGenderRequest
+ */
+export class FillProfileGenderRequest extends Message<FillProfileGenderRequest> {
   /**
    * @generated from field: string profile_id = 1;
    */
@@ -111,13 +282,13 @@ export class SelectProfileGenderRequest extends Message<SelectProfileGenderReque
    */
   gender = ProfileGender.MALE
 
-  constructor(data?: PartialMessage<SelectProfileGenderRequest>) {
+  constructor(data?: PartialMessage<FillProfileGenderRequest>) {
     super()
     proto3.util.initPartial(data, this)
   }
 
   static readonly runtime: typeof proto3 = proto3
-  static readonly typeName = 'tech.monstrs.dating.profiles.v1alpha1.SelectProfileGenderRequest'
+  static readonly typeName = 'tech.monstrs.dating.profiles.v1alpha1.FillProfileGenderRequest'
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: 'profile_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
     { no: 2, name: 'gender', kind: 'enum', T: proto3.getEnumType(ProfileGender) },
@@ -126,48 +297,48 @@ export class SelectProfileGenderRequest extends Message<SelectProfileGenderReque
   static fromBinary(
     bytes: Uint8Array,
     options?: Partial<BinaryReadOptions>
-  ): SelectProfileGenderRequest {
-    return new SelectProfileGenderRequest().fromBinary(bytes, options)
+  ): FillProfileGenderRequest {
+    return new FillProfileGenderRequest().fromBinary(bytes, options)
   }
 
   static fromJson(
     jsonValue: JsonValue,
     options?: Partial<JsonReadOptions>
-  ): SelectProfileGenderRequest {
-    return new SelectProfileGenderRequest().fromJson(jsonValue, options)
+  ): FillProfileGenderRequest {
+    return new FillProfileGenderRequest().fromJson(jsonValue, options)
   }
 
   static fromJsonString(
     jsonString: string,
     options?: Partial<JsonReadOptions>
-  ): SelectProfileGenderRequest {
-    return new SelectProfileGenderRequest().fromJsonString(jsonString, options)
+  ): FillProfileGenderRequest {
+    return new FillProfileGenderRequest().fromJsonString(jsonString, options)
   }
 
   static equals(
-    a: SelectProfileGenderRequest | PlainMessage<SelectProfileGenderRequest> | undefined,
-    b: SelectProfileGenderRequest | PlainMessage<SelectProfileGenderRequest> | undefined
+    a: FillProfileGenderRequest | PlainMessage<FillProfileGenderRequest> | undefined,
+    b: FillProfileGenderRequest | PlainMessage<FillProfileGenderRequest> | undefined
   ): boolean {
-    return proto3.util.equals(SelectProfileGenderRequest, a, b)
+    return proto3.util.equals(FillProfileGenderRequest, a, b)
   }
 }
 
 /**
- * @generated from message tech.monstrs.dating.profiles.v1alpha1.SelectProfileGenderResponse
+ * @generated from message tech.monstrs.dating.profiles.v1alpha1.FillProfileGenderResponse
  */
-export class SelectProfileGenderResponse extends Message<SelectProfileGenderResponse> {
+export class FillProfileGenderResponse extends Message<FillProfileGenderResponse> {
   /**
    * @generated from field: tech.monstrs.dating.profiles.v1alpha1.Profile result = 1;
    */
   result?: Profile
 
-  constructor(data?: PartialMessage<SelectProfileGenderResponse>) {
+  constructor(data?: PartialMessage<FillProfileGenderResponse>) {
     super()
     proto3.util.initPartial(data, this)
   }
 
   static readonly runtime: typeof proto3 = proto3
-  static readonly typeName = 'tech.monstrs.dating.profiles.v1alpha1.SelectProfileGenderResponse'
+  static readonly typeName = 'tech.monstrs.dating.profiles.v1alpha1.FillProfileGenderResponse'
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: 'result', kind: 'message', T: Profile },
   ])
@@ -175,36 +346,36 @@ export class SelectProfileGenderResponse extends Message<SelectProfileGenderResp
   static fromBinary(
     bytes: Uint8Array,
     options?: Partial<BinaryReadOptions>
-  ): SelectProfileGenderResponse {
-    return new SelectProfileGenderResponse().fromBinary(bytes, options)
+  ): FillProfileGenderResponse {
+    return new FillProfileGenderResponse().fromBinary(bytes, options)
   }
 
   static fromJson(
     jsonValue: JsonValue,
     options?: Partial<JsonReadOptions>
-  ): SelectProfileGenderResponse {
-    return new SelectProfileGenderResponse().fromJson(jsonValue, options)
+  ): FillProfileGenderResponse {
+    return new FillProfileGenderResponse().fromJson(jsonValue, options)
   }
 
   static fromJsonString(
     jsonString: string,
     options?: Partial<JsonReadOptions>
-  ): SelectProfileGenderResponse {
-    return new SelectProfileGenderResponse().fromJsonString(jsonString, options)
+  ): FillProfileGenderResponse {
+    return new FillProfileGenderResponse().fromJsonString(jsonString, options)
   }
 
   static equals(
-    a: SelectProfileGenderResponse | PlainMessage<SelectProfileGenderResponse> | undefined,
-    b: SelectProfileGenderResponse | PlainMessage<SelectProfileGenderResponse> | undefined
+    a: FillProfileGenderResponse | PlainMessage<FillProfileGenderResponse> | undefined,
+    b: FillProfileGenderResponse | PlainMessage<FillProfileGenderResponse> | undefined
   ): boolean {
-    return proto3.util.equals(SelectProfileGenderResponse, a, b)
+    return proto3.util.equals(FillProfileGenderResponse, a, b)
   }
 }
 
 /**
- * @generated from message tech.monstrs.dating.profiles.v1alpha1.ChangeProfileNameRequest
+ * @generated from message tech.monstrs.dating.profiles.v1alpha1.FillProfileNameRequest
  */
-export class ChangeProfileNameRequest extends Message<ChangeProfileNameRequest> {
+export class FillProfileNameRequest extends Message<FillProfileNameRequest> {
   /**
    * @generated from field: string profile_id = 1;
    */
@@ -215,13 +386,13 @@ export class ChangeProfileNameRequest extends Message<ChangeProfileNameRequest> 
    */
   name = ''
 
-  constructor(data?: PartialMessage<ChangeProfileNameRequest>) {
+  constructor(data?: PartialMessage<FillProfileNameRequest>) {
     super()
     proto3.util.initPartial(data, this)
   }
 
   static readonly runtime: typeof proto3 = proto3
-  static readonly typeName = 'tech.monstrs.dating.profiles.v1alpha1.ChangeProfileNameRequest'
+  static readonly typeName = 'tech.monstrs.dating.profiles.v1alpha1.FillProfileNameRequest'
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: 'profile_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
     { no: 2, name: 'name', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
@@ -230,48 +401,48 @@ export class ChangeProfileNameRequest extends Message<ChangeProfileNameRequest> 
   static fromBinary(
     bytes: Uint8Array,
     options?: Partial<BinaryReadOptions>
-  ): ChangeProfileNameRequest {
-    return new ChangeProfileNameRequest().fromBinary(bytes, options)
+  ): FillProfileNameRequest {
+    return new FillProfileNameRequest().fromBinary(bytes, options)
   }
 
   static fromJson(
     jsonValue: JsonValue,
     options?: Partial<JsonReadOptions>
-  ): ChangeProfileNameRequest {
-    return new ChangeProfileNameRequest().fromJson(jsonValue, options)
+  ): FillProfileNameRequest {
+    return new FillProfileNameRequest().fromJson(jsonValue, options)
   }
 
   static fromJsonString(
     jsonString: string,
     options?: Partial<JsonReadOptions>
-  ): ChangeProfileNameRequest {
-    return new ChangeProfileNameRequest().fromJsonString(jsonString, options)
+  ): FillProfileNameRequest {
+    return new FillProfileNameRequest().fromJsonString(jsonString, options)
   }
 
   static equals(
-    a: ChangeProfileNameRequest | PlainMessage<ChangeProfileNameRequest> | undefined,
-    b: ChangeProfileNameRequest | PlainMessage<ChangeProfileNameRequest> | undefined
+    a: FillProfileNameRequest | PlainMessage<FillProfileNameRequest> | undefined,
+    b: FillProfileNameRequest | PlainMessage<FillProfileNameRequest> | undefined
   ): boolean {
-    return proto3.util.equals(ChangeProfileNameRequest, a, b)
+    return proto3.util.equals(FillProfileNameRequest, a, b)
   }
 }
 
 /**
- * @generated from message tech.monstrs.dating.profiles.v1alpha1.ChangeProfileNameResponse
+ * @generated from message tech.monstrs.dating.profiles.v1alpha1.FillProfileNameResponse
  */
-export class ChangeProfileNameResponse extends Message<ChangeProfileNameResponse> {
+export class FillProfileNameResponse extends Message<FillProfileNameResponse> {
   /**
    * @generated from field: tech.monstrs.dating.profiles.v1alpha1.Profile result = 1;
    */
   result?: Profile
 
-  constructor(data?: PartialMessage<ChangeProfileNameResponse>) {
+  constructor(data?: PartialMessage<FillProfileNameResponse>) {
     super()
     proto3.util.initPartial(data, this)
   }
 
   static readonly runtime: typeof proto3 = proto3
-  static readonly typeName = 'tech.monstrs.dating.profiles.v1alpha1.ChangeProfileNameResponse'
+  static readonly typeName = 'tech.monstrs.dating.profiles.v1alpha1.FillProfileNameResponse'
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: 'result', kind: 'message', T: Profile },
   ])
@@ -279,29 +450,29 @@ export class ChangeProfileNameResponse extends Message<ChangeProfileNameResponse
   static fromBinary(
     bytes: Uint8Array,
     options?: Partial<BinaryReadOptions>
-  ): ChangeProfileNameResponse {
-    return new ChangeProfileNameResponse().fromBinary(bytes, options)
+  ): FillProfileNameResponse {
+    return new FillProfileNameResponse().fromBinary(bytes, options)
   }
 
   static fromJson(
     jsonValue: JsonValue,
     options?: Partial<JsonReadOptions>
-  ): ChangeProfileNameResponse {
-    return new ChangeProfileNameResponse().fromJson(jsonValue, options)
+  ): FillProfileNameResponse {
+    return new FillProfileNameResponse().fromJson(jsonValue, options)
   }
 
   static fromJsonString(
     jsonString: string,
     options?: Partial<JsonReadOptions>
-  ): ChangeProfileNameResponse {
-    return new ChangeProfileNameResponse().fromJsonString(jsonString, options)
+  ): FillProfileNameResponse {
+    return new FillProfileNameResponse().fromJsonString(jsonString, options)
   }
 
   static equals(
-    a: ChangeProfileNameResponse | PlainMessage<ChangeProfileNameResponse> | undefined,
-    b: ChangeProfileNameResponse | PlainMessage<ChangeProfileNameResponse> | undefined
+    a: FillProfileNameResponse | PlainMessage<FillProfileNameResponse> | undefined,
+    b: FillProfileNameResponse | PlainMessage<FillProfileNameResponse> | undefined
   ): boolean {
-    return proto3.util.equals(ChangeProfileNameResponse, a, b)
+    return proto3.util.equals(FillProfileNameResponse, a, b)
   }
 }
 

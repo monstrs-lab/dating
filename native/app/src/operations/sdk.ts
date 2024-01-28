@@ -25,33 +25,70 @@ export type Scalars = {
   Float: { input: number; output: number }
 }
 
-export type ChangeProfileNameErrors = {
-  __typename?: 'ChangeProfileNameErrors'
+export type FillProfileGenderErrors = {
+  __typename?: 'FillProfileGenderErrors'
+  gender?: Maybe<ValidationError>
+}
+
+export type FillProfileGenderInput = {
+  gender: ProfileGender
+}
+
+export type FillProfileGenderResponse = {
+  __typename?: 'FillProfileGenderResponse'
+  errors?: Maybe<FillProfileGenderErrors>
+  result?: Maybe<Profile>
+}
+
+export type FillProfileGeopositionErrors = {
+  __typename?: 'FillProfileGeopositionErrors'
+  latitude?: Maybe<ValidationError>
+  longitude?: Maybe<ValidationError>
+}
+
+export type FillProfileGeopositionInput = {
+  latitude: Scalars['Float']['input']
+  longitude: Scalars['Float']['input']
+}
+
+export type FillProfileGeopositionResponse = {
+  __typename?: 'FillProfileGeopositionResponse'
+  errors?: Maybe<FillProfileGeopositionErrors>
+  result?: Maybe<Profile>
+}
+
+export type FillProfileNameErrors = {
+  __typename?: 'FillProfileNameErrors'
   name?: Maybe<ValidationError>
 }
 
-export type ChangeProfileNameInput = {
+export type FillProfileNameInput = {
   name: Scalars['String']['input']
 }
 
-export type ChangeProfileNameResponse = {
-  __typename?: 'ChangeProfileNameResponse'
-  errors?: Maybe<ChangeProfileNameErrors>
+export type FillProfileNameResponse = {
+  __typename?: 'FillProfileNameResponse'
+  errors?: Maybe<FillProfileNameErrors>
   result?: Maybe<Profile>
 }
 
 export type Mutation = {
   __typename?: 'Mutation'
-  changeProfileName: ChangeProfileNameResponse
-  selectProfileGender: SelectProfileGenderResponse
+  fillProfileGender: FillProfileGenderResponse
+  fillProfileGeoposition: FillProfileGeopositionResponse
+  fillProfileName: FillProfileNameResponse
 }
 
-export type MutationChangeProfileNameArgs = {
-  input: ChangeProfileNameInput
+export type MutationFillProfileGenderArgs = {
+  input: FillProfileGenderInput
 }
 
-export type MutationSelectProfileGenderArgs = {
-  input: SelectProfileGenderInput
+export type MutationFillProfileGeopositionArgs = {
+  input: FillProfileGeopositionInput
+}
+
+export type MutationFillProfileNameArgs = {
+  input: FillProfileNameInput
 }
 
 export type MyProfile = {
@@ -62,7 +99,9 @@ export type MyProfile = {
 export type Profile = {
   __typename?: 'Profile'
   gender?: Maybe<ProfileGender>
+  geoposition?: Maybe<ProfileGeoposition>
   id: Scalars['String']['output']
+  location?: Maybe<Scalars['String']['output']>
   name?: Maybe<Scalars['String']['output']>
 }
 
@@ -71,24 +110,15 @@ export enum ProfileGender {
   Male = 'MALE',
 }
 
+export type ProfileGeoposition = {
+  __typename?: 'ProfileGeoposition'
+  latitude: Scalars['Float']['output']
+  longitude: Scalars['Float']['output']
+}
+
 export type Query = {
   __typename?: 'Query'
   my: User
-}
-
-export type SelectProfileGenderErrors = {
-  __typename?: 'SelectProfileGenderErrors'
-  gender?: Maybe<ValidationError>
-}
-
-export type SelectProfileGenderInput = {
-  gender: ProfileGender
-}
-
-export type SelectProfileGenderResponse = {
-  __typename?: 'SelectProfileGenderResponse'
-  errors?: Maybe<SelectProfileGenderErrors>
-  result?: Maybe<Profile>
 }
 
 export type User = {
@@ -103,37 +133,57 @@ export type ValidationError = {
   message: Scalars['String']['output']
 }
 
-export type ChangeProfileNameMutationVariables = Exact<{
-  name: Scalars['String']['input']
+export type FillProfileGenderMutationVariables = Exact<{
+  gender: ProfileGender
 }>
 
-export type ChangeProfileNameMutation = {
+export type FillProfileGenderMutation = {
   __typename?: 'Mutation'
-  changeProfileName: {
-    __typename?: 'ChangeProfileNameResponse'
+  fillProfileGender: {
+    __typename?: 'FillProfileGenderResponse'
     result?: ({ __typename?: 'Profile' } & ProfileFragmentFragment) | undefined
     errors?:
       | {
-          __typename?: 'ChangeProfileNameErrors'
-          name?: { __typename?: 'ValidationError'; id: string; message: string } | undefined
+          __typename?: 'FillProfileGenderErrors'
+          gender?: { __typename?: 'ValidationError'; id: string; message: string } | undefined
         }
       | undefined
   }
 }
 
-export type SelectProfileGenderMutationVariables = Exact<{
-  gender: ProfileGender
+export type FillProfileGeopositionMutationVariables = Exact<{
+  latitude: Scalars['Float']['input']
+  longitude: Scalars['Float']['input']
 }>
 
-export type SelectProfileGenderMutation = {
+export type FillProfileGeopositionMutation = {
   __typename?: 'Mutation'
-  selectProfileGender: {
-    __typename?: 'SelectProfileGenderResponse'
+  fillProfileGeoposition: {
+    __typename?: 'FillProfileGeopositionResponse'
     result?: ({ __typename?: 'Profile' } & ProfileFragmentFragment) | undefined
     errors?:
       | {
-          __typename?: 'SelectProfileGenderErrors'
-          gender?: { __typename?: 'ValidationError'; id: string; message: string } | undefined
+          __typename?: 'FillProfileGeopositionErrors'
+          latitude?: { __typename?: 'ValidationError'; id: string; message: string } | undefined
+          longitude?: { __typename?: 'ValidationError'; id: string; message: string } | undefined
+        }
+      | undefined
+  }
+}
+
+export type FillProfileNameMutationVariables = Exact<{
+  name: Scalars['String']['input']
+}>
+
+export type FillProfileNameMutation = {
+  __typename?: 'Mutation'
+  fillProfileName: {
+    __typename?: 'FillProfileNameResponse'
+    result?: ({ __typename?: 'Profile' } & ProfileFragmentFragment) | undefined
+    errors?:
+      | {
+          __typename?: 'FillProfileNameErrors'
+          name?: { __typename?: 'ValidationError'; id: string; message: string } | undefined
         }
       | undefined
   }
@@ -144,6 +194,7 @@ export type ProfileFragmentFragment = {
   id: string
   gender?: ProfileGender | undefined
   name?: string | undefined
+  location?: string | undefined
 }
 
 export type MyProfileQueryVariables = Exact<{ [key: string]: never }>
@@ -164,16 +215,17 @@ export const ProfileFragmentFragmentDoc = gql`
     id
     gender
     name
+    location
   }
 `
-export const ChangeProfileNameDocument = gql`
-  mutation changeProfileName($name: String!) {
-    changeProfileName(input: { name: $name }) {
+export const FillProfileGenderDocument = gql`
+  mutation fillProfileGender($gender: ProfileGender!) {
+    fillProfileGender(input: { gender: $gender }) {
       result {
         ...ProfileFragment
       }
       errors {
-        name {
+        gender {
           id
           message
         }
@@ -182,14 +234,34 @@ export const ChangeProfileNameDocument = gql`
   }
   ${ProfileFragmentFragmentDoc}
 `
-export const SelectProfileGenderDocument = gql`
-  mutation selectProfileGender($gender: ProfileGender!) {
-    selectProfileGender(input: { gender: $gender }) {
+export const FillProfileGeopositionDocument = gql`
+  mutation fillProfileGeoposition($latitude: Float!, $longitude: Float!) {
+    fillProfileGeoposition(input: { latitude: $latitude, longitude: $longitude }) {
       result {
         ...ProfileFragment
       }
       errors {
-        gender {
+        latitude {
+          id
+          message
+        }
+        longitude {
+          id
+          message
+        }
+      }
+    }
+  }
+  ${ProfileFragmentFragmentDoc}
+`
+export const FillProfileNameDocument = gql`
+  mutation fillProfileName($name: String!) {
+    fillProfileName(input: { name: $name }) {
+      result {
+        ...ProfileFragment
+      }
+      errors {
+        name {
           id
           message
         }
@@ -223,32 +295,48 @@ const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationTy
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
-    changeProfileName(
-      variables: ChangeProfileNameMutationVariables,
+    fillProfileGender(
+      variables: FillProfileGenderMutationVariables,
       requestHeaders?: GraphQLClientRequestHeaders
-    ): Promise<ChangeProfileNameMutation> {
+    ): Promise<FillProfileGenderMutation> {
       return withWrapper(
         (wrappedRequestHeaders) =>
-          client.request<ChangeProfileNameMutation>(ChangeProfileNameDocument, variables, {
+          client.request<FillProfileGenderMutation>(FillProfileGenderDocument, variables, {
             ...requestHeaders,
             ...wrappedRequestHeaders,
           }),
-        'changeProfileName',
+        'fillProfileGender',
         'mutation',
         variables
       )
     },
-    selectProfileGender(
-      variables: SelectProfileGenderMutationVariables,
+    fillProfileGeoposition(
+      variables: FillProfileGeopositionMutationVariables,
       requestHeaders?: GraphQLClientRequestHeaders
-    ): Promise<SelectProfileGenderMutation> {
+    ): Promise<FillProfileGeopositionMutation> {
       return withWrapper(
         (wrappedRequestHeaders) =>
-          client.request<SelectProfileGenderMutation>(SelectProfileGenderDocument, variables, {
+          client.request<FillProfileGeopositionMutation>(
+            FillProfileGeopositionDocument,
+            variables,
+            { ...requestHeaders, ...wrappedRequestHeaders }
+          ),
+        'fillProfileGeoposition',
+        'mutation',
+        variables
+      )
+    },
+    fillProfileName(
+      variables: FillProfileNameMutationVariables,
+      requestHeaders?: GraphQLClientRequestHeaders
+    ): Promise<FillProfileNameMutation> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<FillProfileNameMutation>(FillProfileNameDocument, variables, {
             ...requestHeaders,
             ...wrappedRequestHeaders,
           }),
-        'selectProfileGender',
+        'fillProfileName',
         'mutation',
         variables
       )

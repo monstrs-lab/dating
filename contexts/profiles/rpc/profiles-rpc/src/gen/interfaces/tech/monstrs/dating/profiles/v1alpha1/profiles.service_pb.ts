@@ -26,6 +26,21 @@ export enum ProfileGender {
 }
 
 /**
+ * @generated from message tech.monstrs.dating.profiles.v1alpha1.ProfileGeoposition
+ */
+export interface ProfileGeoposition {
+  /**
+   * @generated from field: float latitude = 1;
+   */
+  latitude: number
+
+  /**
+   * @generated from field: float longitude = 2;
+   */
+  longitude: number
+}
+
+/**
  * @generated from message tech.monstrs.dating.profiles.v1alpha1.Profile
  */
 export interface Profile {
@@ -45,15 +60,55 @@ export interface Profile {
   name?: string
 
   /**
-   * @generated from field: google.protobuf.Timestamp created_at = 4;
+   * @generated from field: optional string location = 4;
+   */
+  location?: string
+
+  /**
+   * @generated from field: optional tech.monstrs.dating.profiles.v1alpha1.ProfileGeoposition geoposition = 5;
+   */
+  geoposition?: ProfileGeoposition
+
+  /**
+   * @generated from field: google.protobuf.Timestamp created_at = 6;
    */
   createdAt?: Timestamp
 }
 
 /**
- * @generated from message tech.monstrs.dating.profiles.v1alpha1.SelectProfileGenderRequest
+ * @generated from message tech.monstrs.dating.profiles.v1alpha1.FillProfileGeopositionRequest
  */
-export interface SelectProfileGenderRequest {
+export interface FillProfileGeopositionRequest {
+  /**
+   * @generated from field: string profile_id = 1;
+   */
+  profileId: string
+
+  /**
+   * @generated from field: float latitude = 2;
+   */
+  latitude: number
+
+  /**
+   * @generated from field: float longitude = 3;
+   */
+  longitude: number
+}
+
+/**
+ * @generated from message tech.monstrs.dating.profiles.v1alpha1.FillProfileGeopositionResponse
+ */
+export interface FillProfileGeopositionResponse {
+  /**
+   * @generated from field: tech.monstrs.dating.profiles.v1alpha1.Profile result = 1;
+   */
+  result?: Profile
+}
+
+/**
+ * @generated from message tech.monstrs.dating.profiles.v1alpha1.FillProfileGenderRequest
+ */
+export interface FillProfileGenderRequest {
   /**
    * @generated from field: string profile_id = 1;
    */
@@ -66,9 +121,9 @@ export interface SelectProfileGenderRequest {
 }
 
 /**
- * @generated from message tech.monstrs.dating.profiles.v1alpha1.SelectProfileGenderResponse
+ * @generated from message tech.monstrs.dating.profiles.v1alpha1.FillProfileGenderResponse
  */
-export interface SelectProfileGenderResponse {
+export interface FillProfileGenderResponse {
   /**
    * @generated from field: tech.monstrs.dating.profiles.v1alpha1.Profile result = 1;
    */
@@ -76,9 +131,9 @@ export interface SelectProfileGenderResponse {
 }
 
 /**
- * @generated from message tech.monstrs.dating.profiles.v1alpha1.ChangeProfileNameRequest
+ * @generated from message tech.monstrs.dating.profiles.v1alpha1.FillProfileNameRequest
  */
-export interface ChangeProfileNameRequest {
+export interface FillProfileNameRequest {
   /**
    * @generated from field: string profile_id = 1;
    */
@@ -91,9 +146,9 @@ export interface ChangeProfileNameRequest {
 }
 
 /**
- * @generated from message tech.monstrs.dating.profiles.v1alpha1.ChangeProfileNameResponse
+ * @generated from message tech.monstrs.dating.profiles.v1alpha1.FillProfileNameResponse
  */
-export interface ChangeProfileNameResponse {
+export interface FillProfileNameResponse {
   /**
    * @generated from field: tech.monstrs.dating.profiles.v1alpha1.Profile result = 1;
    */

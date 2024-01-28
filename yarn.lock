@@ -3933,9 +3933,11 @@ __metadata:
     "@profiles/profiles-rpc": "workspace:0.0.1"
     "@types/express": "npm:^4.17.21"
     "@types/node": "npm:^20.11.7"
+    "@types/node-geocoder": "npm:^4.2.6"
     "@types/uuid": "npm:^9.0.8"
     class-transformer: "npm:^0.5.1"
     class-validator: "npm:^0.14.1"
+    node-geocoder: "npm:^4.2.0"
     reflect-metadata: "npm:^0.2.1"
     rxjs: "npm:^7.8.1"
     ts-node: "npm:^10.9.2"
@@ -4525,13 +4527,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node-fetch@npm:^2.6.1, @types/node-fetch@npm:^2.6.2":
+"@types/node-fetch@npm:^2, @types/node-fetch@npm:^2.6.1, @types/node-fetch@npm:^2.6.2":
   version: 2.6.11
   resolution: "@types/node-fetch@npm:2.6.11"
   dependencies:
     "@types/node": "npm:*"
     form-data: "npm:^4.0.0"
   checksum: 5283d4e0bcc37a5b6d8e629aee880a4ffcfb33e089f4b903b2981b19c623972d1e64af7c3f9540ab990f0f5c89b9b5dda19c5bcb37a8e177079e93683bfd2f49
+  languageName: node
+  linkType: hard
+
+"@types/node-geocoder@npm:^4.2.6":
+  version: 4.2.6
+  resolution: "@types/node-geocoder@npm:4.2.6"
+  dependencies:
+    "@types/node": "npm:*"
+    "@types/node-fetch": "npm:^2"
+  checksum: f2eacd09f507470eaac765acca019d52d84f8e98323e85c09a5d7211d11c27f51cbe60ec972ddf35035b59429ed90aeb41139aadd279013912c02aa5f0410659
   languageName: node
   linkType: hard
 
@@ -5681,6 +5693,13 @@ __metadata:
     inherits: "npm:^2.0.4"
     readable-stream: "npm:^4.2.0"
   checksum: 0719afb3f6904c35e5324240925b4caa06da2b4957c4be359a679da599ac3f5075b86ec220e6b16b5fdc7a078f90b84eeff667057cd456f7295192dbcdeb8f39
+  languageName: node
+  linkType: hard
+
+"bluebird@npm:^3.5.2":
+  version: 3.7.2
+  resolution: "bluebird@npm:3.7.2"
+  checksum: 680de03adc54ff925eaa6c7bb9a47a0690e8b5de60f4792604aae8ed618c65e6b63a7893b57ca924beaf53eee69c5af4f8314148c08124c550fe1df1add897d2
   languageName: node
   linkType: hard
 
@@ -10464,7 +10483,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-fetch@npm:^2.6.1, node-fetch@npm:^2.6.12, node-fetch@npm:^2.6.7":
+"node-fetch@npm:^2.6.0, node-fetch@npm:^2.6.1, node-fetch@npm:^2.6.12, node-fetch@npm:^2.6.7":
   version: 2.7.0
   resolution: "node-fetch@npm:2.7.0"
   dependencies:
@@ -10475,6 +10494,16 @@ __metadata:
     encoding:
       optional: true
   checksum: b55786b6028208e6fbe594ccccc213cab67a72899c9234eb59dba51062a299ea853210fcf526998eaa2867b0963ad72338824450905679ff0fa304b8c5093ae8
+  languageName: node
+  linkType: hard
+
+"node-geocoder@npm:^4.2.0":
+  version: 4.2.0
+  resolution: "node-geocoder@npm:4.2.0"
+  dependencies:
+    bluebird: "npm:^3.5.2"
+    node-fetch: "npm:^2.6.0"
+  checksum: feb53bfe6c97296255931fd8a1d1d93ce89efee18f648e293e798544a9b0a90e8a0c166c892242df8821e392beaf3f27a922acfbd99a5e6c9f3f60406ac74b99
   languageName: node
   linkType: hard
 

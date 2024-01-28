@@ -18,20 +18,29 @@ export class ProfilesClient {
     private readonly profilesDataLoader: ProfilesDataLoader
   ) {}
 
-  async selectProfileGender(
-    profileId: string,
-    gender: ProfileGender
-  ): Promise<{ result?: Profile }> {
-    return this.client.selectProfileGender({
+  async fillProfileGender(profileId: string, gender: ProfileGender): Promise<{ result?: Profile }> {
+    return this.client.fillProfileGender({
       profileId,
       gender,
     })
   }
 
-  async changeProfileName(profileId: string, name: string): Promise<{ result?: Profile }> {
-    return this.client.changeProfileName({
+  async fillProfileName(profileId: string, name: string): Promise<{ result?: Profile }> {
+    return this.client.fillProfileName({
       profileId,
       name,
+    })
+  }
+
+  async fillProfileGeoposition(
+    profileId: string,
+    latitude: number,
+    longitude: number
+  ): Promise<{ result?: Profile }> {
+    return this.client.fillProfileGeoposition({
+      profileId,
+      latitude,
+      longitude,
     })
   }
 

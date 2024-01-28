@@ -39,6 +39,7 @@ export class StandaloneServiceConfigModule implements OnModuleInit {
           user: 'postgres',
           password: 'password',
           entities: Object.values(entities),
+          forceUndefined: true,
           migrations: {
             disableForeignKeys: false,
             migrationsList: Object.keys(migrations).map((name: string) => ({

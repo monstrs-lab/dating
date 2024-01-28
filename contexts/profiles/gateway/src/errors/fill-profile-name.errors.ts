@@ -4,7 +4,7 @@ import { ObjectType }      from '@nestjs/graphql'
 import { ValidationError } from '@shared/gateway-types'
 
 @ObjectType()
-export class ChangeProfileNameErrors {
+export class FillProfileNameErrors {
   @Field(() => ValidationError, { nullable: true })
   name?: ValidationError
 }

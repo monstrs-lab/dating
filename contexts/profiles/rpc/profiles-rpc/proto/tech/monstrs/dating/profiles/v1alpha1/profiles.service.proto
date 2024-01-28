@@ -6,8 +6,9 @@ import "google/protobuf/timestamp.proto";
 import "tech/monstrs/queries/v1alpha1/queries.proto";
 
 service ProfilesService {
-  rpc SelectProfileGender(SelectProfileGenderRequest) returns (SelectProfileGenderResponse) {}
-  rpc ChangeProfileName(ChangeProfileNameRequest) returns (ChangeProfileNameResponse) {}
+  rpc FillProfileGeoposition(FillProfileGeopositionRequest) returns (FillProfileGeopositionResponse) {}
+  rpc FillProfileGender(FillProfileGenderRequest) returns (FillProfileGenderResponse) {}
+  rpc FillProfileName(FillProfileNameRequest) returns (FillProfileNameResponse) {}
   rpc ListProfiles(ListProfilesRequest) returns (ListProfilesResponse) {}
 }
 
@@ -16,28 +17,45 @@ enum ProfileGender {
   FEMALE = 1;
 }
 
+message ProfileGeoposition {
+  float latitude = 1;
+  float longitude = 2;
+}
+
 message Profile {
   string id = 1;
   optional ProfileGender gender = 2;
   optional string name = 3;
-  google.protobuf.Timestamp created_at = 4;
+  optional string location = 4;
+  optional ProfileGeoposition geoposition = 5;
+  google.protobuf.Timestamp created_at = 6;
 }
 
-message SelectProfileGenderRequest {
+message FillProfileGeopositionRequest {
+  string profile_id = 1;
+  float latitude = 2;
+  float longitude = 3;
+}
+
+message FillProfileGeopositionResponse {
+  Profile result = 1;
+}
+
+message FillProfileGenderRequest {
   string profile_id = 1;
   ProfileGender gender = 2;
 }
 
-message SelectProfileGenderResponse {
+message FillProfileGenderResponse {
   Profile result = 1;
 }
 
-message ChangeProfileNameRequest {
+message FillProfileNameRequest {
   string profile_id = 1;
   string name = 2;
 }
 
-message ChangeProfileNameResponse {
+message FillProfileNameResponse {
   Profile result = 1;
 }
 

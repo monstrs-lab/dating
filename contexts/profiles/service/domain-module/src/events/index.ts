@@ -1,3 +1,5 @@
 export * from './profile-created.event.js'
 export * from './profile-gender-selected.event.js'
 export * from './profile-name-changed.event.js'
+export * from './profile-geoposition-changed.event.js'
+export * from './profile-location-changed.event.js'

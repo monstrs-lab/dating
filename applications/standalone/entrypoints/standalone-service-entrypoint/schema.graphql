@@ -7,11 +7,16 @@ type ValidationError {
   message: String!
 }
 
-type SelectProfileGenderErrors {
+type FillProfileGeopositionErrors {
+  latitude: ValidationError
+  longitude: ValidationError
+}
+
+type FillProfileGenderErrors {
   gender: ValidationError
 }
 
-type ChangeProfileNameErrors {
+type FillProfileNameErrors {
   name: ValidationError
 }
 
@@ -19,6 +24,7 @@ type Profile {
   id: String!
   gender: ProfileGender
   name: String
+  location: String
 }
 
 enum ProfileGender {
@@ -30,14 +36,19 @@ type MyProfile {
   info: Profile!
 }
 
-type SelectProfileGenderResponse {
+type FillProfileGeopositionResponse {
   result: Profile
-  errors: SelectProfileGenderErrors
+  errors: FillProfileGeopositionErrors
 }
 
-type ChangeProfileNameResponse {
+type FillProfileGenderResponse {
   result: Profile
-  errors: ChangeProfileNameErrors
+  errors: FillProfileGenderErrors
+}
+
+type FillProfileNameResponse {
+  result: Profile
+  errors: FillProfileNameErrors
 }
 
 type User {
@@ -50,14 +61,20 @@ type Query {
 }
 
 type Mutation {
-  selectProfileGender(input: SelectProfileGenderInput!): SelectProfileGenderResponse!
-  changeProfileName(input: ChangeProfileNameInput!): ChangeProfileNameResponse!
+  fillProfileGender(input: FillProfileGenderInput!): FillProfileGenderResponse!
+  fillProfileName(input: FillProfileNameInput!): FillProfileNameResponse!
+  fillProfileGeoposition(input: FillProfileGeopositionInput!): FillProfileGeopositionResponse!
 }
 
-input SelectProfileGenderInput {
+input FillProfileGenderInput {
   gender: ProfileGender!
 }
 
-input ChangeProfileNameInput {
+input FillProfileNameInput {
   name: String!
+}
+
+input FillProfileGeopositionInput {
+  latitude: Float!
+  longitude: Float!
 }

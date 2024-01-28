@@ -26,6 +26,21 @@ export enum ProfileGender {
 }
 
 /**
+ * @generated from message tech.monstrs.dating.profiles.v1alpha1.ProfileGeoposition
+ */
+export abstract class ProfileGeoposition {
+  /**
+   * @generated from field: float latitude = 1;
+   */
+  abstract readonly latitude: number
+
+  /**
+   * @generated from field: float longitude = 2;
+   */
+  abstract readonly longitude: number
+}
+
+/**
  * @generated from message tech.monstrs.dating.profiles.v1alpha1.Profile
  */
 export abstract class Profile {
@@ -45,15 +60,55 @@ export abstract class Profile {
   abstract readonly name?: string
 
   /**
-   * @generated from field: google.protobuf.Timestamp created_at = 4;
+   * @generated from field: optional string location = 4;
+   */
+  abstract readonly location?: string
+
+  /**
+   * @generated from field: optional tech.monstrs.dating.profiles.v1alpha1.ProfileGeoposition geoposition = 5;
+   */
+  abstract readonly geoposition?: ProfileGeoposition
+
+  /**
+   * @generated from field: google.protobuf.Timestamp created_at = 6;
    */
   abstract readonly createdAt?: Timestamp
 }
 
 /**
- * @generated from message tech.monstrs.dating.profiles.v1alpha1.SelectProfileGenderRequest
+ * @generated from message tech.monstrs.dating.profiles.v1alpha1.FillProfileGeopositionRequest
  */
-export abstract class SelectProfileGenderRequest {
+export abstract class FillProfileGeopositionRequest {
+  /**
+   * @generated from field: string profile_id = 1;
+   */
+  abstract readonly profileId: string
+
+  /**
+   * @generated from field: float latitude = 2;
+   */
+  abstract readonly latitude: number
+
+  /**
+   * @generated from field: float longitude = 3;
+   */
+  abstract readonly longitude: number
+}
+
+/**
+ * @generated from message tech.monstrs.dating.profiles.v1alpha1.FillProfileGeopositionResponse
+ */
+export abstract class FillProfileGeopositionResponse {
+  /**
+   * @generated from field: tech.monstrs.dating.profiles.v1alpha1.Profile result = 1;
+   */
+  abstract readonly result?: Profile
+}
+
+/**
+ * @generated from message tech.monstrs.dating.profiles.v1alpha1.FillProfileGenderRequest
+ */
+export abstract class FillProfileGenderRequest {
   /**
    * @generated from field: string profile_id = 1;
    */
@@ -66,9 +121,9 @@ export abstract class SelectProfileGenderRequest {
 }
 
 /**
- * @generated from message tech.monstrs.dating.profiles.v1alpha1.SelectProfileGenderResponse
+ * @generated from message tech.monstrs.dating.profiles.v1alpha1.FillProfileGenderResponse
  */
-export abstract class SelectProfileGenderResponse {
+export abstract class FillProfileGenderResponse {
   /**
    * @generated from field: tech.monstrs.dating.profiles.v1alpha1.Profile result = 1;
    */
@@ -76,9 +131,9 @@ export abstract class SelectProfileGenderResponse {
 }
 
 /**
- * @generated from message tech.monstrs.dating.profiles.v1alpha1.ChangeProfileNameRequest
+ * @generated from message tech.monstrs.dating.profiles.v1alpha1.FillProfileNameRequest
  */
-export abstract class ChangeProfileNameRequest {
+export abstract class FillProfileNameRequest {
   /**
    * @generated from field: string profile_id = 1;
    */
@@ -91,9 +146,9 @@ export abstract class ChangeProfileNameRequest {
 }
 
 /**
- * @generated from message tech.monstrs.dating.profiles.v1alpha1.ChangeProfileNameResponse
+ * @generated from message tech.monstrs.dating.profiles.v1alpha1.FillProfileNameResponse
  */
-export abstract class ChangeProfileNameResponse {
+export abstract class FillProfileNameResponse {
   /**
    * @generated from field: tech.monstrs.dating.profiles.v1alpha1.Profile result = 1;
    */

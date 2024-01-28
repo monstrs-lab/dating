@@ -4,7 +4,7 @@ import { InputType }     from '@nestjs/graphql'
 import { ProfileGender } from '../enums/index.js'
 
 @InputType()
-export class SelectProfileGenderInput {
+export class FillProfileGenderInput {
   @Field(() => ProfileGender)
   gender!: ProfileGender
 }

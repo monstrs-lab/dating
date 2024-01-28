@@ -17,9 +17,10 @@ import React                          from 'react'
 import { CallbackScreen }             from './auth/screens'
 import { LoginScreen }                from './auth/screens'
 import { RegistrationScreen }         from './auth/screens'
-import { ChangeNameScreen }           from './intro/screens'
+import { FillNameScreen }             from './intro/screens'
 import { IntroScreen }                from './intro/screens'
-import { SelectGenderScreen }         from './intro/screens'
+import { FillGenderScreen }           from './intro/screens'
+import { FillGeopositionScreen }      from './intro/screens'
 import { ProfileScreen }              from './main/screens'
 
 export type MainTabsParamList = {
@@ -38,8 +39,9 @@ export type RootStackParamList = {
     code?: string
   }
   Intro: undefined
-  SelectGender: undefined
-  ChangeName: undefined
+  FillGender: undefined
+  FillName: undefined
+  FillGeoposition: undefined
   Main: NavigatorScreenParams<MainTabsParamList>
 }
 
@@ -71,8 +73,9 @@ export const Navigation = (): ReactElement => {
             {isAuthenticated ? (
               <Stack.Group screenOptions={{ headerShown: false }}>
                 <Stack.Screen name='Intro' component={IntroScreen} />
-                <Stack.Screen name='SelectGender' component={SelectGenderScreen} />
-                <Stack.Screen name='ChangeName' component={ChangeNameScreen} />
+                <Stack.Screen name='FillGender' component={FillGenderScreen} />
+                <Stack.Screen name='FillName' component={FillNameScreen} />
+                <Stack.Screen name='FillGeoposition' component={FillGeopositionScreen} />
                 <Stack.Screen
                   name='Main'
                   component={Main}

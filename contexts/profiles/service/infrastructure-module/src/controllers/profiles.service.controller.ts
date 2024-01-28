@@ -1,36 +1,41 @@
 /* eslint-disable @typescript-eslint/consistent-type-imports */
 
-import type { ServiceImpl }                 from '@connectrpc/connect'
-import type { FindProfilesByQueryResult }   from '@profiles/application-module'
-import type { Profile }                     from '@profiles/domain-module'
-import type { ListProfilesRequest }         from '@profiles/profiles-rpc/interfaces'
-import type { SelectProfileGenderRequest }  from '@profiles/profiles-rpc/interfaces'
-import type { ChangeProfileNameRequest }    from '@profiles/profiles-rpc/interfaces'
-import type { ListProfilesResponse }        from '@profiles/profiles-rpc/interfaces'
-import type { SelectProfileGenderResponse } from '@profiles/profiles-rpc/interfaces'
-import type { ChangeProfileNameResponse }   from '@profiles/profiles-rpc/interfaces'
+import type { ServiceImpl }                    from '@connectrpc/connect'
+import type { FindProfilesByQueryResult }      from '@profiles/application-module'
+import type { Profile }                        from '@profiles/domain-module'
+import type { ListProfilesRequest }            from '@profiles/profiles-rpc/interfaces'
+import type { FillProfileGenderRequest }       from '@profiles/profiles-rpc/interfaces'
+import type { FillProfileGeopositionRequest }  from '@profiles/profiles-rpc/interfaces'
+import type { FillProfileNameRequest }         from '@profiles/profiles-rpc/interfaces'
+import type { ListProfilesResponse }           from '@profiles/profiles-rpc/interfaces'
+import type { FillProfileGenderResponse }      from '@profiles/profiles-rpc/interfaces'
+import type { FillProfileNameResponse }        from '@profiles/profiles-rpc/interfaces'
+import type { FillProfileGeopositionResponse } from '@profiles/profiles-rpc/interfaces'
 
-import { ConnectRpcMethod }                 from '@monstrs/nestjs-connectrpc'
-import { ConnectRpcService }                from '@monstrs/nestjs-connectrpc'
-import { ConnectRpcExceptionsFilter }       from '@monstrs/nestjs-connectrpc-errors'
-import { Validator }                        from '@monstrs/nestjs-validation'
-import { UseFilters }                       from '@nestjs/common'
-import { Controller }                       from '@nestjs/common'
-import { QueryBus }                         from '@nestjs/cqrs'
-import { CommandBus }                       from '@nestjs/cqrs'
+import { ConnectRpcMethod }                    from '@monstrs/nestjs-connectrpc'
+import { ConnectRpcService }                   from '@monstrs/nestjs-connectrpc'
+import { ConnectRpcExceptionsFilter }          from '@monstrs/nestjs-connectrpc-errors'
+import { Validator }                           from '@monstrs/nestjs-validation'
+import { UseFilters }                          from '@nestjs/common'
+import { Controller }                          from '@nestjs/common'
+import { QueryBus }                            from '@nestjs/cqrs'
+import { CommandBus }                          from '@nestjs/cqrs'
 
-import { GetProfilesQuery }                 from '@profiles/application-module'
-import { GetProfileByIdQuery }              from '@profiles/application-module'
-import { SelectProfileGenderCommand }       from '@profiles/application-module'
-import { ChangeProfileNameCommand }         from '@profiles/application-module'
-import { ProfilesService }                  from '@profiles/profiles-rpc/connect'
+import { GetProfilesQuery }                    from '@profiles/application-module'
+import { GetProfileByIdQuery }                 from '@profiles/application-module'
+import { FillProfileGenderCommand }            from '@profiles/application-module'
+import { FillProfileNameCommand }              from '@profiles/application-module'
+import { FillProfileGeopositionCommand }       from '@profiles/application-module'
+import { ProfilesService }                     from '@profiles/profiles-rpc/connect'
 
-import { ListProfilesPayload }              from '../payloads/index.js'
-import { SelectProfileGenderPayload }       from '../payloads/index.js'
-import { ChangeProfileNamePayload }         from '../payloads/index.js'
-import { ListProfilesSerializer }           from '../serializers/index.js'
-import { SelectProfileGenderSerializer }    from '../serializers/index.js'
-import { ChangeProfileNameSerializer }      from '../serializers/index.js'
+import { ListProfilesPayload }                 from '../payloads/index.js'
+import { FillProfileGenderPayload }            from '../payloads/index.js'
+import { FillProfileGeopositionPayload }       from '../payloads/index.js'
+import { FillProfileNamePayload }              from '../payloads/index.js'
+import { ListProfilesSerializer }              from '../serializers/index.js'
+import { FillProfileGenderSerializer }         from '../serializers/index.js'
+import { FillProfileNameSerializer }           from '../serializers/index.js'
+import { FillProfileGeopositionSerializer }    from '../serializers/index.js'
 
 @Controller()
 @ConnectRpcService(ProfilesService)
@@ -56,16 +61,14 @@ export class ProfilesController implements ServiceImpl<typeof ProfilesService> {
   }
 
   @ConnectRpcMethod()
-  async selectProfileGender(
-    request: SelectProfileGenderRequest
-  ): Promise<SelectProfileGenderResponse> {
-    const payload = new SelectProfileGenderPayload(request)
+  async fillProfileGender(request: FillProfileGenderRequest): Promise<FillProfileGenderResponse> {
+    const payload = new FillProfileGenderPayload(request)
 
     await this.validator.validate(payload)
 
-    await this.commandBus.execute(new SelectProfileGenderCommand(payload.profileId, payload.gender))
+    await this.commandBus.execute(new FillProfileGenderCommand(payload.profileId, payload.gender))
 
-    return new SelectProfileGenderSerializer(
+    return new FillProfileGenderSerializer(
       await this.queryBus.execute<GetProfileByIdQuery, Profile>(
         new GetProfileByIdQuery(payload.profileId)
       )
@@ -73,14 +76,33 @@ export class ProfilesController implements ServiceImpl<typeof ProfilesService> {
   }
 
   @ConnectRpcMethod()
-  async changeProfileName(request: ChangeProfileNameRequest): Promise<ChangeProfileNameResponse> {
-    const payload = new ChangeProfileNamePayload(request)
+  async fillProfileName(request: FillProfileNameRequest): Promise<FillProfileNameResponse> {
+    const payload = new FillProfileNamePayload(request)
 
     await this.validator.validate(payload)
 
-    await this.commandBus.execute(new ChangeProfileNameCommand(payload.profileId, payload.name))
+    await this.commandBus.execute(new FillProfileNameCommand(payload.profileId, payload.name))
 
-    return new ChangeProfileNameSerializer(
+    return new FillProfileNameSerializer(
+      await this.queryBus.execute<GetProfileByIdQuery, Profile>(
+        new GetProfileByIdQuery(payload.profileId)
+      )
+    )
+  }
+
+  @ConnectRpcMethod()
+  async fillProfileGeoposition(
+    request: FillProfileGeopositionRequest
+  ): Promise<FillProfileGeopositionResponse> {
+    const payload = new FillProfileGeopositionPayload(request)
+
+    await this.validator.validate(payload)
+
+    await this.commandBus.execute(
+      new FillProfileGeopositionCommand(payload.profileId, payload.latitude, payload.longitude)
+    )
+
+    return new FillProfileGeopositionSerializer(
       await this.queryBus.execute<GetProfileByIdQuery, Profile>(
         new GetProfileByIdQuery(payload.profileId)
       )

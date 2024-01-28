@@ -6,10 +6,12 @@ import { Module }                    from '@nestjs/common'
 
 import { ProfilesApplicationModule } from '@profiles/application-module'
 import { ProfileRepository }         from '@profiles/application-module'
+import { GeocoderPort }              from '@profiles/application-module'
 
 import * as controllers              from '../controllers/index.js'
 import * as entities                 from '../entities/index.js'
 import * as mappers                  from '../mappers/index.js'
+import { GeocoderPortImpl }          from '../ports/index.js'
 import { ProfileRepositoryImpl }     from '../repositories/index.js'
 
 @Module({})
@@ -30,11 +32,19 @@ export class ProfilesInfrastructureModule {
           provide: ProfileRepository,
           useClass: ProfileRepositoryImpl,
         },
+        {
+          provide: GeocoderPort,
+          useClass: GeocoderPortImpl,
+        },
       ],
       exports: [
         {
           provide: ProfileRepository,
           useClass: ProfileRepositoryImpl,
+        },
+        {
+          provide: GeocoderPort,
+          useClass: GeocoderPortImpl,
         },
       ],
     }

@@ -21,6 +21,14 @@ export class ProfileSerializer extends rpc.Profile {
     return this.profile.name
   }
 
+  get location(): string | undefined {
+    return this.profile.location
+  }
+
+  get geoposition(): rpc.ProfileGeoposition | undefined {
+    return this.profile.geoposition
+  }
+
   get createdAt(): Timestamp {
     return Timestamp.fromDate(this.profile.createdAt)
   }

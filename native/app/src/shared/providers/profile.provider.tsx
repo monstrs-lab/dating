@@ -14,10 +14,17 @@ import operations             from '../../operations'
 
 export const PROFILE_STORAGE_KEY = 'profile'
 
+export interface ProfileGeoposition {
+  latitude: number
+  longitude: number
+}
+
 export interface Profile {
   id: string
   gender?: ProfileGender
   name?: string
+  location?: string
+  geoposition?: ProfileGeoposition
 }
 
 export const ProfileContext = createContext<{
