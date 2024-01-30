@@ -70,7 +70,12 @@ export abstract class Profile {
   abstract readonly geoposition?: ProfileGeoposition
 
   /**
-   * @generated from field: google.protobuf.Timestamp created_at = 6;
+   * @generated from field: repeated string photos = 6;
+   */
+  abstract readonly photos: string[]
+
+  /**
+   * @generated from field: google.protobuf.Timestamp created_at = 7;
    */
   abstract readonly createdAt?: Timestamp
 }
@@ -149,6 +154,31 @@ export abstract class FillProfileNameRequest {
  * @generated from message tech.monstrs.dating.profiles.v1alpha1.FillProfileNameResponse
  */
 export abstract class FillProfileNameResponse {
+  /**
+   * @generated from field: tech.monstrs.dating.profiles.v1alpha1.Profile result = 1;
+   */
+  abstract readonly result?: Profile
+}
+
+/**
+ * @generated from message tech.monstrs.dating.profiles.v1alpha1.AddProfilePhotoRequest
+ */
+export abstract class AddProfilePhotoRequest {
+  /**
+   * @generated from field: string profile_id = 1;
+   */
+  abstract readonly profileId: string
+
+  /**
+   * @generated from field: string photo_id = 2;
+   */
+  abstract readonly photoId: string
+}
+
+/**
+ * @generated from message tech.monstrs.dating.profiles.v1alpha1.AddProfilePhotoResponse
+ */
+export abstract class AddProfilePhotoResponse {
   /**
    * @generated from field: tech.monstrs.dating.profiles.v1alpha1.Profile result = 1;
    */

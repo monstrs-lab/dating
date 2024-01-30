@@ -12,9 +12,12 @@
   "dependencies": {
     "@monstrs/protobuf-rpc": "^0.0.7",
     "@profiles/client-module": "workspace:0.0.1",
-    "@shared/gateway-types": "workspace:0.0.1"
+    "@shared/gateway-types": "workspace:0.0.1",
+    "dataloader": "^2.2.2",
+    "nestjs-dataloader": "patch:nestjs-dataloader@npm%3A9.0.0#~/.yarn/patches/nestjs-dataloader-npm-9.0.0-5411d766d3.patch"
   },
   "devDependencies": {
+    "@files/gateway-module": "workspace:0.0.1",
     "@nestjs/common": "^10.3.1",
     "@nestjs/core": "^10.3.1",
     "@nestjs/cqrs": "^10.2.6",
@@ -26,6 +29,7 @@
     "ts-morph": "^21.0.1"
   },
   "peerDependencies": {
+    "@files/gateway-module": "workspace:0.0.1",
     "@nestjs/common": "^10",
     "@nestjs/core": "^10",
     "@nestjs/cqrs": "^10",

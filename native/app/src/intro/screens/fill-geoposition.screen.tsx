@@ -43,8 +43,7 @@ export const FillGeopositionScreen = ({ navigation }: FillGeopositionScreenProps
       if (fillProfileGeoposition.result) {
         setProfile(fillProfileGeoposition.result)
 
-        // @ts-expect-error
-        navigation.navigate('Main')
+        navigation.navigate('FillPhoto')
       }
     }
 

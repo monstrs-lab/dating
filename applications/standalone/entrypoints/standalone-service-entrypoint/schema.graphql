@@ -20,11 +20,46 @@ type FillProfileNameErrors {
   name: ValidationError
 }
 
+type AddProfilePhotoErrors {
+  photoId: ValidationError
+}
+
+type ConfirmUploadErrors {
+  id: ValidationError
+}
+
+type CreateUploadErrors {
+  bucket: ValidationError
+  name: ValidationError
+  size: ValidationError
+}
+
+type Upload {
+  id: String!
+  url: String!
+}
+
+type File {
+  id: String!
+  url: String!
+}
+
+type ConfirmUploadResponse {
+  result: File
+  errors: ConfirmUploadErrors
+}
+
+type CreateUploadResponse {
+  result: Upload
+  errors: CreateUploadErrors
+}
+
 type Profile {
   id: String!
   gender: ProfileGender
   name: String
   location: String
+  photos: [File!]!
 }
 
 enum ProfileGender {
@@ -51,6 +86,11 @@ type FillProfileNameResponse {
   errors: FillProfileNameErrors
 }
 
+type AddProfilePhotoResponse {
+  result: Profile
+  errors: AddProfilePhotoErrors
+}
+
 type User {
   id: String!
   profile: MyProfile!
@@ -64,6 +104,9 @@ type Mutation {
   fillProfileGender(input: FillProfileGenderInput!): FillProfileGenderResponse!
   fillProfileName(input: FillProfileNameInput!): FillProfileNameResponse!
   fillProfileGeoposition(input: FillProfileGeopositionInput!): FillProfileGeopositionResponse!
+  addProfilePhoto(input: AddProfilePhotoInput!): AddProfilePhotoResponse!
+  createUpload(input: CreateUploadInput!): CreateUploadResponse!
+  confirmUpload(input: ConfirmUploadInput!): ConfirmUploadResponse!
 }
 
 input FillProfileGenderInput {
@@ -77,4 +120,18 @@ input FillProfileNameInput {
 input FillProfileGeopositionInput {
   latitude: Float!
   longitude: Float!
+}
+
+input AddProfilePhotoInput {
+  photoId: String!
+}
+
+input CreateUploadInput {
+  bucket: String!
+  name: String!
+  size: Float!
+}
+
+input ConfirmUploadInput {
+  id: ID!
 }

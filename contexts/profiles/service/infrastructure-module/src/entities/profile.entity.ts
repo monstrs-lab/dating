@@ -25,6 +25,9 @@ export class ProfileEntity {
   @Embedded(() => ProfileGeopositionEmbeddedEntity, { nullable: true })
   geoposition?: ProfileGeopositionEmbeddedEntity
 
+  @Property({ type: 'jsonb', default: '[]' })
+  photos: Array<string> = []
+
   @Property({ type: 'timestamptz' })
   createdAt!: Date
 }

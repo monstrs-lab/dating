@@ -8,6 +8,7 @@ import { ProfileGenderSelectedEvent }     from '../events/index.js'
 import { ProfileNameChangedEvent }        from '../events/index.js'
 import { ProfileGeopositionChangedEvent } from '../events/index.js'
 import { ProfileLocationChangedEvent }    from '../events/index.js'
+import { ProfilePhotoAddedEvent }         from '../events/index.js'
 import { ProfileGeoposition }             from '../value-objects/index.js'
 
 export class Profile extends AggregateRoot {
@@ -20,6 +21,8 @@ export class Profile extends AggregateRoot {
   #location?: string
 
   #geoposition?: ProfileGeoposition
+
+  #photos?: Array<string>
 
   #createdAt!: Date
 
@@ -63,6 +66,14 @@ export class Profile extends AggregateRoot {
     this.#geoposition = geoposition
   }
 
+  get photos(): Array<string> | undefined {
+    return this.#photos
+  }
+
+  private set photos(photos: Array<string>) {
+    this.#photos = photos
+  }
+
   get createdAt(): Date {
     return this.#createdAt
   }
@@ -104,6 +115,13 @@ export class Profile extends AggregateRoot {
     return this
   }
 
+  @Guard()
+  addPhoto(@Against('photoId').NotUUID(4) photoId: string): Profile {
+    this.apply(new ProfilePhotoAddedEvent(this.id, photoId))
+
+    return this
+  }
+
   protected onProfileCreatedEvent(event: ProfileCreatedEvent): void {
     this.#id = event.profileId
     this.#createdAt = event.createdAt
@@ -123,5 +141,9 @@ export class Profile extends AggregateRoot {
 
   protected onProfileGeopositionChangedEvent(event: ProfileGeopositionChangedEvent): void {
     this.#geoposition = ProfileGeoposition.create(event.latitude, event.longitude)
+  }
+
+  protected onProfilePhotoAddedEvent(event: ProfilePhotoAddedEvent): void {
+    this.#photos = (this.#photos || []).concat([event.photoId])
   }
 }

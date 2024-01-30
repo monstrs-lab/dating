@@ -25,6 +25,61 @@ export type Scalars = {
   Float: { input: number; output: number }
 }
 
+export type AddProfilePhotoErrors = {
+  __typename?: 'AddProfilePhotoErrors'
+  photoId?: Maybe<ValidationError>
+}
+
+export type AddProfilePhotoInput = {
+  photoId: Scalars['String']['input']
+}
+
+export type AddProfilePhotoResponse = {
+  __typename?: 'AddProfilePhotoResponse'
+  errors?: Maybe<AddProfilePhotoErrors>
+  result?: Maybe<Profile>
+}
+
+export type ConfirmUploadErrors = {
+  __typename?: 'ConfirmUploadErrors'
+  id?: Maybe<ValidationError>
+}
+
+export type ConfirmUploadInput = {
+  id: Scalars['ID']['input']
+}
+
+export type ConfirmUploadResponse = {
+  __typename?: 'ConfirmUploadResponse'
+  errors?: Maybe<ConfirmUploadErrors>
+  result?: Maybe<File>
+}
+
+export type CreateUploadErrors = {
+  __typename?: 'CreateUploadErrors'
+  bucket?: Maybe<ValidationError>
+  name?: Maybe<ValidationError>
+  size?: Maybe<ValidationError>
+}
+
+export type CreateUploadInput = {
+  bucket: Scalars['String']['input']
+  name: Scalars['String']['input']
+  size: Scalars['Float']['input']
+}
+
+export type CreateUploadResponse = {
+  __typename?: 'CreateUploadResponse'
+  errors?: Maybe<CreateUploadErrors>
+  result?: Maybe<Upload>
+}
+
+export type File = {
+  __typename?: 'File'
+  id: Scalars['String']['output']
+  url: Scalars['String']['output']
+}
+
 export type FillProfileGenderErrors = {
   __typename?: 'FillProfileGenderErrors'
   gender?: Maybe<ValidationError>
@@ -74,9 +129,24 @@ export type FillProfileNameResponse = {
 
 export type Mutation = {
   __typename?: 'Mutation'
+  addProfilePhoto: AddProfilePhotoResponse
+  confirmUpload: ConfirmUploadResponse
+  createUpload: CreateUploadResponse
   fillProfileGender: FillProfileGenderResponse
   fillProfileGeoposition: FillProfileGeopositionResponse
   fillProfileName: FillProfileNameResponse
+}
+
+export type MutationAddProfilePhotoArgs = {
+  input: AddProfilePhotoInput
+}
+
+export type MutationConfirmUploadArgs = {
+  input: ConfirmUploadInput
+}
+
+export type MutationCreateUploadArgs = {
+  input: CreateUploadInput
 }
 
 export type MutationFillProfileGenderArgs = {
@@ -99,10 +169,10 @@ export type MyProfile = {
 export type Profile = {
   __typename?: 'Profile'
   gender?: Maybe<ProfileGender>
-  geoposition?: Maybe<ProfileGeoposition>
   id: Scalars['String']['output']
   location?: Maybe<Scalars['String']['output']>
   name?: Maybe<Scalars['String']['output']>
+  photos: Array<File>
 }
 
 export enum ProfileGender {
@@ -110,15 +180,15 @@ export enum ProfileGender {
   Male = 'MALE',
 }
 
-export type ProfileGeoposition = {
-  __typename?: 'ProfileGeoposition'
-  latitude: Scalars['Float']['output']
-  longitude: Scalars['Float']['output']
-}
-
 export type Query = {
   __typename?: 'Query'
   my: User
+}
+
+export type Upload = {
+  __typename?: 'Upload'
+  id: Scalars['String']['output']
+  url: Scalars['String']['output']
 }
 
 export type User = {
@@ -195,6 +265,7 @@ export type ProfileFragmentFragment = {
   gender?: ProfileGender | undefined
   name?: string | undefined
   location?: string | undefined
+  photos: Array<{ __typename?: 'File'; id: string; url: string }>
 }
 
 export type MyProfileQueryVariables = Exact<{ [key: string]: never }>
@@ -210,12 +281,60 @@ export type MyProfileQuery = {
   }
 }
 
+export type CreateUploadMutationVariables = Exact<{
+  bucket: Scalars['String']['input']
+  name: Scalars['String']['input']
+  size: Scalars['Float']['input']
+}>
+
+export type CreateUploadMutation = {
+  __typename?: 'Mutation'
+  createUpload: {
+    __typename?: 'CreateUploadResponse'
+    result?: { __typename?: 'Upload'; id: string; url: string } | undefined
+  }
+}
+
+export type ConfirmUploadMutationVariables = Exact<{
+  id: Scalars['ID']['input']
+}>
+
+export type ConfirmUploadMutation = {
+  __typename?: 'Mutation'
+  confirmUpload: {
+    __typename?: 'ConfirmUploadResponse'
+    result?: { __typename?: 'File'; id: string; url: string } | undefined
+  }
+}
+
+export type AddProfilePhotoMutationVariables = Exact<{
+  photoId: Scalars['String']['input']
+}>
+
+export type AddProfilePhotoMutation = {
+  __typename?: 'Mutation'
+  addProfilePhoto: {
+    __typename?: 'AddProfilePhotoResponse'
+    result?: ({ __typename?: 'Profile' } & ProfileFragmentFragment) | undefined
+    errors?:
+      | {
+          __typename?: 'AddProfilePhotoErrors'
+          photoId?: { __typename?: 'ValidationError'; id: string; message: string } | undefined
+        }
+      | undefined
+  }
+}
+
 export const ProfileFragmentFragmentDoc = gql`
   fragment ProfileFragment on Profile {
     id
     gender
     name
     location
+    photos {
+      id
+      url
+    }
   }
 `
 export const FillProfileGenderDocument = gql`
@@ -276,6 +395,42 @@ export const MyProfileDocument = gql`
       profile {
         info {
           ...ProfileFragment
+        }
+      }
+    }
+  }
+  ${ProfileFragmentFragmentDoc}
+`
+export const CreateUploadDocument = gql`
+  mutation createUpload($bucket: String!, $name: String!, $size: Float!) {
+    createUpload(input: { bucket: $bucket, name: $name, size: $size }) {
+      result {
+        id
+        url
+      }
+    }
+  }
+`
+export const ConfirmUploadDocument = gql`
+  mutation confirmUpload($id: ID!) {
+    confirmUpload(input: { id: $id }) {
+      result {
+        id
+        url
+      }
+    }
+  }
+`
+export const AddProfilePhotoDocument = gql`
+  mutation addProfilePhoto($photoId: String!) {
+    addProfilePhoto(input: { photoId: $photoId }) {
+      result {
+        ...ProfileFragment
+      }
+      errors {
+        photoId {
+          id
+          message
         }
       }
     }
@@ -353,6 +508,51 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
           }),
         'myProfile',
         'query',
+        variables
+      )
+    },
+    createUpload(
+      variables: CreateUploadMutationVariables,
+      requestHeaders?: GraphQLClientRequestHeaders
+    ): Promise<CreateUploadMutation> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<CreateUploadMutation>(CreateUploadDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        'createUpload',
+        'mutation',
+        variables
+      )
+    },
+    confirmUpload(
+      variables: ConfirmUploadMutationVariables,
+      requestHeaders?: GraphQLClientRequestHeaders
+    ): Promise<ConfirmUploadMutation> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<ConfirmUploadMutation>(ConfirmUploadDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        'confirmUpload',
+        'mutation',
+        variables
+      )
+    },
+    addProfilePhoto(
+      variables: AddProfilePhotoMutationVariables,
+      requestHeaders?: GraphQLClientRequestHeaders
+    ): Promise<AddProfilePhotoMutation> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<AddProfilePhotoMutation>(AddProfilePhotoDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        'addProfilePhoto',
+        'mutation',
         variables
       )
     },

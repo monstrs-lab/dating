@@ -70,7 +70,12 @@ export interface Profile {
   geoposition?: ProfileGeoposition
 
   /**
-   * @generated from field: google.protobuf.Timestamp created_at = 6;
+   * @generated from field: repeated string photos = 6;
+   */
+  photos: string[]
+
+  /**
+   * @generated from field: google.protobuf.Timestamp created_at = 7;
    */
   createdAt?: Timestamp
 }
@@ -149,6 +154,31 @@ export interface FillProfileNameRequest {
  * @generated from message tech.monstrs.dating.profiles.v1alpha1.FillProfileNameResponse
  */
 export interface FillProfileNameResponse {
+  /**
+   * @generated from field: tech.monstrs.dating.profiles.v1alpha1.Profile result = 1;
+   */
+  result?: Profile
+}
+
+/**
+ * @generated from message tech.monstrs.dating.profiles.v1alpha1.AddProfilePhotoRequest
+ */
+export interface AddProfilePhotoRequest {
+  /**
+   * @generated from field: string profile_id = 1;
+   */
+  profileId: string
+
+  /**
+   * @generated from field: string photo_id = 2;
+   */
+  photoId: string
+}
+
+/**
+ * @generated from message tech.monstrs.dating.profiles.v1alpha1.AddProfilePhotoResponse
+ */
+export interface AddProfilePhotoResponse {
   /**
    * @generated from field: tech.monstrs.dating.profiles.v1alpha1.Profile result = 1;
    */

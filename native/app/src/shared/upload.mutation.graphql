@@ -1,0 +1,31 @@
+mutation createUpload($bucket: String!, $name: String!, $size: Float!) {
+  createUpload(input: { bucket: $bucket, name: $name, size: $size }) {
+    result {
+      id
+      url
+    }
+  }
+}
+
+mutation confirmUpload($id: ID!) {
+  confirmUpload(input: { id: $id }) {
+    result {
+      id
+      url
+    }
+  }
+}
+
+mutation addProfilePhoto($photoId: String!) {
+  addProfilePhoto(input: { photoId: $photoId }) {
+    result {
+      ...ProfileFragment
+    }
+    errors {
+      photoId {
+        id
+        message
+      }
+    }
+  }
+}

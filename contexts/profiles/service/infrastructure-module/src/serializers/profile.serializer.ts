@@ -29,6 +29,10 @@ export class ProfileSerializer extends rpc.Profile {
     return this.profile.geoposition
   }
 
+  get photos(): Array<string> {
+    return this.profile.photos || []
+  }
+
   get createdAt(): Timestamp {
     return Timestamp.fromDate(this.profile.createdAt)
   }

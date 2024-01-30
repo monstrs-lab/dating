@@ -5,6 +5,8 @@
 
 import { MethodKind }                     from '@bufbuild/protobuf'
 
+import { AddProfilePhotoRequest }         from './profiles.service_pb.js'
+import { AddProfilePhotoResponse }        from './profiles.service_pb.js'
 import { FillProfileGenderRequest }       from './profiles.service_pb.js'
 import { FillProfileGenderResponse }      from './profiles.service_pb.js'
 import { FillProfileGeopositionRequest }  from './profiles.service_pb.js'
@@ -45,6 +47,15 @@ export const ProfilesService = {
       name: 'FillProfileName',
       I: FillProfileNameRequest,
       O: FillProfileNameResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc tech.monstrs.dating.profiles.v1alpha1.ProfilesService.AddProfilePhoto
+     */
+    addProfilePhoto: {
+      name: 'AddProfilePhoto',
+      I: AddProfilePhotoRequest,
+      O: AddProfilePhotoResponse,
       kind: MethodKind.Unary,
     },
     /**

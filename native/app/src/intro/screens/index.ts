@@ -1,4 +1,5 @@
 export * from './fill-geoposition.screen'
 export * from './fill-gender.screen'
+export * from './fill-photo.screen'
 export * from './fill-name.screen'
 export * from './intro.screen'

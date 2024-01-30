@@ -18,6 +18,7 @@ import { CallbackScreen }             from './auth/screens'
 import { LoginScreen }                from './auth/screens'
 import { RegistrationScreen }         from './auth/screens'
 import { FillNameScreen }             from './intro/screens'
+import { FillPhotoScreen }            from './intro/screens'
 import { IntroScreen }                from './intro/screens'
 import { FillGenderScreen }           from './intro/screens'
 import { FillGeopositionScreen }      from './intro/screens'
@@ -41,6 +42,7 @@ export type RootStackParamList = {
   Intro: undefined
   FillGender: undefined
   FillName: undefined
+  FillPhoto: undefined
   FillGeoposition: undefined
   Main: NavigatorScreenParams<MainTabsParamList>
 }
@@ -75,6 +77,7 @@ export const Navigation = (): ReactElement => {
                 <Stack.Screen name='Intro' component={IntroScreen} />
                 <Stack.Screen name='FillGender' component={FillGenderScreen} />
                 <Stack.Screen name='FillName' component={FillNameScreen} />
+                <Stack.Screen name='FillPhoto' component={FillPhotoScreen} />
                 <Stack.Screen name='FillGeoposition' component={FillGeopositionScreen} />
                 <Stack.Screen
                   name='Main'

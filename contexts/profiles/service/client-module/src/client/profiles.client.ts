@@ -44,6 +44,13 @@ export class ProfilesClient {
     })
   }
 
+  async addProfilePhoto(profileId: string, photoId: string): Promise<{ result?: Profile }> {
+    return this.client.addProfilePhoto({
+      profileId,
+      photoId,
+    })
+  }
+
   async loadProfile(profileId: string): Promise<Profile> {
     return this.profilesDataLoader.load(profileId)
   }

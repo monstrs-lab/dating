@@ -3,4 +3,8 @@ fragment ProfileFragment on Profile {
   gender
   name
   location
+  photos {
+    id
+    url
+  }
 }

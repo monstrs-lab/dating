@@ -25,6 +25,7 @@ export interface Profile {
   name?: string
   location?: string
   geoposition?: ProfileGeoposition
+  photos?: Array<{ id: string; url: string }>
 }
 
 export const ProfileContext = createContext<{

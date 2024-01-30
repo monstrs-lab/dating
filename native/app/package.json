@@ -13,6 +13,7 @@
     "axios": "0.27.2"
   },
   "dependencies": {
+    "@expo/config-plugins": "~7.2.2",
     "@expo/webpack-config": "^19.0.0",
     "@monstrs/react-native-kratos": "^0.0.3",
     "@ory/client": "^1.2.17",
@@ -21,9 +22,13 @@
     "@react-navigation/native": "6.1.7",
     "@react-navigation/stack": "6.3.17",
     "@types/react": "~18.2.45",
+    "buffer": "^6.0.3",
     "expo": "~49.0.21",
     "expo-auth-session": "~5.0.2",
-    "expo-location": "^16.5.2",
+    "expo-constants": "~14.4.2",
+    "expo-file-system": "~15.4.5",
+    "expo-image-picker": "~14.3.2",
+    "expo-location": "~16.1.0",
     "expo-secure-store": "~12.3.1",
     "expo-status-bar": "~1.6.0",
     "graphql": "^16.8.1",
@@ -39,12 +44,13 @@
     "react-native-screens": "~3.22.0",
     "react-native-switch-selector": "^2.3.0",
     "react-native-url-polyfill": "^2.0.0",
-    "react-native-web": "~0.19.6"
+    "react-native-web": "~0.19.6",
+    "stream-browserify": "^3.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
     "@types/react": "^18.2.45",
-    "@types/react-dom": "~18.2.18",
+    "@types/react-dom": "~18.0.10",
     "typescript": "^5.3.3"
   }
 }

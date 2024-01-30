@@ -24,6 +24,9 @@ export const IntroScreen = ({ navigation }: IntroScreenProps): ReactElement => {
         navigation.navigate('FillName')
       } else if (!profile.location) {
         navigation.navigate('FillGeoposition')
+        // eslint-disable-next-line
+      } else if (!(profile.photos?.length! > 0)) {
+        navigation.navigate('FillPhoto')
       } else {
         // @ts-expect-error
         navigation.navigate('Main')

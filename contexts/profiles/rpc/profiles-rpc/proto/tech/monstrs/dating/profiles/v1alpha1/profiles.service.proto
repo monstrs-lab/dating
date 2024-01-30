@@ -9,6 +9,7 @@ service ProfilesService {
   rpc FillProfileGeoposition(FillProfileGeopositionRequest) returns (FillProfileGeopositionResponse) {}
   rpc FillProfileGender(FillProfileGenderRequest) returns (FillProfileGenderResponse) {}
   rpc FillProfileName(FillProfileNameRequest) returns (FillProfileNameResponse) {}
+  rpc AddProfilePhoto(AddProfilePhotoRequest) returns (AddProfilePhotoResponse) {}
   rpc ListProfiles(ListProfilesRequest) returns (ListProfilesResponse) {}
 }
 
@@ -28,7 +29,8 @@ message Profile {
   optional string name = 3;
   optional string location = 4;
   optional ProfileGeoposition geoposition = 5;
-  google.protobuf.Timestamp created_at = 6;
+  repeated string photos = 6;
+  google.protobuf.Timestamp created_at = 7;
 }
 
 message FillProfileGeopositionRequest {
@@ -56,6 +58,15 @@ message FillProfileNameRequest {
 }
 
 message FillProfileNameResponse {
+  Profile result = 1;
+}
+
+message AddProfilePhotoRequest {
+  string profile_id = 1;
+  string photo_id = 2;
+}
+
+message AddProfilePhotoResponse {
   Profile result = 1;
 }
 

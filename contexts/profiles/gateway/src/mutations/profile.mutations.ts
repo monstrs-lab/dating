@@ -1,8 +1,10 @@
+import type * as rpc                         from '@profiles/client-module'
 import type { ValidationError }              from '@monstrs/protobuf-rpc'
 
 import type { FillProfileGenderErrors }      from '../errors/index.js'
 import type { FillProfileNameErrors }        from '../errors/index.js'
 import type { FillProfileGeopositionErrors } from '../errors/index.js'
+import type { AddProfilePhotoErrors }        from '../errors/index.js'
 
 import { Mutation }                          from '@nestjs/graphql'
 import { Resolver }                          from '@nestjs/graphql'
@@ -13,10 +15,12 @@ import { findValidationErrorDetails }        from '@monstrs/protobuf-rpc'
 import { ProfilesClient }                    from '@profiles/client-module'
 
 import { FillProfileGenderInput }            from '../inputs/index.js'
+import { AddProfilePhotoInput }              from '../inputs/index.js'
 import { FillProfileGeopositionInput }       from '../inputs/index.js'
 import { FillProfileNameInput }              from '../inputs/index.js'
 import { FillProfileGenderResponse }         from '../responses/index.js'
 import { FillProfileGeopositionResponse }    from '../responses/index.js'
+import { AddProfilePhotoResponse }           from '../responses/index.js'
 import { FillProfileNameResponse }           from '../responses/index.js'
 import { Profile }                           from '../types/index.js'
 
@@ -29,7 +33,7 @@ export class ProfileMutations {
     @Args('input')
     input: FillProfileGenderInput,
     @Context('user') profileId: string
-  ): Promise<{ result?: Profile; errors?: FillProfileGenderErrors }> {
+  ): Promise<{ result?: rpc.Profile; errors?: FillProfileGenderErrors }> {
     try {
       return await this.client.fillProfileGender(profileId, input.gender)
     } catch (error) {
@@ -59,7 +63,7 @@ export class ProfileMutations {
     @Args('input')
     input: FillProfileNameInput,
     @Context('user') profileId: string
-  ): Promise<{ result?: Profile; errors?: FillProfileNameErrors }> {
+  ): Promise<{ result?: rpc.Profile; errors?: FillProfileNameErrors }> {
     try {
       return await this.client.fillProfileName(profileId, input.name)
     } catch (error) {
@@ -89,9 +93,39 @@ export class ProfileMutations {
     @Args('input')
     input: FillProfileGeopositionInput,
     @Context('user') profileId: string
-  ): Promise<{ result?: Profile; errors?: FillProfileGeopositionErrors }> {
+  ): Promise<{ result?: rpc.Profile; errors?: FillProfileGeopositionErrors }> {
     try {
       return await this.client.fillProfileGeoposition(profileId, input.latitude, input.longitude)
+    } catch (error) {
+      const details: Array<ValidationError> = findValidationErrorDetails(error)
+
+      if (details.length > 0) {
+        return {
+          errors: details.reduce(
+            (result, detail) => ({
+              ...result,
+              [detail.id]: {
+                id: detail.messages.at(0)!.id,
+                message: detail.messages.at(0)!.constraint,
+              },
+            }),
+            {}
+          ),
+        }
+      }
+
+      throw error
+    }
+  }
+
+  @Mutation(() => AddProfilePhotoResponse)
+  async addProfilePhoto(
+    @Args('input')
+    input: AddProfilePhotoInput,
+    @Context('user') profileId: string
+  ): Promise<{ result?: rpc.Profile; errors?: AddProfilePhotoErrors }> {
+    try {
+      return await this.client.addProfilePhoto(profileId, input.photoId)
     } catch (error) {
       const details: Array<ValidationError> = findValidationErrorDetails(error)
 

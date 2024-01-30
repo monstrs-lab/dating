@@ -28,6 +28,7 @@ export class ProfileMapper {
       geoposition: profileGeopositionProperties
         ? Object.assign(new ProfileGeoposition(), profileGeopositionProperties)
         : undefined,
+      photos: entity.photos,
       createdAt: entity.createdAt,
     }
 
@@ -47,6 +48,7 @@ export class ProfileMapper {
       }
     }
 
+    entity.photos = aggregate.photos || []
     entity.createdAt = aggregate.createdAt
 
     return entity
