@@ -1,15 +1,17 @@
 /* eslint-disable @typescript-eslint/consistent-type-imports */
 
-import type { PromiseClient }    from '@connectrpc/connect'
-import type { ProfileGender }    from '@profiles/profiles-rpc'
-import type { ProfilesService }  from '@profiles/profiles-rpc'
-import type { Profile }          from '@profiles/profiles-rpc'
+import type { PromiseClient }        from '@connectrpc/connect'
+import type { ListProfilesRequest }  from '@profiles/profiles-rpc'
+import type { ListProfilesResponse } from '@profiles/profiles-rpc'
+import type { ProfileGender }        from '@profiles/profiles-rpc'
+import type { ProfilesService }      from '@profiles/profiles-rpc'
+import type { Profile }              from '@profiles/profiles-rpc'
 
-import { Inject }                from '@nestjs/common'
-import { Injectable }            from '@nestjs/common'
+import { Inject }                    from '@nestjs/common'
+import { Injectable }                from '@nestjs/common'
 
-import { PROFILES_CLIENT_TOKEN } from '../constants/index.js'
-import { ProfilesDataLoader }    from '../dataloaders/index.js'
+import { PROFILES_CLIENT_TOKEN }     from '../constants/index.js'
+import { ProfilesDataLoader }        from '../dataloaders/index.js'
 
 @Injectable()
 export class ProfilesClient {
@@ -49,6 +51,10 @@ export class ProfilesClient {
       profileId,
       photoId,
     })
+  }
+
+  async listProfiles(request: Partial<ListProfilesRequest> = {}): Promise<ListProfilesResponse> {
+    return this.client.listProfiles(request)
   }
 
   async loadProfile(profileId: string): Promise<Profile> {

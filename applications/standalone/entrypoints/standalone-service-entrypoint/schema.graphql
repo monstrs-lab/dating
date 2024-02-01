@@ -91,9 +91,14 @@ type AddProfilePhotoResponse {
   errors: AddProfilePhotoErrors
 }
 
+type MyRecommendations {
+  profiles: [Profile!]!
+}
+
 type User {
   id: String!
   profile: MyProfile!
+  recommendations: MyRecommendations!
 }
 
 type Query {

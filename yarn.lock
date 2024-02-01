@@ -1562,6 +1562,7 @@ __metadata:
     "@profiles/client-module": "workspace:0.0.1"
     "@profiles/gateway-module": "workspace:0.0.1"
     "@profiles/infrastructure-module": "workspace:0.0.1"
+    "@recommendations/gateway-module": "workspace:0.0.1"
     "@types/express": "npm:^4.17.21"
     "@types/node": "npm:^20.11.10"
     "@types/pg": "npm:^8.11.0"
@@ -4180,6 +4181,37 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@recommendations/gateway-module@workspace:0.0.1, @recommendations/gateway-module@workspace:contexts/recommendations/gateway":
+  version: 0.0.0-use.local
+  resolution: "@recommendations/gateway-module@workspace:contexts/recommendations/gateway"
+  dependencies:
+    "@monstrs/protobuf-rpc": "npm:^0.0.7"
+    "@nestjs/common": "npm:^10.3.1"
+    "@nestjs/core": "npm:^10.3.1"
+    "@nestjs/cqrs": "npm:^10.2.6"
+    "@nestjs/graphql": "npm:^12.0.11"
+    "@nestjs/microservices": "npm:^10.3.1"
+    "@profiles/client-module": "workspace:0.0.1"
+    "@profiles/gateway-module": "workspace:0.0.1"
+    "@shared/gateway-types": "workspace:0.0.1"
+    graphql: "npm:^16.8.1"
+    reflect-metadata: "npm:^0.2.1"
+    rxjs: "npm:^7.8.1"
+    ts-morph: "npm:^21.0.1"
+  peerDependencies:
+    "@nestjs/common": ^10
+    "@nestjs/core": ^10
+    "@nestjs/cqrs": ^10
+    "@nestjs/graphql": ^12
+    "@nestjs/microservices": ^10.3.1
+    "@profiles/gateway-module": "workspace:0.0.1"
+    graphql: ^16
+    reflect-metadata: ^0.2
+    rxjs: ^7
+    ts-morph: ^21
+  languageName: unknown
+  linkType: soft
+
 "@repeaterjs/repeater@npm:^3.0.4":
   version: 3.0.5
   resolution: "@repeaterjs/repeater@npm:3.0.5"
@@ -4969,6 +5001,7 @@ __metadata:
     "@nestjs/cqrs": "npm:^10.2.6"
     "@nestjs/graphql": "npm:^12.0.11"
     "@profiles/gateway-module": "workspace:0.0.1"
+    "@recommendations/gateway-module": "workspace:0.0.1"
     graphql: "npm:^16.8.1"
     reflect-metadata: "npm:^0.2.1"
     rxjs: "npm:^7.8.1"
@@ -4979,6 +5012,7 @@ __metadata:
     "@nestjs/cqrs": ^10
     "@nestjs/graphql": ^12
     "@profiles/gateway-module": "workspace:0.0.1"
+    "@recommendations/gateway-module": "workspace:0.0.1"
     graphql: ^16
     reflect-metadata: ^0.2
     rxjs: ^7

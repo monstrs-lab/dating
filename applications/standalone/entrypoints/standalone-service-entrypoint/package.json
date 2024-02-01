@@ -47,6 +47,7 @@
     "@profiles/client-module": "workspace:0.0.1",
     "@profiles/gateway-module": "workspace:0.0.1",
     "@profiles/infrastructure-module": "workspace:0.0.1",
+    "@recommendations/gateway-module": "workspace:0.0.1",
     "@types/express": "^4.17.21",
     "@types/node": "^20.11.10",
     "@types/pg": "^8.11.0",

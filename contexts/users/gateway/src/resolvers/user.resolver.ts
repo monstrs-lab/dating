@@ -9,4 +9,9 @@ export class UserResolver {
   profile(): Record<string, never> {
     return {}
   }
+
+  @ResolveField()
+  recommendations(): Record<string, never> {
+    return {}
+  }
 }
