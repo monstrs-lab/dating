@@ -1,12 +1,12 @@
-import { Entity }                           from '@mikro-orm/core'
-import { Property }                         from '@mikro-orm/core'
-import { Enum }                             from '@mikro-orm/core'
-import { Embedded }                         from '@mikro-orm/core'
-import { PrimaryKey }                       from '@mikro-orm/core'
+import { Entity }        from '@mikro-orm/core'
+import { Property }      from '@mikro-orm/core'
+import { Enum }          from '@mikro-orm/core'
+import { PrimaryKey }    from '@mikro-orm/core'
 
-import { ProfileGender }                    from '@profiles/domain-module'
+import { ProfileGender } from '@profiles/domain-module'
 
-import { ProfileGeopositionEmbeddedEntity } from '../embedded-entities/index.js'
+import { PointType }     from '../types/index.js'
+import { Point }         from '../types/index.js'
 
 @Entity({ tableName: 'profiles' })
 export class ProfileEntity {
@@ -22,8 +22,8 @@ export class ProfileEntity {
   @Property({ nullable: true })
   location?: string
 
-  @Embedded(() => ProfileGeopositionEmbeddedEntity, { nullable: true })
-  geoposition?: ProfileGeopositionEmbeddedEntity
+  @Property({ type: PointType, nullable: true })
+  geoposition?: Point
 
   @Property({ type: 'jsonb', default: '[]' })
   photos: Array<string> = []

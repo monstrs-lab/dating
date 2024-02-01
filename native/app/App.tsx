@@ -16,7 +16,7 @@ export default (): ReactElement => (
     value={
       new FrontendApi(
         new Configuration({
-          basePath: 'http://192.168.0.101:4433',
+          basePath: 'http://127.0.0.1:4433',
           baseOptions: {
             withCredentials: false,
             timeout: 10000,

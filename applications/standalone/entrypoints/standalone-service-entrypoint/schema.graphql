@@ -7,23 +7,6 @@ type ValidationError {
   message: String!
 }
 
-type FillProfileGeopositionErrors {
-  latitude: ValidationError
-  longitude: ValidationError
-}
-
-type FillProfileGenderErrors {
-  gender: ValidationError
-}
-
-type FillProfileNameErrors {
-  name: ValidationError
-}
-
-type AddProfilePhotoErrors {
-  photoId: ValidationError
-}
-
 type ConfirmUploadErrors {
   id: ValidationError
 }
@@ -52,6 +35,23 @@ type ConfirmUploadResponse {
 type CreateUploadResponse {
   result: Upload
   errors: CreateUploadErrors
+}
+
+type FillProfileGeopositionErrors {
+  latitude: ValidationError
+  longitude: ValidationError
+}
+
+type FillProfileGenderErrors {
+  gender: ValidationError
+}
+
+type FillProfileNameErrors {
+  name: ValidationError
+}
+
+type AddProfilePhotoErrors {
+  photoId: ValidationError
 }
 
 type Profile {
