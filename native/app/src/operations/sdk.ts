@@ -166,6 +166,11 @@ export type MyProfile = {
   info: Profile
 }
 
+export type MyRecommendations = {
+  __typename?: 'MyRecommendations'
+  profiles: Array<Profile>
+}
+
 export type Profile = {
   __typename?: 'Profile'
   gender?: Maybe<ProfileGender>
@@ -195,6 +200,7 @@ export type User = {
   __typename?: 'User'
   id: Scalars['String']['output']
   profile: MyProfile
+  recommendations: MyRecommendations
 }
 
 export type ValidationError = {
@@ -256,6 +262,19 @@ export type FillProfileNameMutation = {
           name?: { __typename?: 'ValidationError'; id: string; message: string } | undefined
         }
       | undefined
+  }
+}
+
+export type MyRecommendationsQueryVariables = Exact<{ [key: string]: never }>
+
+export type MyRecommendationsQuery = {
+  __typename?: 'Query'
+  my: {
+    __typename?: 'User'
+    recommendations: {
+      __typename?: 'MyRecommendations'
+      profiles: Array<{ __typename?: 'Profile' } & ProfileFragmentFragment>
+    }
   }
 }
 
@@ -389,6 +408,18 @@ export const FillProfileNameDocument = gql`
   }
   ${ProfileFragmentFragmentDoc}
 `
+export const MyRecommendationsDocument = gql`
+  query myRecommendations {
+    my {
+      recommendations {
+        profiles {
+          ...ProfileFragment
+        }
+      }
+    }
+  }
+  ${ProfileFragmentFragmentDoc}
+`
 export const MyProfileDocument = gql`
   query myProfile {
     my {
@@ -493,6 +524,21 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
           }),
         'fillProfileName',
         'mutation',
+        variables
+      )
+    },
+    myRecommendations(
+      variables?: MyRecommendationsQueryVariables,
+      requestHeaders?: GraphQLClientRequestHeaders
+    ): Promise<MyRecommendationsQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<MyRecommendationsQuery>(MyRecommendationsDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        'myRecommendations',
+        'query',
         variables
       )
     },

@@ -1,0 +1,9 @@
+query myRecommendations {
+  my {
+    recommendations {
+      profiles {
+        ...ProfileFragment
+      }
+    }
+  }
+}

@@ -20,7 +20,8 @@
     "@monstrs/rpc-query-payloads": "^0.0.15",
     "@profiles/domain-module": "workspace:0.0.1",
     "node-geocoder": "^4.2.0",
-    "uuid": "^9.0.1"
+    "uuid": "^9.0.1",
+    "wkx": "^0.5.0"
   },
   "devDependencies": {
     "@bufbuild/protobuf": "^1.7.1",

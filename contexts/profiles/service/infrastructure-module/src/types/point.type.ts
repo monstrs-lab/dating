@@ -1,37 +1,32 @@
 import { Type } from '@mikro-orm/core'
+import { raw }  from '@mikro-orm/core'
 
 export class Point {
   constructor(
-    public latitude: number,
-    public longitude: number
+    public readonly latitude: number,
+    public readonly longitude: number
   ) {}
 }
 
-export class PointType extends Type<Point | undefined, string | undefined> {
-  override convertToDatabaseValue(value: Point | undefined): string | undefined {
+export class PointType extends Type<Point | undefined, { x: number; y: number } | undefined> {
+  override convertToDatabaseValue(value: Point | undefined): { x: number; y: number } | undefined {
     if (!value) {
       return value
     }
 
-    return `point(${value.latitude} ${value.longitude})`
+    return raw(`POINT(${value.longitude}, ${value.latitude})`)
   }
 
-  override convertToJSValue(value: string | undefined): Point | undefined {
-    const m = value?.match(/point\((-?\d+(\.\d+)?) (-?\d+(\.\d+)?)\)/i)
-
-    if (!m) {
-      return undefined
+  override convertToJSValue(value: { x: number; y: number } | undefined): Point | undefined {
+    if (!value) {
+      return value as undefined
     }
 
-    return new Point(+m[1], +m[3])
+    return new Point(value.x, value.y)
   }
 
-  override convertToJSValueSQL(key: string) {
-    return `ST_AsText(${key})`
-  }
-
-  override convertToDatabaseValueSQL(key: string) {
-    return `ST_PointFromText(${key})`
+  override compareValues(a: any, b: any): boolean {
+    return a.sql === b.sql
   }
 
   override getColumnType(): string {

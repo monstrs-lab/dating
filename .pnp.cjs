@@ -8826,7 +8826,8 @@ const RAW_RUNTIME_STATE =
           ["rxjs", "npm:7.8.1"],\
           ["ts-node", "virtual:e1efbd49cb2e064eb9dfd28661d72d2a9cd22d06d5e51905c8c5404fda76fb472189dcbf1802584070b8312b377ad26762d5aa2d09319c82d0c6b5a51dd5eace#npm:10.9.2"],\
           ["typescript", "patch:typescript@npm%3A5.3.3#optional!builtin<compat/typescript>::version=5.3.3&hash=e012d7"],\
-          ["uuid", "npm:9.0.1"]\
+          ["uuid", "npm:9.0.1"],\
+          ["wkx", "npm:0.5.0"]\
         ],\
         "packagePeers": [\
           "@bufbuild/protobuf",\
@@ -8917,7 +8918,8 @@ const RAW_RUNTIME_STATE =
           ["rxjs", "npm:7.8.1"],\
           ["ts-node", "virtual:e1efbd49cb2e064eb9dfd28661d72d2a9cd22d06d5e51905c8c5404fda76fb472189dcbf1802584070b8312b377ad26762d5aa2d09319c82d0c6b5a51dd5eace#npm:10.9.2"],\
           ["typescript", "patch:typescript@npm%3A5.3.3#optional!builtin<compat/typescript>::version=5.3.3&hash=e012d7"],\
-          ["uuid", "npm:9.0.1"]\
+          ["uuid", "npm:9.0.1"],\
+          ["wkx", "npm:0.5.0"]\
         ],\
         "linkType": "SOFT"\
       }]\
@@ -20740,6 +20742,16 @@ const RAW_RUNTIME_STATE =
           ["for-each", "npm:0.3.3"],\
           ["gopd", "npm:1.0.1"],\
           ["has-tostringtag", "npm:1.0.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["wkx", [\
+      ["npm:0.5.0", {\
+        "packageLocation": "./.yarn/cache/wkx-npm-0.5.0-fca5152cd8-9f787ffd2b.zip/node_modules/wkx/",\
+        "packageDependencies": [\
+          ["wkx", "npm:0.5.0"],\
+          ["@types/node", "npm:20.11.7"]\
         ],\
         "linkType": "HARD"\
       }]\
