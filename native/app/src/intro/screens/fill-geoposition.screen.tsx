@@ -4,14 +4,14 @@ import type { ReactElement }       from 'react'
 import type { RootStackParamList } from '../../navigation.component'
 
 import * as Location               from 'expo-location'
-import { Pressable }               from 'react-native'
-import { View }                    from 'react-native'
-import { Text }                    from 'react-native'
 import { useState }                from 'react'
 import { useCallback }             from 'react'
 import { useEffect }               from 'react'
 import React                       from 'react'
 
+import { Button }                  from '../../ui/button'
+import { Box }                     from '../../ui/layout'
+import { Text }                    from '../../ui/text'
 import { useProfile }              from '../../shared'
 import operations                  from '../../operations'
 
@@ -59,19 +59,20 @@ export const FillGeopositionScreen = ({ navigation }: FillGeopositionScreenProps
   }, [])
 
   return (
-    <View>
-      <View>
-        <Text style={{ paddingTop: 40, paddingBottom: 16 }}>Подтвердите местоположение</Text>
-      </View>
-      <View style={{ paddingTop: 16 }}>
-        <Pressable
+    <Box p='3x' flex={1}>
+      <Box mb='4x' alignItems='center'>
+        <Text fontSize={20}>Подтвердите местоположение</Text>
+      </Box>
+      <Box flex={1} flexBasis={16} />
+      <Box>
+        <Button
           onPress={() => {
             onRequest()
           }}
         >
-          <Text>Запросить</Text>
-        </Pressable>
-      </View>
-    </View>
+          Запросить
+        </Button>
+      </Box>
+    </Box>
   )
 }

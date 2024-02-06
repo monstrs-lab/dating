@@ -6,13 +6,14 @@ import type { RootStackParamList } from '../../navigation.component'
 import * as FileSystem             from 'expo-file-system'
 import * as ImagePicker            from 'expo-image-picker'
 import { Pressable }               from 'react-native'
-import { View }                    from 'react-native'
-import { Text }                    from 'react-native'
 import { Image }                   from 'react-native'
 import { useState }                from 'react'
 import { useCallback }             from 'react'
 import React                       from 'react'
 
+import { Button }                  from '../../ui/button'
+import { Box }                     from '../../ui/layout'
+import { Text }                    from '../../ui/text'
 import { useProfile }              from '../../shared'
 import operations                  from '../../operations'
 
@@ -76,11 +77,11 @@ export const FillPhotoScreen = ({ navigation }: FillPhotoScreenProps): ReactElem
   }, [image, navigation, setInProgress, setProfile])
 
   return (
-    <View>
-      <View>
-        <Text style={{ paddingTop: 40, paddingBottom: 16 }}>Выберите фото</Text>
-      </View>
-      <View style={{ flexGrow: 1 }}>
+    <Box p='3x' flex={1}>
+      <Box mb='4x' alignItems='center'>
+        <Text fontSize={20}>Выберите фото</Text>
+      </Box>
+      <Box style={{ flexGrow: 1 }}>
         <Pressable
           onPress={() => {
             onSelectImage()
@@ -89,20 +90,20 @@ export const FillPhotoScreen = ({ navigation }: FillPhotoScreenProps): ReactElem
           {image ? (
             <Image source={{ uri: image.uri }} style={{ width: '100%', height: '80%' }} />
           ) : (
-            <View style={{ backgroundColor: 'gray', width: '100%', height: '80%', padding: 24 }} />
+            <Box style={{ backgroundColor: 'gray', width: '100%', height: '80%', padding: 24 }} />
           )}
         </Pressable>
-      </View>
-      <View style={{ flexBasis: 50 }}>
-        <Pressable
+      </Box>
+      <Box style={{ flexBasis: 50 }}>
+        <Button
           disabled={inProgress || !image}
           onPress={() => {
             onUploadImage()
           }}
         >
-          <Text>Загрузить</Text>
-        </Pressable>
-      </View>
-    </View>
+          Загрузить
+        </Button>
+      </Box>
+    </Box>
   )
 }

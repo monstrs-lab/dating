@@ -3,14 +3,14 @@ import type { ReactElement }       from 'react'
 
 import type { RootStackParamList } from '../../navigation.component'
 
-import { Pressable }               from 'react-native'
-import { View }                    from 'react-native'
 import { TextInput }               from 'react-native'
-import { Text }                    from 'react-native'
 import { useState }                from 'react'
 import { useCallback }             from 'react'
 import React                       from 'react'
 
+import { Button }                  from '../../ui/button'
+import { Box }                     from '../../ui/layout'
+import { Text }                    from '../../ui/text'
 import { useProfile }              from '../../shared'
 import operations                  from '../../operations'
 
@@ -41,26 +41,27 @@ export const FillNameScreen = ({ navigation }: FillNameScreenProps): ReactElemen
   }, [name, navigation, setInProgress, setProfile])
 
   return (
-    <View>
-      <View>
-        <Text style={{ paddingTop: 40, paddingBottom: 16 }}>Выберите имя</Text>
-      </View>
-      <View>
+    <Box p='3x' flex={1}>
+      <Box mb='4x' alignItems='center'>
+        <Text fontSize={20}>Выберите имя</Text>
+      </Box>
+      <Box>
         <TextInput value={name} onChangeText={setName} />
-      </View>
-      <View style={{ minHeight: 40 }}>
+      </Box>
+      <Box style={{ minHeight: 40 }}>
         {!!nameValidationError && <Text>{nameValidationError}</Text>}
-      </View>
-      <View>
-        <Pressable
+      </Box>
+      <Box flex={1} flexBasis={16} />
+      <Box>
+        <Button
           disabled={inProgress}
           onPress={() => {
             onFillName()
           }}
         >
           <Text>Выбрать</Text>
-        </Pressable>
-      </View>
-    </View>
+        </Button>
+      </Box>
+    </Box>
   )
 }
