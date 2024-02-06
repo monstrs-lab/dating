@@ -8,81 +8,84 @@ import { FlowMessages }            from '@monstrs/react-native-kratos'
 import { FlowNodeMessages }        from '@monstrs/react-native-kratos'
 import { FlowSubmit }              from '@monstrs/react-native-kratos'
 import { ReactNativeLoginFlow }    from '@monstrs/react-native-kratos'
-import { View }                    from 'react-native'
 import { TextInput }               from 'react-native'
-import { TouchableOpacity }        from 'react-native'
-import { Text }                    from 'react-native'
 import React                       from 'react'
+
+import { Button }                  from '../../ui/button'
+import { Box }                     from '../../ui/layout'
+import { Text }                    from '../../ui/text'
 
 export type LoginScreenProps = StackScreenProps<RootStackParamList, 'Login'>
 
 export const LoginScreen = ({ navigation, route }: LoginScreenProps): ReactElement => (
   <ReactNativeLoginFlow route={route}>
-    <View>
-      <FlowMessages>
-        {(messages) => (
-          <View>
-            {messages.map((message) => (
-              <Text key={message.id}>{message.text}</Text>
-            ))}
-          </View>
-        )}
-      </FlowMessages>
-      <FlowInputNode name='identifier'>
-        {(_, value, onChange) => (
-          <View>
-            <Text>Логин</Text>
-            <TextInput value={value ? String(value) : ''} onChangeText={onChange} />
-            <FlowNodeMessages name='identifier'>
-              {(messages) => (
-                <View>
-                  {messages.map((message) => (
-                    <Text key={message.id}>{message.text}</Text>
-                  ))}
-                </View>
-              )}
-            </FlowNodeMessages>
-          </View>
-        )}
-      </FlowInputNode>
-      <FlowInputNode name='password'>
-        {(_, value, onChange) => (
-          <View>
-            <Text>Пароль</Text>
-            <TextInput value={value ? String(value) : ''} onChangeText={onChange} />
-            <FlowNodeMessages name='password'>
-              {(messages) => (
-                <View>
-                  {messages.map((message) => (
-                    <Text key={message.id}>{message.text}</Text>
-                  ))}
-                </View>
-              )}
-            </FlowNodeMessages>
-          </View>
-        )}
-      </FlowInputNode>
-      <FlowSubmit>
-        {({ submitting, onSubmit }) => (
-          <TouchableOpacity
-            disabled={submitting}
-            onPress={() => {
-              onSubmit({ method: 'password' })
-            }}
-          >
-            <Text>Войти</Text>
-          </TouchableOpacity>
-        )}
-      </FlowSubmit>
-    </View>
-    <View>
-      <TouchableOpacity
-        onPress={() => {
-          navigation.navigate('Registration')
-        }}
-      >
-        <Text>Зарегистрироваться</Text>
-      </TouchableOpacity>
-    </View>
+    <Box p='3x' flex={1} justifyContent='center'>
+      <Box>
+        <FlowMessages>
+          {(messages) => (
+            <Box>
+              {messages.map((message) => (
+                <Text key={message.id}>{message.text}</Text>
+              ))}
+            </Box>
+          )}
+        </FlowMessages>
+        <FlowInputNode name='identifier'>
+          {(_, value, onChange) => (
+            <Box>
+              <Text>Логин</Text>
+              <TextInput value={value ? String(value) : ''} onChangeText={onChange} />
+              <FlowNodeMessages name='identifier'>
+                {(messages) => (
+                  <Box>
+                    {messages.map((message) => (
+                      <Text key={message.id}>{message.text}</Text>
+                    ))}
+                  </Box>
+                )}
+              </FlowNodeMessages>
+            </Box>
+          )}
+        </FlowInputNode>
+        <FlowInputNode name='password'>
+          {(_, value, onChange) => (
+            <Box>
+              <Text>Пароль</Text>
+              <TextInput value={value ? String(value) : ''} onChangeText={onChange} />
+              <FlowNodeMessages name='password'>
+                {(messages) => (
+                  <Box>
+                    {messages.map((message) => (
+                      <Text key={message.id}>{message.text}</Text>
+                    ))}
+                  </Box>
+                )}
+              </FlowNodeMessages>
+            </Box>
+          )}
+        </FlowInputNode>
+        <FlowSubmit>
+          {({ submitting, onSubmit }) => (
+            <Button
+              disabled={submitting}
+              onPress={() => {
+                onSubmit({ method: 'password' })
+              }}
+            >
+              Войти
+            </Button>
+          )}
+        </FlowSubmit>
+      </Box>
+      <Box marginTop='3x'>
+        <Button
+          onPress={() => {
+            navigation.navigate('Registration')
+          }}
+        >
+          Зарегистрироваться
+        </Button>
+      </Box>
+    </Box>
   </ReactNativeLoginFlow>
 )

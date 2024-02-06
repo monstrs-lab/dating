@@ -3,12 +3,12 @@ import type { ReactElement }       from 'react'
 
 import type { RootStackParamList } from '../../navigation.component'
 
-import { View }                    from 'react-native'
-import { Text }                    from 'react-native'
 import { useEffect }               from 'react'
 import React                       from 'react'
 
 import { ProfileGender }           from '../../operations'
+import { Box }                     from '../../ui/layout'
+import { Text }                    from '../../ui/text'
 import { useProfile }              from '../../shared'
 
 export type IntroScreenProps = StackScreenProps<RootStackParamList, 'Intro'>
@@ -35,8 +35,8 @@ export const IntroScreen = ({ navigation }: IntroScreenProps): ReactElement => {
   }, [profile, navigation])
 
   return (
-    <View>
+    <Box>
       <Text>Intro</Text>
-    </View>
+    </Box>
   )
 }

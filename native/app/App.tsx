@@ -6,10 +6,12 @@ import { AuthProvider }      from '@monstrs/react-native-kratos'
 import { SdkProvider }       from '@monstrs/react-native-kratos'
 import { FrontendApi }       from '@ory/client'
 import { Configuration }     from '@ory/client'
+import { ThemeProvider }     from '@shopify/restyle'
 import React                 from 'react'
 
 import { Navigation }        from './src/navigation.component'
 import { ProfileProvider }   from './src/shared'
+import { theme }             from './src/ui/theme'
 
 export default (): ReactElement => (
   <SdkProvider
@@ -27,7 +29,9 @@ export default (): ReactElement => (
   >
     <AuthProvider>
       <ProfileProvider>
-        <Navigation />
+        <ThemeProvider theme={theme}>
+          <Navigation />
+        </ThemeProvider>
       </ProfileProvider>
     </AuthProvider>
   </SdkProvider>

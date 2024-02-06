@@ -1,11 +1,12 @@
 import type { ReactElement } from 'react'
 
-import { View }              from 'react-native'
-import { Text }              from 'react-native'
 import React                 from 'react'
 
+import { Box }               from '../../ui/layout'
+import { Text }              from '../../ui/text'
+
 export const ProfileScreen = (): ReactElement => (
-  <View>
+  <Box>
     <Text>Profile</Text>
-  </View>
+  </Box>
 )

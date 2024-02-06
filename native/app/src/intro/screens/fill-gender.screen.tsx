@@ -3,9 +3,6 @@ import type { ReactElement }       from 'react'
 
 import type { RootStackParamList } from '../../navigation.component'
 
-import { Pressable }               from 'react-native'
-import { View }                    from 'react-native'
-import { Text }                    from 'react-native'
 import { useState }                from 'react'
 import { useCallback }             from 'react'
 import React                       from 'react'
@@ -13,6 +10,9 @@ import React                       from 'react'
 import SwitchFillor                from 'react-native-switch-selector'
 
 import { ProfileGender }           from '../../operations'
+import { Button }                  from '../../ui/button'
+import { Box }                     from '../../ui/layout'
+import { Text }                    from '../../ui/text'
 import { useProfile }              from '../../shared'
 import operations                  from '../../operations'
 
@@ -40,11 +40,11 @@ export const FillGenderScreen = ({ navigation }: FillGenderScreenProps): ReactEl
   }, [gender, navigation, setInProgress, setProfile])
 
   return (
-    <View>
-      <View>
-        <Text style={{ paddingTop: 40, paddingBottom: 16 }}>Выберите пол</Text>
-      </View>
-      <View>
+    <Box p='3x' flex={1}>
+      <Box mb='4x' alignItems='center'>
+        <Text fontSize={20}>Выберите пол</Text>
+      </Box>
+      <Box>
         <SwitchFillor
           initial={0}
           accessibilityLabel='gender-switch-selector'
@@ -54,17 +54,18 @@ export const FillGenderScreen = ({ navigation }: FillGenderScreenProps): ReactEl
           ]}
           onPress={setGender}
         />
-      </View>
-      <View style={{ paddingTop: 16 }}>
-        <Pressable
+      </Box>
+      <Box flex={1} flexBasis={16} />
+      <Box>
+        <Button
           disabled={inProgress}
           onPress={() => {
             onFill()
           }}
         >
-          <Text>Выбрать</Text>
-        </Pressable>
-      </View>
-    </View>
+          Выбрать
+        </Button>
+      </Box>
+    </Box>
   )
 }

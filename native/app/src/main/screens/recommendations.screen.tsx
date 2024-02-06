@@ -2,13 +2,13 @@ import type { ReactElement } from 'react'
 
 import type { Profile }      from '../../shared'
 
-import { View }              from 'react-native'
-import { Text }              from 'react-native'
 import { useEffect }         from 'react'
 import { useState }          from 'react'
 import React                 from 'react'
 import Swiper                from 'react-native-deck-swiper'
 
+import { Box }               from '../../ui/layout'
+import { Text }              from '../../ui/text'
 import operations            from '../../operations'
 
 export const RecommendationsScreen = (): ReactElement | null => {
@@ -29,26 +29,24 @@ export const RecommendationsScreen = (): ReactElement | null => {
   }
 
   return (
-    <View>
+    <Box>
       <Swiper
         cards={recommendations}
         renderCard={(card, index) => (
-          <View
-            style={{
-              flex: 1,
-              borderRadius: 4,
-              borderWidth: 2,
-              borderColor: '#E8E8E8',
-              justifyContent: 'center',
-              backgroundColor: 'white',
-            }}
+          <Box
+            borderRadius='4'
+            flex={1}
+            justifyContent='center'
+            borderWidth={2}
+            borderColor='gray'
+            backgroundColor='white'
           >
             <Text>
               {card.name} - {index}
             </Text>
-          </View>
+          </Box>
         )}
       />
-    </View>
+    </Box>
   )
 }

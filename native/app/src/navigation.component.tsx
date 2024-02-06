@@ -8,6 +8,7 @@ import { NavigationContainer }        from '@react-navigation/native'
 import { createBottomTabNavigator }   from '@react-navigation/bottom-tabs'
 import { createStackNavigator }       from '@react-navigation/stack'
 import { Keyboard }                   from 'react-native'
+import { SafeAreaView }               from 'react-native'
 import { KeyboardAvoidingView }       from 'react-native'
 import { Platform }                   from 'react-native'
 import { TouchableWithoutFeedback }   from 'react-native'
@@ -69,35 +70,41 @@ export const Navigation = (): ReactElement => {
     >
       {/* eslint-disable-next-line react/jsx-handler-names */}
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <NavigationContainer>
-          <Stack.Navigator
-            screenOptions={{
-              headerShown: isAuthenticated,
-            }}
-          >
-            {isAuthenticated ? (
-              <Stack.Group screenOptions={{ headerShown: false }}>
-                <Stack.Screen name='Intro' component={IntroScreen} />
-                <Stack.Screen name='FillGender' component={FillGenderScreen} />
-                <Stack.Screen name='FillName' component={FillNameScreen} />
-                <Stack.Screen name='FillPhoto' component={FillPhotoScreen} />
-                <Stack.Screen name='FillGeoposition' component={FillGeopositionScreen} />
-                <Stack.Screen
-                  name='Main'
-                  component={Main}
-                  initialParams={{}}
-                  options={{ headerShown: false }}
-                />
-              </Stack.Group>
-            ) : (
-              <Stack.Group>
-                <Stack.Screen name='Login' component={LoginScreen} initialParams={{}} />
-                <Stack.Screen name='Registration' component={RegistrationScreen} />
-                <Stack.Screen name='Callback' component={CallbackScreen} />
-              </Stack.Group>
-            )}
-          </Stack.Navigator>
-        </NavigationContainer>
+        <SafeAreaView style={{ flex: 1, paddingTop: Platform.OS === 'android' ? 50 : 0 }}>
+          <NavigationContainer>
+            <Stack.Navigator
+              screenOptions={{
+                headerShown: isAuthenticated,
+              }}
+            >
+              {isAuthenticated ? (
+                <>
+                  <Stack.Group screenOptions={{ headerShown: false }}>
+                    <Stack.Screen name='Intro' component={IntroScreen} />
+                    <Stack.Screen name='FillGender' component={FillGenderScreen} />
+                    <Stack.Screen name='FillName' component={FillNameScreen} />
+                    <Stack.Screen name='FillPhoto' component={FillPhotoScreen} />
+                    <Stack.Screen name='FillGeoposition' component={FillGeopositionScreen} />
+                  </Stack.Group>
+                  <Stack.Group screenOptions={{ headerShown: false }}>
+                    <Stack.Screen
+                      name='Main'
+                      component={Main}
+                      initialParams={{}}
+                      options={{ headerShown: false }}
+                    />
+                  </Stack.Group>
+                </>
+              ) : (
+                <Stack.Group>
+                  <Stack.Screen name='Login' component={LoginScreen} initialParams={{}} />
+                  <Stack.Screen name='Registration' component={RegistrationScreen} />
+                  <Stack.Screen name='Callback' component={CallbackScreen} />
+                </Stack.Group>
+              )}
+            </Stack.Navigator>
+          </NavigationContainer>
+        </SafeAreaView>
       </TouchableWithoutFeedback>
     </KeyboardAvoidingView>
   )
