@@ -3,12 +3,12 @@ import type { ReactElement }       from 'react'
 
 import type { RootStackParamList } from '../../navigation.component'
 
-import { TextInput }               from 'react-native'
 import { useState }                from 'react'
 import { useCallback }             from 'react'
 import React                       from 'react'
 
 import { Button }                  from '../../ui/button'
+import { Input }                   from '../../ui/input'
 import { Box }                     from '../../ui/layout'
 import { Text }                    from '../../ui/text'
 import { useProfile }              from '../../shared'
@@ -41,25 +41,26 @@ export const FillNameScreen = ({ navigation }: FillNameScreenProps): ReactElemen
   }, [name, navigation, setInProgress, setProfile])
 
   return (
-    <Box p='3x' flex={1}>
+    <Box p='3x' flex={1} justifyContent='center'>
       <Box mb='4x' alignItems='center'>
         <Text fontSize={20}>Выберите имя</Text>
       </Box>
       <Box>
-        <TextInput value={name} onChangeText={setName} />
+        <Input value={name} onChangeText={setName} />
       </Box>
-      <Box style={{ minHeight: 40 }}>
-        {!!nameValidationError && <Text>{nameValidationError}</Text>}
-      </Box>
-      <Box flex={1} flexBasis={16} />
-      <Box>
+      {!!nameValidationError && (
+        <Box mt='1x' mb='2x'>
+          <Text>{nameValidationError}</Text>
+        </Box>
+      )}
+      <Box mt='5x'>
         <Button
           disabled={inProgress}
           onPress={() => {
             onFillName()
           }}
         >
-          <Text>Выбрать</Text>
+          Выбрать
         </Button>
       </Box>
     </Box>

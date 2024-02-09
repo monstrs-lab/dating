@@ -8,10 +8,10 @@ import { FlowMessages }            from '@monstrs/react-native-kratos'
 import { FlowNodeMessages }        from '@monstrs/react-native-kratos'
 import { FlowSubmit }              from '@monstrs/react-native-kratos'
 import { ReactNativeLoginFlow }    from '@monstrs/react-native-kratos'
-import { TextInput }               from 'react-native'
 import React                       from 'react'
 
 import { Button }                  from '../../ui/button'
+import { Input }                   from '../../ui/input'
 import { Box }                     from '../../ui/layout'
 import { Text }                    from '../../ui/text'
 
@@ -23,9 +23,11 @@ export const LoginScreen = ({ navigation, route }: LoginScreenProps): ReactEleme
       <Box>
         <FlowMessages>
           {(messages) => (
-            <Box>
+            <Box mb='3x'>
               {messages.map((message) => (
-                <Text key={message.id}>{message.text}</Text>
+                <Text key={message.id} textAlign='center'>
+                  {message.text}
+                </Text>
               ))}
             </Box>
           )}
@@ -33,34 +35,38 @@ export const LoginScreen = ({ navigation, route }: LoginScreenProps): ReactEleme
         <FlowInputNode name='identifier'>
           {(_, value, onChange) => (
             <Box>
-              <Text>Логин</Text>
-              <TextInput value={value ? String(value) : ''} onChangeText={onChange} />
-              <FlowNodeMessages name='identifier'>
-                {(messages) => (
-                  <Box>
-                    {messages.map((message) => (
-                      <Text key={message.id}>{message.text}</Text>
-                    ))}
-                  </Box>
-                )}
-              </FlowNodeMessages>
+              <Text mb='1x'>Логин</Text>
+              <Input value={value ? String(value) : ''} onChangeText={onChange} />
+              <Box mt='1x' mb='2x'>
+                <FlowNodeMessages name='identifier'>
+                  {(messages) => (
+                    <Box>
+                      {messages.map((message) => (
+                        <Text key={message.id}>{message.text}</Text>
+                      ))}
+                    </Box>
+                  )}
+                </FlowNodeMessages>
+              </Box>
             </Box>
           )}
         </FlowInputNode>
         <FlowInputNode name='password'>
           {(_, value, onChange) => (
-            <Box>
-              <Text>Пароль</Text>
-              <TextInput value={value ? String(value) : ''} onChangeText={onChange} />
-              <FlowNodeMessages name='password'>
-                {(messages) => (
-                  <Box>
-                    {messages.map((message) => (
-                      <Text key={message.id}>{message.text}</Text>
-                    ))}
-                  </Box>
-                )}
-              </FlowNodeMessages>
+            <Box mb='5x'>
+              <Text mb='1x'>Пароль</Text>
+              <Input value={value ? String(value) : ''} onChangeText={onChange} />
+              <Box mt='1x' mb='2x'>
+                <FlowNodeMessages name='password'>
+                  {(messages) => (
+                    <Box>
+                      {messages.map((message) => (
+                        <Text key={message.id}>{message.text}</Text>
+                      ))}
+                    </Box>
+                  )}
+                </FlowNodeMessages>
+              </Box>
             </Box>
           )}
         </FlowInputNode>
