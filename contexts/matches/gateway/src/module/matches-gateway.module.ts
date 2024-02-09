@@ -7,10 +7,10 @@ import { ProfilesClientModule } from '@profiles/client-module'
 import * as resolvers           from '../resolvers/index.js'
 
 @Module({})
-export class RecommendationsGatewayModule {
+export class MatchesGatewayModule {
   static register(): DynamicModule {
     return {
-      module: RecommendationsGatewayModule,
+      module: MatchesGatewayModule,
       imports: [ProfilesClientModule.attach()],
       providers: [...Object.values(resolvers)],
     }

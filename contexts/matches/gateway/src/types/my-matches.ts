@@ -4,7 +4,7 @@ import { ObjectType } from '@nestjs/graphql'
 import { Profile }    from '@profiles/gateway-module'
 
 @ObjectType()
-export class MyRecommendations {
+export class MyMatches {
   @Field(() => [Profile])
   profiles!: Array<Profile>
 }

@@ -161,14 +161,14 @@ export type MutationFillProfileNameArgs = {
   input: FillProfileNameInput
 }
 
+export type MyMatches = {
+  __typename?: 'MyMatches'
+  profiles: Array<Profile>
+}
+
 export type MyProfile = {
   __typename?: 'MyProfile'
   info: Profile
-}
-
-export type MyRecommendations = {
-  __typename?: 'MyRecommendations'
-  profiles: Array<Profile>
 }
 
 export type Profile = {
@@ -199,8 +199,8 @@ export type Upload = {
 export type User = {
   __typename?: 'User'
   id: Scalars['String']['output']
+  matches: MyMatches
   profile: MyProfile
-  recommendations: MyRecommendations
 }
 
 export type ValidationError = {
@@ -265,14 +265,14 @@ export type FillProfileNameMutation = {
   }
 }
 
-export type MyRecommendationsQueryVariables = Exact<{ [key: string]: never }>
+export type MyMatchesQueryVariables = Exact<{ [key: string]: never }>
 
-export type MyRecommendationsQuery = {
+export type MyMatchesQuery = {
   __typename?: 'Query'
   my: {
     __typename?: 'User'
-    recommendations: {
-      __typename?: 'MyRecommendations'
+    matches: {
+      __typename?: 'MyMatches'
       profiles: Array<{ __typename?: 'Profile' } & ProfileFragmentFragment>
     }
   }
@@ -408,10 +408,10 @@ export const FillProfileNameDocument = gql`
   }
   ${ProfileFragmentFragmentDoc}
 `
-export const MyRecommendationsDocument = gql`
-  query myRecommendations {
+export const MyMatchesDocument = gql`
+  query myMatches {
     my {
-      recommendations {
+      matches {
         profiles {
           ...ProfileFragment
         }
@@ -527,17 +527,17 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
         variables
       )
     },
-    myRecommendations(
-      variables?: MyRecommendationsQueryVariables,
+    myMatches(
+      variables?: MyMatchesQueryVariables,
       requestHeaders?: GraphQLClientRequestHeaders
-    ): Promise<MyRecommendationsQuery> {
+    ): Promise<MyMatchesQuery> {
       return withWrapper(
         (wrappedRequestHeaders) =>
-          client.request<MyRecommendationsQuery>(MyRecommendationsDocument, variables, {
+          client.request<MyMatchesQuery>(MyMatchesDocument, variables, {
             ...requestHeaders,
             ...wrappedRequestHeaders,
           }),
-        'myRecommendations',
+        'myMatches',
         'query',
         variables
       )

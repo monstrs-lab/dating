@@ -11,27 +11,27 @@ import { Box }               from '../../ui/layout'
 import { Text }              from '../../ui/text'
 import operations            from '../../operations'
 
-export const RecommendationsScreen = (): ReactElement | null => {
-  const [recommendations, setRecommendations] = useState<Array<Profile>>([])
+export const MatchesScreen = (): ReactElement | null => {
+  const [matches, setMatches] = useState<Array<Profile>>([])
 
   useEffect(() => {
-    const loadRecommendations = async (): Promise<void> => {
-      const { my } = await operations.myRecommendations()
+    const loadMatches = async (): Promise<void> => {
+      const { my } = await operations.myMatches()
 
-      setRecommendations(my.recommendations.profiles)
+      setMatches(my.matches.profiles)
     }
 
-    loadRecommendations()
-  }, [setRecommendations])
+    loadMatches()
+  }, [setMatches])
 
-  if (recommendations.length === 0) {
+  if (matches.length === 0) {
     return null
   }
 
   return (
     <Box>
       <Swiper
-        cards={recommendations}
+        cards={matches}
         renderCard={(card, index) => (
           <Box
             borderRadius='4'
