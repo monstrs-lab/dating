@@ -24,10 +24,10 @@ import { IntroScreen }                from './intro/screens'
 import { FillGenderScreen }           from './intro/screens'
 import { FillGeopositionScreen }      from './intro/screens'
 import { ProfileScreen }              from './main/screens'
-import { RecommendationsScreen }      from './main/screens'
+import { MatchesScreen }              from './main/screens'
 
 export type MainTabsParamList = {
-  Recommendations: undefined
+  Matches: undefined
   Profile: undefined
 }
 
@@ -55,7 +55,7 @@ const Stack = createStackNavigator<RootStackParamList>()
 
 export const Main = (): ReactElement => (
   <Tabs.Navigator>
-    <Tabs.Screen name='Recommendations' component={RecommendationsScreen} />
+    <Tabs.Screen name='Matches' component={MatchesScreen} />
     <Tabs.Screen name='Profile' component={ProfileScreen} />
   </Tabs.Navigator>
 )

@@ -11,7 +11,7 @@ export class UserResolver {
   }
 
   @ResolveField()
-  recommendations(): Record<string, never> {
+  matches(): Record<string, never> {
     return {}
   }
 }

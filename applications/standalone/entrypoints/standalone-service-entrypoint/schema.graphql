@@ -91,14 +91,14 @@ type AddProfilePhotoResponse {
   errors: AddProfilePhotoErrors
 }
 
-type MyRecommendations {
+type MyMatches {
   profiles: [Profile!]!
 }
 
 type User {
   id: String!
   profile: MyProfile!
-  recommendations: MyRecommendations!
+  matches: MyMatches!
 }
 
 type Query {

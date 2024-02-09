@@ -1,6 +1,6 @@
-query myRecommendations {
+query myMatches {
   my {
-    recommendations {
+    matches {
       profiles {
         ...ProfileFragment
       }
