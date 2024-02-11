@@ -17,7 +17,7 @@ export class ProfilesClientCoreModule {
       ProfilesService,
       createGrpcTransport({
         httpVersion: '2',
-        baseUrl: options.baseUrl || process.env.USER_SERVICE_URL || 'http://0.0.0.0:50051',
+        baseUrl: options.baseUrl || process.env.PROFILES_SERVICE_URL || 'http://0.0.0.0:50051',
         idleConnectionTimeoutMs: options.idleConnectionTimeoutMs,
       })
     )

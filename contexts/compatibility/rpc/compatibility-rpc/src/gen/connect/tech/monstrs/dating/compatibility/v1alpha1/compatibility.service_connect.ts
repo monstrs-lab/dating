@@ -3,30 +3,55 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { MethodKind }                         from '@bufbuild/protobuf'
+import { MethodKind }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             from '@bufbuild/protobuf'
 
-import { ActivateQuestionaireRequest }        from './compatibility.service_pb.js'
-import { ActivateQuestionaireResponse }       from './compatibility.service_pb.js'
-import { AddQuestionaireQuestionRequest }     from './compatibility.service_pb.js'
-import { AddQuestionaireQuestionResponse }    from './compatibility.service_pb.js'
-import { ChangeQuestionaireNameRequest }      from './compatibility.service_pb.js'
-import { ChangeQuestionaireNameResponse }     from './compatibility.service_pb.js'
-import { ChangeQuestionairePhotoRequest }     from './compatibility.service_pb.js'
-import { ChangeQuestionairePhotoResponse }    from './compatibility.service_pb.js'
-import { ChangeQuestionaireQuestionRequest }  from './compatibility.service_pb.js'
-import { ChangeQuestionaireQuestionResponse } from './compatibility.service_pb.js'
-import { CreateQuestionaireRequest }          from './compatibility.service_pb.js'
-import { CreateQuestionaireResponse }         from './compatibility.service_pb.js'
-import { DeactivateQuestionaireRequest }      from './compatibility.service_pb.js'
-import { DeactivateQuestionaireResponse }     from './compatibility.service_pb.js'
-import { DeleteQuestionaireQuestionRequest }  from './compatibility.service_pb.js'
-import { DeleteQuestionaireQuestionResponse } from './compatibility.service_pb.js'
-import { ListQuestionairesRequest }           from './compatibility.service_pb.js'
-import { ListQuestionairesResponse }          from './compatibility.service_pb.js'
-import { ListSurveysRequest }                 from './compatibility.service_pb.js'
-import { ListSurveysResponse }                from './compatibility.service_pb.js'
-import { StartSurveyRequest }                 from './compatibility.service_pb.js'
-import { StartSurveyResponse }                from './compatibility.service_pb.js'
+import { ActivateQuestionaireRequest }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            from './compatibility.service_pb.js'
+
+import { ActivateQuestionaireResponse }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              from './compatibility.service_pb.js'
+
+import { AddQuestionaireQuestionRequest }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              from './compatibility.service_pb.js'
+
+import { AddQuestionaireQuestionResponse }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             from './compatibility.service_pb.js'
+
+import { AddSurveyAnswerRequest }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     from './compatibility.service_pb.js'
+
+import { AddSurveyAnswerResponse }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            from './compatibility.service_pb.js'
+
+import { ChangeQuestionaireNameRequest }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             from './compatibility.service_pb.js'
+
+import { ChangeQuestionaireNameResponse }                                                                                                                                                                                                                                                                                                                                                                                                                                                                             from './compatibility.service_pb.js'
+
+import { ChangeQuestionairePhotoRequest }                                                                                                                                                                                                                                                                                                                                                                                                                                             from './compatibility.service_pb.js'
+
+import { ChangeQuestionairePhotoResponse }                                                                                                                                                                                                                                                                                                                                                                                                            from './compatibility.service_pb.js'
+
+import { ChangeQuestionaireQuestionRequest }                                                                                                                                                                                                                                                                                                                                                                         from './compatibility.service_pb.js'
+
+import { ChangeQuestionaireQuestionResponse }                                                                                                                                                                                                                                                                                                                                     from './compatibility.service_pb.js'
+
+import { CreateQuestionaireRequest }                                                                                                                                                                                                                                                                                                          from './compatibility.service_pb.js'
+
+import { CreateQuestionaireResponse }                                                                                                                                                                                                                                                                              from './compatibility.service_pb.js'
+
+import { DeactivateQuestionaireRequest }                                                                                                                                                                                                                                               from './compatibility.service_pb.js'
+
+import { DeactivateQuestionaireResponse }                                                                                                                                                                                                               from './compatibility.service_pb.js'
+
+import { DeleteQuestionaireQuestionRequest }                                                                                                                                                                            from './compatibility.service_pb.js'
+
+import { DeleteQuestionaireQuestionResponse }                                                                                                                                        from './compatibility.service_pb.js'
+
+import { ListQuestionairesRequest }                                                                                                              from './compatibility.service_pb.js'
+
+import { ListQuestionairesResponse }                                                                                   from './compatibility.service_pb.js'
+
+import { ListSurveysRequest }                                                               from './compatibility.service_pb.js'
+
+import { ListSurveysResponse }                                          from './compatibility.service_pb.js'
+
+import { StartSurveyRequest }                      from './compatibility.service_pb.js'
+
+import { StartSurveyResponse } from './compatibility.service_pb.js'
 
 /**
  * @generated from service tech.monstrs.dating.compatibility.v1alpha1.CompatibilityService
@@ -122,6 +147,15 @@ export const CompatibilityService = {
       name: 'StartSurvey',
       I: StartSurveyRequest,
       O: StartSurveyResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc tech.monstrs.dating.compatibility.v1alpha1.CompatibilityService.AddSurveyAnswer
+     */
+    addSurveyAnswer: {
+      name: 'AddSurveyAnswer',
+      I: AddSurveyAnswerRequest,
+      O: AddSurveyAnswerResponse,
       kind: MethodKind.Unary,
     },
     /**
