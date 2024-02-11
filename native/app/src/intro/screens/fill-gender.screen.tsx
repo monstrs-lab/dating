@@ -40,7 +40,7 @@ export const FillGenderScreen = ({ navigation }: FillGenderScreenProps): ReactEl
   }, [gender, navigation, setInProgress, setProfile])
 
   return (
-    <Box p='3x' flex={1}>
+    <Box p='3x' flex={1} justifyContent='center'>
       <Box mb='4x' alignItems='center'>
         <Text fontSize={20}>Выберите пол</Text>
       </Box>
@@ -55,7 +55,7 @@ export const FillGenderScreen = ({ navigation }: FillGenderScreenProps): ReactEl
           onPress={setGender}
         />
       </Box>
-      <Box flex={1} flexBasis={16} />
+      <Box flexBasis={16} />
       <Box>
         <Button
           disabled={inProgress}
