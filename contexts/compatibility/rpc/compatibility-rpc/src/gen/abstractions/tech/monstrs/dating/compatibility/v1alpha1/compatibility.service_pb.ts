@@ -3,11 +3,14 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { Timestamp }    from '@bufbuild/protobuf'
+import type { Timestamp }                                        from '@bufbuild/protobuf'
 
-import type { Query_ID }     from '../../../queries/v1alpha1/queries_pb.js'
-import type { Query_Order }  from '../../../queries/v1alpha1/queries_pb.js'
-import type { Query_Pager }  from '../../../queries/v1alpha1/queries_pb.js'
+import type { Query_ID }                                         from '../../../queries/v1alpha1/queries_pb.js'
+
+import type { Query_Order }                            from '../../../queries/v1alpha1/queries_pb.js'
+
+import type { Query_Pager }               from '../../../queries/v1alpha1/queries_pb.js'
+
 import type { Query_Search } from '../../../queries/v1alpha1/queries_pb.js'
 
 /**

@@ -1474,6 +1474,32 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@compatibility/client-module@workspace:contexts/compatibility/service/client-module":
+  version: 0.0.0-use.local
+  resolution: "@compatibility/client-module@workspace:contexts/compatibility/service/client-module"
+  dependencies:
+    "@bufbuild/protobuf": "npm:^1.7.1"
+    "@compatibility/compatibility-rpc": "workspace:0.0.1"
+    "@connectrpc/connect": "npm:^1.3.0"
+    "@connectrpc/connect-node": "npm:^1.3.0"
+    "@monstrs/logger": "npm:^0.0.20"
+    "@nestjs/common": "npm:^10.3.1"
+    "@nestjs/core": "npm:^10.3.1"
+    dataloader: "npm:^2.2.2"
+    reflect-metadata: "npm:^0.2.1"
+    rxjs: "npm:^7.8.1"
+  peerDependencies:
+    "@bufbuild/protobuf": ^1
+    "@connectrpc/connect": ^1
+    "@connectrpc/connect-node": ^1
+    "@nestjs/common": ^10
+    "@nestjs/core": ^10
+    "@nestjs/microservices": ^10
+    reflect-metadata: ^0.2
+    rxjs: ^7
+  languageName: unknown
+  linkType: soft
+
 "@compatibility/compatibility-rpc@workspace:0.0.1, @compatibility/compatibility-rpc@workspace:contexts/compatibility/rpc/compatibility-rpc":
   version: 0.0.0-use.local
   resolution: "@compatibility/compatibility-rpc@workspace:contexts/compatibility/rpc/compatibility-rpc"

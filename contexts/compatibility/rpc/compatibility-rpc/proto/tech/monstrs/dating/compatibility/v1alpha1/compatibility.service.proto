@@ -16,6 +16,7 @@ service CompatibilityService {
   rpc DeleteQuestionaireQuestion(DeleteQuestionaireQuestionRequest) returns (DeleteQuestionaireQuestionResponse) {}
   rpc ListQuestionaires(ListQuestionairesRequest) returns (ListQuestionairesResponse) {}
   rpc StartSurvey(StartSurveyRequest) returns (StartSurveyResponse) {}
+  rpc AddSurveyAnswer(AddSurveyAnswerRequest) returns (AddSurveyAnswerResponse) {}
   rpc ListSurveys(ListSurveysRequest) returns (ListSurveysResponse) {}
 }
 

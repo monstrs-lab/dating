@@ -68,6 +68,8 @@ export class SurveyRepositoryImpl extends SurveyRepository {
       this.em.createQueryBuilder(SurveyEntity)
     )
       .id('id', query?.id)
+      .id('intervieweeId', query?.intervieweeId)
+      .id('questionaireId', query?.questionaireId)
       .search(search?.fields, search?.value)
       .order(order)
       .pager(pager)
