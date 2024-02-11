@@ -1,0 +1,174 @@
+syntax = "proto3";
+
+package tech.monstrs.dating.compatibility.v1alpha1;
+
+import "google/protobuf/timestamp.proto";
+import "tech/monstrs/queries/v1alpha1/queries.proto";
+
+service CompatibilityService {
+  rpc CreateQuestionaire(CreateQuestionaireRequest) returns (CreateQuestionaireResponse) {}
+  rpc ActivateQuestionaire(ActivateQuestionaireRequest) returns (ActivateQuestionaireResponse) {}
+  rpc DeactivateQuestionaire(DeactivateQuestionaireRequest) returns (DeactivateQuestionaireResponse) {}
+  rpc ChangeQuestionaireName(ChangeQuestionaireNameRequest) returns (ChangeQuestionaireNameResponse) {}
+  rpc ChangeQuestionairePhoto(ChangeQuestionairePhotoRequest) returns (ChangeQuestionairePhotoResponse) {}
+  rpc AddQuestionaireQuestion(AddQuestionaireQuestionRequest) returns (AddQuestionaireQuestionResponse) {}
+  rpc ChangeQuestionaireQuestion(ChangeQuestionaireQuestionRequest) returns (ChangeQuestionaireQuestionResponse) {}
+  rpc DeleteQuestionaireQuestion(DeleteQuestionaireQuestionRequest) returns (DeleteQuestionaireQuestionResponse) {}
+  rpc ListQuestionaires(ListQuestionairesRequest) returns (ListQuestionairesResponse) {}
+  rpc StartSurvey(StartSurveyRequest) returns (StartSurveyResponse) {}
+  rpc ListSurveys(ListSurveysRequest) returns (ListSurveysResponse) {}
+}
+
+enum QuestionaireStatus {
+  ACTIVE = 0;
+  INACTIVE = 1;
+}
+
+enum SurveyStatus {
+  STARTED = 0;
+  COMPLETED = 1;
+}
+
+message Question {
+  string id = 1;
+  string content = 2;
+}
+
+message Questionaire {
+  string id = 1;
+  QuestionaireStatus status = 2;
+  string name = 3;
+  optional string photo_id = 4;
+  repeated Question questions = 5;
+  google.protobuf.Timestamp created_at = 6;
+}
+
+message Survey {
+  string id = 1;
+  SurveyStatus status = 2;
+  string interviewee_id = 3;
+  string questionaire_id = 4;
+  map<string, int32> answers = 5;
+  google.protobuf.Timestamp created_at = 6;
+}
+
+message CreateQuestionaireRequest {
+  string name = 1;
+}
+
+message CreateQuestionaireResponse {
+  Questionaire result = 1;
+}
+
+message ActivateQuestionaireRequest {
+  string questionaire_id = 1;
+}
+
+message ActivateQuestionaireResponse {
+  Questionaire result = 1;
+}
+
+message DeactivateQuestionaireRequest {
+  string questionaire_id = 1;
+}
+
+message DeactivateQuestionaireResponse {
+  Questionaire result = 1;
+}
+
+message ChangeQuestionaireNameRequest {
+  string questionaire_id = 1;
+  string name = 2;
+}
+
+message ChangeQuestionaireNameResponse {
+  Questionaire result = 1;
+}
+
+message ChangeQuestionairePhotoRequest {
+  string questionaire_id = 1;
+  string photo_id = 2;
+}
+
+message ChangeQuestionairePhotoResponse {
+  Questionaire result = 1;
+}
+
+message AddQuestionaireQuestionRequest {
+  string questionaire_id = 1;
+  string content = 2;
+}
+
+message AddQuestionaireQuestionResponse {
+  Questionaire result = 1;
+}
+
+message ChangeQuestionaireQuestionRequest {
+  string questionaire_id = 1;
+  string question_id = 2;
+  string content = 3;
+}
+
+message ChangeQuestionaireQuestionResponse {
+  Questionaire result = 1;
+}
+
+message DeleteQuestionaireQuestionRequest {
+  string questionaire_id = 1;
+  string question_id = 2;
+}
+
+message DeleteQuestionaireQuestionResponse {
+  Questionaire result = 1;
+}
+
+message ListQuestionairesRequest {
+  message QuestionairesQuery {
+    tech.monstrs.queries.v1alpha1.Query.ID id = 1;
+  }
+
+  tech.monstrs.queries.v1alpha1.Query.Pager pager = 1;
+  tech.monstrs.queries.v1alpha1.Query.Order order = 2;
+  tech.monstrs.queries.v1alpha1.Query.Search search = 3;
+  QuestionairesQuery query = 4;
+}
+
+message ListQuestionairesResponse {
+  repeated Questionaire questionaires = 1;
+  bool has_next_page = 2;
+}
+
+message StartSurveyRequest {
+  string questionaire_id = 1;
+  string interviewee_id = 2;
+}
+
+message StartSurveyResponse {
+  Survey result = 1;
+}
+
+message AddSurveyAnswerRequest {
+  string survey_id = 1;
+  string question_id = 2;
+  int32 answer = 3;
+}
+
+message AddSurveyAnswerResponse {
+  Survey result = 1;
+}
+
+message ListSurveysRequest {
+  message SurveysQuery {
+    tech.monstrs.queries.v1alpha1.Query.ID id = 1;
+  }
+
+  tech.monstrs.queries.v1alpha1.Query.Pager pager = 1;
+  tech.monstrs.queries.v1alpha1.Query.Order order = 2;
+  tech.monstrs.queries.v1alpha1.Query.Search search = 3;
+  SurveysQuery query = 4;
+}
+
+message ListSurveysResponse {
+  repeated Survey surveys = 1;
+  bool has_next_page = 2;
+}
