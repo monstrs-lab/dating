@@ -1,1 +1,5 @@
+export * from './change-questionaire-question.request.js'
+export * from './add-questionaire-question.request.js'
+export * from './change-questionaire-photo.request.js'
+export * from './change-questionaire-name.request.js'
 export * from './create-questionaire.request.js'
