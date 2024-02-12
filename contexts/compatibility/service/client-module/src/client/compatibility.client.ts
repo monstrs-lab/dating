@@ -1,21 +1,20 @@
 /* eslint-disable @typescript-eslint/consistent-type-imports */
 
-import type { ListQuestionairesRequest }                       from '@compatibility/compatibility-rpc'
-import type { ListSurveysRequest }   from '@compatibility/compatibility-rpc'
-import type { ListQuestionairesResponse }                      from '@compatibility/compatibility-rpc'
-import type { ListSurveysResponse } from '@compatibility/compatibility-rpc'
-import type { CompatibilityService }                           from '@compatibility/compatibility-rpc'
-import type { Questionaire }                                   from '@compatibility/compatibility-rpc'
-import type { Survey }                           from '@compatibility/compatibility-rpc'
-import type { PromiseClient }                                  from '@connectrpc/connect'
+import type { ListQuestionairesRequest }  from '@compatibility/compatibility-rpc'
+import type { ListSurveysRequest }        from '@compatibility/compatibility-rpc'
+import type { ListQuestionairesResponse } from '@compatibility/compatibility-rpc'
+import type { ListSurveysResponse }       from '@compatibility/compatibility-rpc'
+import type { CompatibilityService }      from '@compatibility/compatibility-rpc'
+import type { Questionaire }              from '@compatibility/compatibility-rpc'
+import type { Survey }                    from '@compatibility/compatibility-rpc'
+import type { PromiseClient }             from '@connectrpc/connect'
 
-import { Inject }                                              from '@nestjs/common'
-import { Injectable }                                          from '@nestjs/common'
+import { Inject }                         from '@nestjs/common'
+import { Injectable }                     from '@nestjs/common'
 
-import { COMPATIBILITY_CLIENT_TOKEN }                          from '../constants/index.js'
-import { QuestionairesDataLoader }                             from '../dataloaders/index.js'
-
-import { SurveysDataLoader }          from '../dataloaders/index.js'
+import { COMPATIBILITY_CLIENT_TOKEN }     from '../constants/index.js'
+import { QuestionairesDataLoader }        from '../dataloaders/index.js'
+import { SurveysDataLoader }              from '../dataloaders/index.js'
 
 @Injectable()
 export class CompatibilityClient {

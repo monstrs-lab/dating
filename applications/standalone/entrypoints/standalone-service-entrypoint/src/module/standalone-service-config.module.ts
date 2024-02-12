@@ -1,26 +1,27 @@
-import type { ApolloDriverConfig } from '@nestjs/apollo'
-import type { DynamicModule }      from '@nestjs/common'
-import type { OnModuleInit }       from '@nestjs/common'
-import type { Request }            from 'express'
+import type { ApolloDriverConfig }   from '@nestjs/apollo'
+import type { DynamicModule }        from '@nestjs/common'
+import type { OnModuleInit }         from '@nestjs/common'
+import type { Request }              from 'express'
 
-import { join }                    from 'node:path'
-import { fileURLToPath }           from 'node:url'
+import { join }                      from 'node:path'
+import { fileURLToPath }             from 'node:url'
 
-import { MikroORM }                from '@mikro-orm/core'
-import { Migrator }                from '@mikro-orm/migrations'
-import { MikroOrmModule }          from '@mikro-orm/nestjs'
-import { PostgreSqlDriver }        from '@mikro-orm/postgresql'
-import { CqrsModule }              from '@monstrs/nestjs-cqrs'
-import { ApolloDriver }            from '@nestjs/apollo'
-import { Module }                  from '@nestjs/common'
-import { APP_INTERCEPTOR }         from '@nestjs/core'
-import { GraphQLModule }           from '@nestjs/graphql'
-import { DataLoaderInterceptor }   from 'nestjs-dataloader'
+import { MikroORM }                  from '@mikro-orm/core'
+import { Migrator }                  from '@mikro-orm/migrations'
+import { MikroOrmModule }            from '@mikro-orm/nestjs'
+import { PostgreSqlDriver }          from '@mikro-orm/postgresql'
+import { CqrsModule }                from '@monstrs/nestjs-cqrs'
+import { ApolloDriver }              from '@nestjs/apollo'
+import { Module }                    from '@nestjs/common'
+import { APP_INTERCEPTOR }           from '@nestjs/core'
+import { GraphQLModule }             from '@nestjs/graphql'
+import { DataLoaderInterceptor }     from 'nestjs-dataloader'
 
-import { ProfilesClientModule }    from '@profiles/client-module'
+import { CompatibilityClientModule } from '@compatibility/client-module'
+import { ProfilesClientModule }      from '@profiles/client-module'
 
-import { entities }                from '../entities/index.js'
-import { migrations }              from '../migrations/index.js'
+import { entities }                  from '../entities/index.js'
+import { migrations }                from '../migrations/index.js'
 
 @Module({})
 export class StandaloneServiceConfigModule implements OnModuleInit {
@@ -77,6 +78,7 @@ export class StandaloneServiceConfigModule implements OnModuleInit {
           },
         }),
         ProfilesClientModule.register(),
+        CompatibilityClientModule.register(),
       ],
       exports: [MikroOrmModule],
       providers: [

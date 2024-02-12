@@ -2,6 +2,7 @@ import type { DynamicModule }                from '@nestjs/common'
 
 import { Module }                            from '@nestjs/common'
 
+import { CompatibilityBackofficeModule }     from '@compatibility/backoffice-module'
 import { CompatibilityInfrastructureModule } from '@compatibility/infrastructure-module'
 import { FilesGatewayModule }                from '@files/gateway-module'
 import { MatchesGatewayModule }              from '@matches/gateway-module'
@@ -17,6 +18,7 @@ export class StandaloneServiceCoreModule {
       imports: [
         ProfilesInfrastructureModule.register(),
         CompatibilityInfrastructureModule.register(),
+        CompatibilityBackofficeModule.register(),
         UsersGatewayModule.register(),
         ProfilesGatewayModule.register(),
         FilesGatewayModule.register(),
