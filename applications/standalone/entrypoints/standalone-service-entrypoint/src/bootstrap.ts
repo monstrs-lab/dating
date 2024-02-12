@@ -1,6 +1,9 @@
+import { RapidocModule }                     from '@b8n/nestjs-rapidoc'
 import { ConnectRpcServer }                  from '@monstrs/nestjs-connectrpc'
 import { ServerProtocol }                    from '@monstrs/nestjs-connectrpc'
 import { NestFactory }                       from '@nestjs/core'
+import { DocumentBuilder }                   from '@nestjs/swagger'
+import { SwaggerModule }                     from '@nestjs/swagger'
 
 import { StandaloneServiceEntrypointModule } from './module/index.js'
 
@@ -15,6 +18,22 @@ const bootstrap = async (): Promise<void> => {
       port: 50051,
     }),
   })
+
+  const options = new DocumentBuilder()
+    .setTitle('Dating backoffice')
+    .setDescription('The Dating backoffice API description')
+    .setVersion('1.0')
+    .addTag('dating')
+    .addServer('/')
+    .build()
+
+  const document = SwaggerModule.createDocument(app, options, {
+    deepScanRoutes: true,
+    ignoreGlobalPrefix: false,
+    extraModels: [],
+  })
+
+  RapidocModule.setup('api', app, document)
 
   await app.startAllMicroservices()
   await app.listen(3000)

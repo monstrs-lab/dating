@@ -3,31 +3,21 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions }                                                                      from '@bufbuild/protobuf'
+import type { BinaryReadOptions } from '@bufbuild/protobuf'
+import type { FieldList }         from '@bufbuild/protobuf'
+import type { JsonReadOptions }   from '@bufbuild/protobuf'
+import type { JsonValue }         from '@bufbuild/protobuf'
+import type { PartialMessage }    from '@bufbuild/protobuf'
+import type { PlainMessage }      from '@bufbuild/protobuf'
 
-import type { FieldList }                                                           from '@bufbuild/protobuf'
+import { Message }                from '@bufbuild/protobuf'
+import { Timestamp }              from '@bufbuild/protobuf'
+import { proto3 }                 from '@bufbuild/protobuf'
 
-import type { JsonReadOptions }                                          from '@bufbuild/protobuf'
-
-import type { JsonValue }                               from '@bufbuild/protobuf'
-
-import type { PartialMessage }               from '@bufbuild/protobuf'
-
-import type { PlainMessage } from '@bufbuild/protobuf'
-
-import { Message }                                                                                     from '@bufbuild/protobuf'
-
-import { proto3 }                                                                             from '@bufbuild/protobuf'
-
-import { Timestamp }                                                                  from '@bufbuild/protobuf'
-
-import { Query_ID }                                                                                    from '../../../queries/v1alpha1/queries_pb.js'
-
-import { Query_Order }                                                                       from '../../../queries/v1alpha1/queries_pb.js'
-
-import { Query_Pager }                                                          from '../../../queries/v1alpha1/queries_pb.js'
-
-import { Query_Search }                                            from '../../../queries/v1alpha1/queries_pb.js'
+import { Query_ID }               from '../../../queries/v1alpha1/queries_pb.js'
+import { Query_Order }            from '../../../queries/v1alpha1/queries_pb.js'
+import { Query_Pager }            from '../../../queries/v1alpha1/queries_pb.js'
+import { Query_Search }           from '../../../queries/v1alpha1/queries_pb.js'
 
 /**
  * @generated from enum tech.monstrs.dating.compatibility.v1alpha1.QuestionaireStatus

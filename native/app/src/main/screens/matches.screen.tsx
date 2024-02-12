@@ -59,8 +59,8 @@ export const MatchesScreen = (): ReactElement | null => {
         renderCard={(card, index) => (
           <Box borderRadius='24' flex={1} backgroundColor='gray' overflow='hidden'>
             <ImageBackground
-              source={{ uri: card?.photos?.[0].url }}
-              src={card?.photos?.[0].url}
+              source={{ uri: card?.photos?.[0]?.url }}
+              src={card?.photos?.[0]?.url}
               resizeMode='cover'
               style={{
                 flex: 1,
