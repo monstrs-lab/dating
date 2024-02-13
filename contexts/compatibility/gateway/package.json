@@ -12,7 +12,9 @@
   "dependencies": {
     "@compatibility/client-module": "workspace:0.0.1",
     "@monstrs/protobuf-rpc": "^0.0.7",
-    "@shared/gateway-types": "workspace:0.0.1"
+    "@shared/gateway-types": "workspace:0.0.1",
+    "dataloader": "^2.2.2",
+    "nestjs-dataloader": "patch:nestjs-dataloader@npm%3A9.0.0#~/.yarn/patches/nestjs-dataloader-npm-9.0.0-5411d766d3.patch"
   },
   "devDependencies": {
     "@files/gateway-module": "workspace:0.0.1",

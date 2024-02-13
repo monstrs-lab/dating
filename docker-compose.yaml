@@ -142,6 +142,8 @@ services:
     working_dir: /workspace
     volumes:
       - ./:/workspace
+    ports:
+      - '3000:3000'
     entrypoint: yarn workspace @dating/standalone-service-entrypoint dev
     environment:
       - FILES_SERVICE_URL=http://files:50051
