@@ -3127,7 +3127,9 @@ const RAW_RUNTIME_STATE =
           ["@types/reflect-metadata", null],\
           ["@types/rxjs", null],\
           ["@types/ts-morph", null],\
+          ["dataloader", "npm:2.2.2"],\
           ["graphql", "npm:16.8.1"],\
+          ["nestjs-dataloader", "virtual:b3b3321aabb22a2e08cce6ef18fa23fb4d75e504ec007e1e2004d7df824a99cd60d8488b5e44eae8d8515e85e76b718eef00e739a57f4230b19f455a82afa677#patch:nestjs-dataloader@npm%3A9.0.0#~/.yarn/patches/nestjs-dataloader-npm-9.0.0-5411d766d3.patch::version=9.0.0&hash=c483ee"],\
           ["reflect-metadata", "npm:0.2.1"],\
           ["rxjs", "npm:7.8.1"],\
           ["ts-morph", "npm:21.0.1"]\
@@ -3179,7 +3181,9 @@ const RAW_RUNTIME_STATE =
           ["@types/reflect-metadata", null],\
           ["@types/rxjs", null],\
           ["@types/ts-morph", null],\
+          ["dataloader", "npm:2.2.2"],\
           ["graphql", "npm:16.8.1"],\
+          ["nestjs-dataloader", "virtual:0b640d1d318cba4b15baeb64c16cdeb017b232571413a42bbd29579a4de70768ec965e63582a154675ca4d96311d4c3ab3456668f30b3be914ff9710fd873a32#patch:nestjs-dataloader@npm%3A9.0.0#~/.yarn/patches/nestjs-dataloader-npm-9.0.0-5411d766d3.patch::version=9.0.0&hash=c483ee"],\
           ["reflect-metadata", "npm:0.2.1"],\
           ["rxjs", "npm:7.8.1"],\
           ["ts-morph", "npm:21.0.1"]\
@@ -3219,7 +3223,9 @@ const RAW_RUNTIME_STATE =
           ["@nestjs/graphql", "virtual:7dbf2f8edbb387f49cc999f0489010bb800f6876246d23165a01c26e4412b5d12f6d490e5d0f21c78c0e2dbeedee0a21f15798831dd992ba27532638d6fe54ac#npm:12.1.1"],\
           ["@nestjs/microservices", "virtual:7dbf2f8edbb387f49cc999f0489010bb800f6876246d23165a01c26e4412b5d12f6d490e5d0f21c78c0e2dbeedee0a21f15798831dd992ba27532638d6fe54ac#npm:10.3.3"],\
           ["@shared/gateway-types", "virtual:7dbf2f8edbb387f49cc999f0489010bb800f6876246d23165a01c26e4412b5d12f6d490e5d0f21c78c0e2dbeedee0a21f15798831dd992ba27532638d6fe54ac#workspace:shared/gateway/gateway-types"],\
+          ["dataloader", "npm:2.2.2"],\
           ["graphql", "npm:16.8.1"],\
+          ["nestjs-dataloader", "virtual:7dbf2f8edbb387f49cc999f0489010bb800f6876246d23165a01c26e4412b5d12f6d490e5d0f21c78c0e2dbeedee0a21f15798831dd992ba27532638d6fe54ac#patch:nestjs-dataloader@npm%3A9.0.0#~/.yarn/patches/nestjs-dataloader-npm-9.0.0-5411d766d3.patch::version=9.0.0&hash=c483ee"],\
           ["reflect-metadata", "npm:0.2.1"],\
           ["rxjs", "npm:7.8.1"],\
           ["ts-morph", "npm:21.0.1"]\
@@ -3762,7 +3768,7 @@ const RAW_RUNTIME_STATE =
           ["@types/ts-morph", null],\
           ["dataloader", "npm:2.2.2"],\
           ["graphql", "npm:16.8.1"],\
-          ["nestjs-dataloader", "virtual:381b92016b1116707901695ce4802b9b8e05cf1586023216eb797390e960f17491888cb73aca1d1e0c2920c55051135f676901a9a6449c038be5bfa23ea23796#patch:nestjs-dataloader@npm%3A9.0.0#~/.yarn/patches/nestjs-dataloader-npm-9.0.0-5411d766d3.patch::version=9.0.0&hash=c483ee"],\
+          ["nestjs-dataloader", "virtual:0b640d1d318cba4b15baeb64c16cdeb017b232571413a42bbd29579a4de70768ec965e63582a154675ca4d96311d4c3ab3456668f30b3be914ff9710fd873a32#patch:nestjs-dataloader@npm%3A9.0.0#~/.yarn/patches/nestjs-dataloader-npm-9.0.0-5411d766d3.patch::version=9.0.0&hash=c483ee"],\
           ["reflect-metadata", "npm:0.2.1"],\
           ["rxjs", "npm:7.8.1"],\
           ["ts-morph", "npm:21.0.1"]\
@@ -3915,7 +3921,7 @@ const RAW_RUNTIME_STATE =
           ["@types/ts-morph", null],\
           ["dataloader", "npm:2.2.2"],\
           ["graphql", "npm:16.8.1"],\
-          ["nestjs-dataloader", "virtual:7ec98c88f1a6f39db91e117d512642121e4e205e6ceaaa06321ae883f9846d99edfca49be0dab9572ba450e8589f1df986e4c2e8049b8a4b66b420cbd8815f46#patch:nestjs-dataloader@npm%3A9.0.0#~/.yarn/patches/nestjs-dataloader-npm-9.0.0-5411d766d3.patch::version=9.0.0&hash=c483ee"],\
+          ["nestjs-dataloader", "virtual:7dbf2f8edbb387f49cc999f0489010bb800f6876246d23165a01c26e4412b5d12f6d490e5d0f21c78c0e2dbeedee0a21f15798831dd992ba27532638d6fe54ac#patch:nestjs-dataloader@npm%3A9.0.0#~/.yarn/patches/nestjs-dataloader-npm-9.0.0-5411d766d3.patch::version=9.0.0&hash=c483ee"],\
           ["reflect-metadata", "npm:0.2.1"],\
           ["rxjs", "npm:7.8.1"],\
           ["ts-morph", "npm:21.0.1"]\
@@ -7291,10 +7297,10 @@ const RAW_RUNTIME_STATE =
         ],\
         "linkType": "HARD"\
       }],\
-      ["virtual:56051fecf85ed3d0edbcd3f6821e7cbadc2091cd998fa4db6b7989407f9f38530842147f778d52c7c3a6c18635a78d9a2b6174ccf535c78c48c45757ed40cb48#npm:10.2.1", {\
-        "packageLocation": "./.yarn/__virtual__/@nestjs-apollo-virtual-40559c8316/0/cache/@nestjs-apollo-npm-10.2.1-51c571c80e-5f405a96a4.zip/node_modules/@nestjs/apollo/",\
+      ["virtual:497ec9366df9d166658b89a9ab727611a36d0273ffe38ffcfd01d313802118178233e068c04a03a1bbcd3b202253b8e4b4d5beeddd39c95bca2df14f74c7858f#npm:10.2.1", {\
+        "packageLocation": "./.yarn/__virtual__/@nestjs-apollo-virtual-4cf4a2f728/0/cache/@nestjs-apollo-npm-10.2.1-51c571c80e-5f405a96a4.zip/node_modules/@nestjs/apollo/",\
         "packageDependencies": [\
-          ["@nestjs/apollo", "virtual:56051fecf85ed3d0edbcd3f6821e7cbadc2091cd998fa4db6b7989407f9f38530842147f778d52c7c3a6c18635a78d9a2b6174ccf535c78c48c45757ed40cb48#npm:10.2.1"],\
+          ["@nestjs/apollo", "virtual:497ec9366df9d166658b89a9ab727611a36d0273ffe38ffcfd01d313802118178233e068c04a03a1bbcd3b202253b8e4b4d5beeddd39c95bca2df14f74c7858f#npm:10.2.1"],\
           ["@apollo/gateway", null],\
           ["@apollo/subgraph", null],\
           ["@as-integrations/fastify", "virtual:c225067363bed6f8a5a485e94e874ad204a3b5de583f6b4d633f02d159474d706b483fc9482132b4dc724085a57ff2283b52a8609ccdd0891476d292ce5c3a45#npm:2.1.1"],\
@@ -7389,54 +7395,10 @@ const RAW_RUNTIME_STATE =
         ],\
         "linkType": "HARD"\
       }],\
-      ["virtual:b3b3321aabb22a2e08cce6ef18fa23fb4d75e504ec007e1e2004d7df824a99cd60d8488b5e44eae8d8515e85e76b718eef00e739a57f4230b19f455a82afa677#npm:12.1.0", {\
-        "packageLocation": "./.yarn/__virtual__/@nestjs-apollo-virtual-9735e918fd/0/cache/@nestjs-apollo-npm-12.1.0-82e738590e-dd4c4b5814.zip/node_modules/@nestjs/apollo/",\
+      ["virtual:a03e5855570bd911d0b5cd81f2ff44a1c3a59b99991334634ac4b86126355946161f04db97d57591d3f743b6d425bc93468eb6c953520a6069d7103718a7ad38#npm:10.2.1", {\
+        "packageLocation": "./.yarn/__virtual__/@nestjs-apollo-virtual-6a9214179d/0/cache/@nestjs-apollo-npm-10.2.1-51c571c80e-5f405a96a4.zip/node_modules/@nestjs/apollo/",\
         "packageDependencies": [\
-          ["@nestjs/apollo", "virtual:b3b3321aabb22a2e08cce6ef18fa23fb4d75e504ec007e1e2004d7df824a99cd60d8488b5e44eae8d8515e85e76b718eef00e739a57f4230b19f455a82afa677#npm:12.1.0"],\
-          ["@apollo/gateway", "virtual:b3b3321aabb22a2e08cce6ef18fa23fb4d75e504ec007e1e2004d7df824a99cd60d8488b5e44eae8d8515e85e76b718eef00e739a57f4230b19f455a82afa677#npm:2.7.1"],\
-          ["@apollo/server", "virtual:b3b3321aabb22a2e08cce6ef18fa23fb4d75e504ec007e1e2004d7df824a99cd60d8488b5e44eae8d8515e85e76b718eef00e739a57f4230b19f455a82afa677#npm:4.10.0"],\
-          ["@apollo/server-plugin-landing-page-graphql-playground", "virtual:9735e918fd073b367d9762ce5624b0936288a91a68621aa0f8632fa66ddf377c128505c976a7812a3110df3a2b498a45e58ba5742724eb5a6bbf7d4c2e6025b5#npm:4.0.0"],\
-          ["@apollo/subgraph", "virtual:b3b3321aabb22a2e08cce6ef18fa23fb4d75e504ec007e1e2004d7df824a99cd60d8488b5e44eae8d8515e85e76b718eef00e739a57f4230b19f455a82afa677#npm:2.7.1"],\
-          ["@as-integrations/fastify", "virtual:9735e918fd073b367d9762ce5624b0936288a91a68621aa0f8632fa66ddf377c128505c976a7812a3110df3a2b498a45e58ba5742724eb5a6bbf7d4c2e6025b5#npm:2.1.1"],\
-          ["@nestjs/common", "virtual:b3b3321aabb22a2e08cce6ef18fa23fb4d75e504ec007e1e2004d7df824a99cd60d8488b5e44eae8d8515e85e76b718eef00e739a57f4230b19f455a82afa677#npm:10.3.3"],\
-          ["@nestjs/core", "virtual:b3b3321aabb22a2e08cce6ef18fa23fb4d75e504ec007e1e2004d7df824a99cd60d8488b5e44eae8d8515e85e76b718eef00e739a57f4230b19f455a82afa677#npm:10.3.3"],\
-          ["@nestjs/graphql", "virtual:b3b3321aabb22a2e08cce6ef18fa23fb4d75e504ec007e1e2004d7df824a99cd60d8488b5e44eae8d8515e85e76b718eef00e739a57f4230b19f455a82afa677#npm:12.1.1"],\
-          ["@types/apollo__gateway", null],\
-          ["@types/apollo__server", null],\
-          ["@types/apollo__subgraph", null],\
-          ["@types/as-integrations__fastify", null],\
-          ["@types/graphql", null],\
-          ["@types/nestjs__common", null],\
-          ["@types/nestjs__core", null],\
-          ["@types/nestjs__graphql", null],\
-          ["graphql", "npm:16.8.1"],\
-          ["iterall", "npm:1.3.0"],\
-          ["lodash.omit", "npm:4.5.0"],\
-          ["tslib", "npm:2.6.2"]\
-        ],\
-        "packagePeers": [\
-          "@apollo/gateway",\
-          "@apollo/server",\
-          "@apollo/subgraph",\
-          "@nestjs/common",\
-          "@nestjs/core",\
-          "@nestjs/graphql",\
-          "@types/apollo__gateway",\
-          "@types/apollo__server",\
-          "@types/apollo__subgraph",\
-          "@types/as-integrations__fastify",\
-          "@types/graphql",\
-          "@types/nestjs__common",\
-          "@types/nestjs__core",\
-          "@types/nestjs__graphql",\
-          "graphql"\
-        ],\
-        "linkType": "HARD"\
-      }],\
-      ["virtual:e30165dde58bfa7a85cef1ee510cb79ebde11dd0ae29cee7d48dbcae001182220998ed59001fd630bc1cac553b4144a16c7a03eb0ffa91614143a68ca89bdcc6#npm:10.2.1", {\
-        "packageLocation": "./.yarn/__virtual__/@nestjs-apollo-virtual-b3fd3af6f0/0/cache/@nestjs-apollo-npm-10.2.1-51c571c80e-5f405a96a4.zip/node_modules/@nestjs/apollo/",\
-        "packageDependencies": [\
-          ["@nestjs/apollo", "virtual:e30165dde58bfa7a85cef1ee510cb79ebde11dd0ae29cee7d48dbcae001182220998ed59001fd630bc1cac553b4144a16c7a03eb0ffa91614143a68ca89bdcc6#npm:10.2.1"],\
+          ["@nestjs/apollo", "virtual:a03e5855570bd911d0b5cd81f2ff44a1c3a59b99991334634ac4b86126355946161f04db97d57591d3f743b6d425bc93468eb6c953520a6069d7103718a7ad38#npm:10.2.1"],\
           ["@apollo/gateway", null],\
           ["@apollo/subgraph", null],\
           ["@as-integrations/fastify", "virtual:c225067363bed6f8a5a485e94e874ad204a3b5de583f6b4d633f02d159474d706b483fc9482132b4dc724085a57ff2283b52a8609ccdd0891476d292ce5c3a45#npm:2.1.1"],\
@@ -7478,6 +7440,50 @@ const RAW_RUNTIME_STATE =
           "apollo-server-core",\
           "apollo-server-express",\
           "apollo-server-fastify",\
+          "graphql"\
+        ],\
+        "linkType": "HARD"\
+      }],\
+      ["virtual:b3b3321aabb22a2e08cce6ef18fa23fb4d75e504ec007e1e2004d7df824a99cd60d8488b5e44eae8d8515e85e76b718eef00e739a57f4230b19f455a82afa677#npm:12.1.0", {\
+        "packageLocation": "./.yarn/__virtual__/@nestjs-apollo-virtual-9735e918fd/0/cache/@nestjs-apollo-npm-12.1.0-82e738590e-dd4c4b5814.zip/node_modules/@nestjs/apollo/",\
+        "packageDependencies": [\
+          ["@nestjs/apollo", "virtual:b3b3321aabb22a2e08cce6ef18fa23fb4d75e504ec007e1e2004d7df824a99cd60d8488b5e44eae8d8515e85e76b718eef00e739a57f4230b19f455a82afa677#npm:12.1.0"],\
+          ["@apollo/gateway", "virtual:b3b3321aabb22a2e08cce6ef18fa23fb4d75e504ec007e1e2004d7df824a99cd60d8488b5e44eae8d8515e85e76b718eef00e739a57f4230b19f455a82afa677#npm:2.7.1"],\
+          ["@apollo/server", "virtual:b3b3321aabb22a2e08cce6ef18fa23fb4d75e504ec007e1e2004d7df824a99cd60d8488b5e44eae8d8515e85e76b718eef00e739a57f4230b19f455a82afa677#npm:4.10.0"],\
+          ["@apollo/server-plugin-landing-page-graphql-playground", "virtual:9735e918fd073b367d9762ce5624b0936288a91a68621aa0f8632fa66ddf377c128505c976a7812a3110df3a2b498a45e58ba5742724eb5a6bbf7d4c2e6025b5#npm:4.0.0"],\
+          ["@apollo/subgraph", "virtual:b3b3321aabb22a2e08cce6ef18fa23fb4d75e504ec007e1e2004d7df824a99cd60d8488b5e44eae8d8515e85e76b718eef00e739a57f4230b19f455a82afa677#npm:2.7.1"],\
+          ["@as-integrations/fastify", "virtual:9735e918fd073b367d9762ce5624b0936288a91a68621aa0f8632fa66ddf377c128505c976a7812a3110df3a2b498a45e58ba5742724eb5a6bbf7d4c2e6025b5#npm:2.1.1"],\
+          ["@nestjs/common", "virtual:b3b3321aabb22a2e08cce6ef18fa23fb4d75e504ec007e1e2004d7df824a99cd60d8488b5e44eae8d8515e85e76b718eef00e739a57f4230b19f455a82afa677#npm:10.3.3"],\
+          ["@nestjs/core", "virtual:b3b3321aabb22a2e08cce6ef18fa23fb4d75e504ec007e1e2004d7df824a99cd60d8488b5e44eae8d8515e85e76b718eef00e739a57f4230b19f455a82afa677#npm:10.3.3"],\
+          ["@nestjs/graphql", "virtual:b3b3321aabb22a2e08cce6ef18fa23fb4d75e504ec007e1e2004d7df824a99cd60d8488b5e44eae8d8515e85e76b718eef00e739a57f4230b19f455a82afa677#npm:12.1.1"],\
+          ["@types/apollo__gateway", null],\
+          ["@types/apollo__server", null],\
+          ["@types/apollo__subgraph", null],\
+          ["@types/as-integrations__fastify", null],\
+          ["@types/graphql", null],\
+          ["@types/nestjs__common", null],\
+          ["@types/nestjs__core", null],\
+          ["@types/nestjs__graphql", null],\
+          ["graphql", "npm:16.8.1"],\
+          ["iterall", "npm:1.3.0"],\
+          ["lodash.omit", "npm:4.5.0"],\
+          ["tslib", "npm:2.6.2"]\
+        ],\
+        "packagePeers": [\
+          "@apollo/gateway",\
+          "@apollo/server",\
+          "@apollo/subgraph",\
+          "@nestjs/common",\
+          "@nestjs/core",\
+          "@nestjs/graphql",\
+          "@types/apollo__gateway",\
+          "@types/apollo__server",\
+          "@types/apollo__subgraph",\
+          "@types/as-integrations__fastify",\
+          "@types/graphql",\
+          "@types/nestjs__common",\
+          "@types/nestjs__core",\
+          "@types/nestjs__graphql",\
           "graphql"\
         ],\
         "linkType": "HARD"\
@@ -10655,7 +10661,7 @@ const RAW_RUNTIME_STATE =
           ["@types/ts-morph", null],\
           ["dataloader", "npm:2.2.2"],\
           ["graphql", "npm:16.8.1"],\
-          ["nestjs-dataloader", "virtual:381b92016b1116707901695ce4802b9b8e05cf1586023216eb797390e960f17491888cb73aca1d1e0c2920c55051135f676901a9a6449c038be5bfa23ea23796#patch:nestjs-dataloader@npm%3A9.0.0#~/.yarn/patches/nestjs-dataloader-npm-9.0.0-5411d766d3.patch::version=9.0.0&hash=c483ee"],\
+          ["nestjs-dataloader", "virtual:0b640d1d318cba4b15baeb64c16cdeb017b232571413a42bbd29579a4de70768ec965e63582a154675ca4d96311d4c3ab3456668f30b3be914ff9710fd873a32#patch:nestjs-dataloader@npm%3A9.0.0#~/.yarn/patches/nestjs-dataloader-npm-9.0.0-5411d766d3.patch::version=9.0.0&hash=c483ee"],\
           ["reflect-metadata", "npm:0.2.1"],\
           ["rxjs", "npm:7.8.1"],\
           ["ts-morph", "npm:21.0.1"]\
@@ -19729,6 +19735,34 @@ const RAW_RUNTIME_STATE =
         ],\
         "linkType": "SOFT"\
       }],\
+      ["virtual:0b640d1d318cba4b15baeb64c16cdeb017b232571413a42bbd29579a4de70768ec965e63582a154675ca4d96311d4c3ab3456668f30b3be914ff9710fd873a32#patch:nestjs-dataloader@npm%3A9.0.0#~/.yarn/patches/nestjs-dataloader-npm-9.0.0-5411d766d3.patch::version=9.0.0&hash=c483ee", {\
+        "packageLocation": "./.yarn/__virtual__/nestjs-dataloader-virtual-497ec9366d/0/cache/nestjs-dataloader-patch-60727a0161-55847ae2a6.zip/node_modules/nestjs-dataloader/",\
+        "packageDependencies": [\
+          ["nestjs-dataloader", "virtual:0b640d1d318cba4b15baeb64c16cdeb017b232571413a42bbd29579a4de70768ec965e63582a154675ca4d96311d4c3ab3456668f30b3be914ff9710fd873a32#patch:nestjs-dataloader@npm%3A9.0.0#~/.yarn/patches/nestjs-dataloader-npm-9.0.0-5411d766d3.patch::version=9.0.0&hash=c483ee"],\
+          ["@nestjs/apollo", "virtual:497ec9366df9d166658b89a9ab727611a36d0273ffe38ffcfd01d313802118178233e068c04a03a1bbcd3b202253b8e4b4d5beeddd39c95bca2df14f74c7858f#npm:10.2.1"],\
+          ["@nestjs/common", "virtual:7dbf2f8edbb387f49cc999f0489010bb800f6876246d23165a01c26e4412b5d12f6d490e5d0f21c78c0e2dbeedee0a21f15798831dd992ba27532638d6fe54ac#npm:10.3.3"],\
+          ["@nestjs/core", "virtual:51f1fd440c101e2367c795c2fdb346e0e0cbc38afe1dccbbf9ae861caf1dcdcff6324390f3cf11eee53ab506e1d73db8b7c665c13fa507d7808d8053d40208d3#npm:10.3.3"],\
+          ["@nestjs/graphql", "virtual:e709c4dce6277b0d9a26801f352bcc3b9ccceb5c45010dd4a8596ec4069349daf0b93d220043f3a6b3d0ead148ae7faa670252c0f31176283409906eae41d672#npm:12.1.1"],\
+          ["@types/graphql", null],\
+          ["@types/nestjs__common", null],\
+          ["@types/nestjs__core", null],\
+          ["@types/nestjs__graphql", null],\
+          ["dataloader", "npm:2.2.2"],\
+          ["graphql", "npm:16.8.1"],\
+          ["rxjs", "npm:7.8.1"]\
+        ],\
+        "packagePeers": [\
+          "@nestjs/common",\
+          "@nestjs/core",\
+          "@nestjs/graphql",\
+          "@types/graphql",\
+          "@types/nestjs__common",\
+          "@types/nestjs__core",\
+          "@types/nestjs__graphql",\
+          "graphql"\
+        ],\
+        "linkType": "HARD"\
+      }],\
       ["virtual:12800677d9bf03871538f6187a00234002dd50ef4fc2839818e132434e3426432abe00479153723cc355333a48a1eaf409cd22e479b3c44b9711e41432b3a6a9#patch:nestjs-dataloader@npm%3A9.0.0#~/.yarn/patches/nestjs-dataloader-npm-9.0.0-5411d766d3.patch::version=9.0.0&hash=c483ee", {\
         "packageLocation": "./.yarn/__virtual__/nestjs-dataloader-virtual-1271e1db1d/0/cache/nestjs-dataloader-patch-60727a0161-55847ae2a6.zip/node_modules/nestjs-dataloader/",\
         "packageDependencies": [\
@@ -19785,39 +19819,11 @@ const RAW_RUNTIME_STATE =
         ],\
         "linkType": "HARD"\
       }],\
-      ["virtual:381b92016b1116707901695ce4802b9b8e05cf1586023216eb797390e960f17491888cb73aca1d1e0c2920c55051135f676901a9a6449c038be5bfa23ea23796#patch:nestjs-dataloader@npm%3A9.0.0#~/.yarn/patches/nestjs-dataloader-npm-9.0.0-5411d766d3.patch::version=9.0.0&hash=c483ee", {\
-        "packageLocation": "./.yarn/__virtual__/nestjs-dataloader-virtual-56051fecf8/0/cache/nestjs-dataloader-patch-60727a0161-55847ae2a6.zip/node_modules/nestjs-dataloader/",\
+      ["virtual:7dbf2f8edbb387f49cc999f0489010bb800f6876246d23165a01c26e4412b5d12f6d490e5d0f21c78c0e2dbeedee0a21f15798831dd992ba27532638d6fe54ac#patch:nestjs-dataloader@npm%3A9.0.0#~/.yarn/patches/nestjs-dataloader-npm-9.0.0-5411d766d3.patch::version=9.0.0&hash=c483ee", {\
+        "packageLocation": "./.yarn/__virtual__/nestjs-dataloader-virtual-a03e585557/0/cache/nestjs-dataloader-patch-60727a0161-55847ae2a6.zip/node_modules/nestjs-dataloader/",\
         "packageDependencies": [\
-          ["nestjs-dataloader", "virtual:381b92016b1116707901695ce4802b9b8e05cf1586023216eb797390e960f17491888cb73aca1d1e0c2920c55051135f676901a9a6449c038be5bfa23ea23796#patch:nestjs-dataloader@npm%3A9.0.0#~/.yarn/patches/nestjs-dataloader-npm-9.0.0-5411d766d3.patch::version=9.0.0&hash=c483ee"],\
-          ["@nestjs/apollo", "virtual:56051fecf85ed3d0edbcd3f6821e7cbadc2091cd998fa4db6b7989407f9f38530842147f778d52c7c3a6c18635a78d9a2b6174ccf535c78c48c45757ed40cb48#npm:10.2.1"],\
-          ["@nestjs/common", "virtual:7dbf2f8edbb387f49cc999f0489010bb800f6876246d23165a01c26e4412b5d12f6d490e5d0f21c78c0e2dbeedee0a21f15798831dd992ba27532638d6fe54ac#npm:10.3.3"],\
-          ["@nestjs/core", "virtual:51f1fd440c101e2367c795c2fdb346e0e0cbc38afe1dccbbf9ae861caf1dcdcff6324390f3cf11eee53ab506e1d73db8b7c665c13fa507d7808d8053d40208d3#npm:10.3.3"],\
-          ["@nestjs/graphql", "virtual:e709c4dce6277b0d9a26801f352bcc3b9ccceb5c45010dd4a8596ec4069349daf0b93d220043f3a6b3d0ead148ae7faa670252c0f31176283409906eae41d672#npm:12.1.1"],\
-          ["@types/graphql", null],\
-          ["@types/nestjs__common", null],\
-          ["@types/nestjs__core", null],\
-          ["@types/nestjs__graphql", null],\
-          ["dataloader", "npm:2.2.2"],\
-          ["graphql", "npm:16.8.1"],\
-          ["rxjs", "npm:7.8.1"]\
-        ],\
-        "packagePeers": [\
-          "@nestjs/common",\
-          "@nestjs/core",\
-          "@nestjs/graphql",\
-          "@types/graphql",\
-          "@types/nestjs__common",\
-          "@types/nestjs__core",\
-          "@types/nestjs__graphql",\
-          "graphql"\
-        ],\
-        "linkType": "HARD"\
-      }],\
-      ["virtual:7ec98c88f1a6f39db91e117d512642121e4e205e6ceaaa06321ae883f9846d99edfca49be0dab9572ba450e8589f1df986e4c2e8049b8a4b66b420cbd8815f46#patch:nestjs-dataloader@npm%3A9.0.0#~/.yarn/patches/nestjs-dataloader-npm-9.0.0-5411d766d3.patch::version=9.0.0&hash=c483ee", {\
-        "packageLocation": "./.yarn/__virtual__/nestjs-dataloader-virtual-e30165dde5/0/cache/nestjs-dataloader-patch-60727a0161-55847ae2a6.zip/node_modules/nestjs-dataloader/",\
-        "packageDependencies": [\
-          ["nestjs-dataloader", "virtual:7ec98c88f1a6f39db91e117d512642121e4e205e6ceaaa06321ae883f9846d99edfca49be0dab9572ba450e8589f1df986e4c2e8049b8a4b66b420cbd8815f46#patch:nestjs-dataloader@npm%3A9.0.0#~/.yarn/patches/nestjs-dataloader-npm-9.0.0-5411d766d3.patch::version=9.0.0&hash=c483ee"],\
-          ["@nestjs/apollo", "virtual:e30165dde58bfa7a85cef1ee510cb79ebde11dd0ae29cee7d48dbcae001182220998ed59001fd630bc1cac553b4144a16c7a03eb0ffa91614143a68ca89bdcc6#npm:10.2.1"],\
+          ["nestjs-dataloader", "virtual:7dbf2f8edbb387f49cc999f0489010bb800f6876246d23165a01c26e4412b5d12f6d490e5d0f21c78c0e2dbeedee0a21f15798831dd992ba27532638d6fe54ac#patch:nestjs-dataloader@npm%3A9.0.0#~/.yarn/patches/nestjs-dataloader-npm-9.0.0-5411d766d3.patch::version=9.0.0&hash=c483ee"],\
+          ["@nestjs/apollo", "virtual:a03e5855570bd911d0b5cd81f2ff44a1c3a59b99991334634ac4b86126355946161f04db97d57591d3f743b6d425bc93468eb6c953520a6069d7103718a7ad38#npm:10.2.1"],\
           ["@nestjs/common", "virtual:7dbf2f8edbb387f49cc999f0489010bb800f6876246d23165a01c26e4412b5d12f6d490e5d0f21c78c0e2dbeedee0a21f15798831dd992ba27532638d6fe54ac#npm:10.3.3"],\
           ["@nestjs/core", "virtual:7dbf2f8edbb387f49cc999f0489010bb800f6876246d23165a01c26e4412b5d12f6d490e5d0f21c78c0e2dbeedee0a21f15798831dd992ba27532638d6fe54ac#npm:10.3.3"],\
           ["@nestjs/graphql", "virtual:7dbf2f8edbb387f49cc999f0489010bb800f6876246d23165a01c26e4412b5d12f6d490e5d0f21c78c0e2dbeedee0a21f15798831dd992ba27532638d6fe54ac#npm:12.1.1"],\
