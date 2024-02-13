@@ -1,8 +1,9 @@
-import { Field }      from '@nestjs/graphql'
-import { ObjectType } from '@nestjs/graphql'
+import { Field }           from '@nestjs/graphql'
+import { ObjectType }      from '@nestjs/graphql'
 
-import { MyMatches }  from '@matches/gateway-module'
-import { MyProfile }  from '@profiles/gateway-module'
+import { MyCompatibility } from '@compatibility/gateway-module'
+import { MyMatches }       from '@matches/gateway-module'
+import { MyProfile }       from '@profiles/gateway-module'
 
 @ObjectType()
 export class User {
@@ -14,4 +15,7 @@ export class User {
 
   @Field(() => MyMatches)
   matches!: MyMatches
+
+  @Field(() => MyCompatibility)
+  compatibility!: MyCompatibility
 }

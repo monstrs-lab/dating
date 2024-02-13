@@ -68,6 +68,7 @@ export class QuestionaireRepositoryImpl extends QuestionaireRepository {
       this.em.createQueryBuilder(QuestionaireEntity)
     )
       .id('id', query?.id)
+      .number('status', query?.status)
       .search(search?.fields, search?.value)
       .order(order)
       .pager(pager)

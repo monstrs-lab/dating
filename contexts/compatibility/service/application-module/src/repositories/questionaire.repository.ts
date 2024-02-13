@@ -3,6 +3,7 @@ import type { Query }        from '@monstrs/query-types'
 
 export interface QuestionairesQuery {
   id?: Query.IDType
+  status?: Query.NumberType
 }
 
 export interface FindQuestionairesByQuery {

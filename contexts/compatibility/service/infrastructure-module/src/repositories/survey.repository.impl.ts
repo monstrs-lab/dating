@@ -68,6 +68,7 @@ export class SurveyRepositoryImpl extends SurveyRepository {
       this.em.createQueryBuilder(SurveyEntity)
     )
       .id('id', query?.id)
+      .number('status', query?.status)
       .id('intervieweeId', query?.intervieweeId)
       .id('questionaireId', query?.questionaireId)
       .search(search?.fields, search?.value)

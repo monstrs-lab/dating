@@ -11,13 +11,13 @@
   "main": "src/index.ts",
   "dependencies": {
     "@compatibility/domain-module": "workspace:0.0.1",
-    "@monstrs/query-types": "^0.0.8"
+    "@monstrs/query-types": "^0.0.9"
   },
   "devDependencies": {
-    "@nestjs/common": "^10.3.2",
-    "@nestjs/core": "^10.3.2",
+    "@nestjs/common": "^10.3.3",
+    "@nestjs/core": "^10.3.3",
     "@nestjs/cqrs": "^10.2.7",
-    "@nestjs/testing": "^10.3.2",
+    "@nestjs/testing": "^10.3.3",
     "@types/node": "^20.11.17",
     "reflect-metadata": "^0.2.1",
     "rxjs": "^7.8.1"

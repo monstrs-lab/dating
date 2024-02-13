@@ -116,6 +116,26 @@ export interface Query_StringValues {
 }
 
 /**
+ * @generated from message tech.monstrs.queries.v1alpha1.Query.IntValue
+ */
+export interface Query_IntValue {
+  /**
+   * @generated from field: int32 value = 1;
+   */
+  value: number
+}
+
+/**
+ * @generated from message tech.monstrs.queries.v1alpha1.Query.IntValues
+ */
+export interface Query_IntValues {
+  /**
+   * @generated from field: repeated int32 values = 1;
+   */
+  values: number[]
+}
+
+/**
  * @generated from message tech.monstrs.queries.v1alpha1.Query.BooleanValue
  */
 export interface Query_BooleanValue {
@@ -263,4 +283,34 @@ export interface Query_String {
    * @generated from field: tech.monstrs.queries.v1alpha1.Query.StringConditions conditions = 2;
    */
   conditions?: Query_StringConditions
+}
+
+/**
+ * @generated from message tech.monstrs.queries.v1alpha1.Query.IntConditions
+ */
+export interface Query_IntConditions {
+  /**
+   * @generated from field: tech.monstrs.queries.v1alpha1.Query.IntValues in = 1;
+   */
+  in?: Query_IntValues
+
+  /**
+   * @generated from field: tech.monstrs.queries.v1alpha1.Query.IntValue eq = 2;
+   */
+  eq?: Query_IntValue
+}
+
+/**
+ * @generated from message tech.monstrs.queries.v1alpha1.Query.Int
+ */
+export interface Query_Int {
+  /**
+   * @generated from field: tech.monstrs.queries.v1alpha1.Query.Operator operator = 1;
+   */
+  operator: Query_Operator
+
+  /**
+   * @generated from field: tech.monstrs.queries.v1alpha1.Query.IntConditions conditions = 2;
+   */
+  conditions?: Query_IntConditions
 }

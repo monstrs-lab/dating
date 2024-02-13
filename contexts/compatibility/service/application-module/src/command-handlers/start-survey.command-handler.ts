@@ -22,7 +22,9 @@ export class StartSurveyCommandHandler implements ICommandHandler<StartSurveyCom
 
     assert.ok(questionaire, 'Questionaire not found')
 
-    const survey = await this.surveyRepository.findByQuery({
+    const {
+      surveys: [survey],
+    } = await this.surveyRepository.findByQuery({
       query: {
         intervieweeId: {
           conditions: {
