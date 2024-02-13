@@ -3,6 +3,8 @@ import type { ReactElement }       from 'react'
 
 import type { RootStackParamList } from '../../navigation.component'
 
+import { Platform } from 'react-native'
+import * as Device from 'expo-device'
 import * as Location               from 'expo-location'
 import { useState }                from 'react'
 import { useCallback }             from 'react'
@@ -33,7 +35,12 @@ export const FillGeopositionScreen = ({ navigation }: FillGeopositionScreenProps
 
   useEffect(() => {
     const requestLocation = async (): Promise<void> => {
-      const location = await Location.getCurrentPositionAsync()
+      const location = !Device.isDevice && Platform.OS === 'android' ? {
+        coords: {
+          latitude: 55.751244,
+          longitude: 37.618423,
+        }
+      } : await Location.getCurrentPositionAsync()
 
       const { fillProfileGeoposition } = await operations.fillProfileGeoposition({
         latitude: location.coords.latitude,
