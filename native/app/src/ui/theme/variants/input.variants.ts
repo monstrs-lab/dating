@@ -17,7 +17,7 @@ export const inputVariants = {
       borderRadius: '6',
       px: '4x',
       fontSize: 16,
-      fontWeight: 400,
+      fontWeight: '400',
     },
   },
   inputFocused: {

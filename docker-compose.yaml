@@ -117,6 +117,7 @@ services:
     command: server data --console-address ":9001"
 
   files:
+    platform: linux/amd64
     image: monstrs/files-system-service-entrypoint:latest
     depends_on:
       - minio
