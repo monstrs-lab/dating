@@ -43,7 +43,7 @@ export const buttonVariants = {
   },
   buttonTextSize: {
     defaults: {
-      fontWeight: 500,
+      fontWeight: '500',
     },
     small: {
       fontSize: 14,

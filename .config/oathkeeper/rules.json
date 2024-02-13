@@ -26,5 +26,33 @@
         }
       }
     ]
+  },
+  {
+    "id": "allow-x-session-token-android",
+    "upstream": {
+      "url": "http://standalone:3000"
+    },
+    "match": {
+      "url": "http://10.0.2.2:4455/",
+      "methods": ["GET", "POST"]
+    },
+    "authenticators": [
+      {
+        "handler": "bearer_token"
+      }
+    ],
+    "authorizer": {
+      "handler": "allow"
+    },
+    "mutators": [
+      {
+        "handler": "header",
+        "config": {
+          "headers": {
+            "X-User": "{{ print .Subject }}"
+          }
+        }
+      }
+    ]
   }
 ]

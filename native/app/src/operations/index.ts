@@ -24,17 +24,20 @@ const getToken = async (): Promise<string | undefined> => {
   return undefined
 }
 
-const client = new GraphQLClient('http://localhost:4455', {
-  credentials: 'include',
-  requestMiddleware: async (request): Promise<any> => {
-    const token = await getToken()
+const client = new GraphQLClient(
+  Platform.OS === 'android' ? 'http://10.0.2.2:4455' : 'http://127.0.0.1:4455',
+  {
+    credentials: 'include',
+    requestMiddleware: async (request): Promise<any> => {
+      const token = await getToken()
 
-    return {
-      ...request,
-      headers: { ...request.headers, Authorization: `Bearer ${token}` },
-    }
-  },
-})
+      return {
+        ...request,
+        headers: { ...request.headers, Authorization: `Bearer ${token}` },
+      }
+    },
+  }
+)
 
 export default getSdk(client)
 
