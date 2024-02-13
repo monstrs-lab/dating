@@ -7,6 +7,16 @@ type ValidationError {
   message: String!
 }
 
+type AddSurveyAnswerErrors {
+  surveyId: ValidationError
+  questionId: ValidationError
+  answer: ValidationError
+}
+
+type StartSurveyErrors {
+  questionaireId: ValidationError
+}
+
 type ConfirmUploadErrors {
   id: ValidationError
 }
@@ -35,6 +45,55 @@ type ConfirmUploadResponse {
 type CreateUploadResponse {
   result: Upload
   errors: CreateUploadErrors
+}
+
+type Question {
+  id: String!
+  content: String!
+}
+
+type Answer {
+  id: String!
+  value: Float
+}
+
+type Survey {
+  id: String!
+  status: SurveyStatus!
+  answers: [Answer!]!
+}
+
+enum SurveyStatus {
+  STARTED
+  COMPLETED
+}
+
+type Questionaire {
+  id: String!
+  status: QuestionaireStatus!
+  name: String!
+  photo: File
+  questions: [Question!]!
+  survey: Survey
+}
+
+enum QuestionaireStatus {
+  ACTIVE
+  INACTIVE
+}
+
+type MyCompatibility {
+  questionaires: [Questionaire!]!
+}
+
+type AddSurveyAnswerResponse {
+  result: Survey
+  errors: AddSurveyAnswerErrors
+}
+
+type StartSurveyResponse {
+  result: Survey
+  errors: StartSurveyErrors
 }
 
 type FillProfileGeopositionErrors {
@@ -99,6 +158,7 @@ type User {
   id: String!
   profile: MyProfile!
   matches: MyMatches!
+  compatibility: MyCompatibility!
 }
 
 type Query {
@@ -110,6 +170,8 @@ type Mutation {
   fillProfileName(input: FillProfileNameInput!): FillProfileNameResponse!
   fillProfileGeoposition(input: FillProfileGeopositionInput!): FillProfileGeopositionResponse!
   addProfilePhoto(input: AddProfilePhotoInput!): AddProfilePhotoResponse!
+  startSurvey(input: StartSurveyInput!): StartSurveyResponse!
+  addSurveyAnswer(input: AddSurveyAnswerInput!): AddSurveyAnswerResponse!
   createUpload(input: CreateUploadInput!): CreateUploadResponse!
   confirmUpload(input: ConfirmUploadInput!): ConfirmUploadResponse!
 }
@@ -129,6 +191,16 @@ input FillProfileGeopositionInput {
 
 input AddProfilePhotoInput {
   photoId: String!
+}
+
+input StartSurveyInput {
+  questionaireId: String!
+}
+
+input AddSurveyAnswerInput {
+  surveyId: String!
+  questionId: String!
+  answer: Float!
 }
 
 input CreateUploadInput {

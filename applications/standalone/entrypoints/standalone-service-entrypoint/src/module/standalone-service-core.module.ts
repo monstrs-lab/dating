@@ -3,6 +3,7 @@ import type { DynamicModule }                from '@nestjs/common'
 import { Module }                            from '@nestjs/common'
 
 import { CompatibilityBackofficeModule }     from '@compatibility/backoffice-module'
+import { CompatibilityGatewayModule }        from '@compatibility/gateway-module'
 import { CompatibilityInfrastructureModule } from '@compatibility/infrastructure-module'
 import { FilesGatewayModule }                from '@files/gateway-module'
 import { MatchesGatewayModule }              from '@matches/gateway-module'
@@ -17,10 +18,11 @@ export class StandaloneServiceCoreModule {
       module: StandaloneServiceCoreModule,
       imports: [
         ProfilesInfrastructureModule.register(),
+        ProfilesGatewayModule.register(),
         CompatibilityInfrastructureModule.register(),
         CompatibilityBackofficeModule.register(),
+        CompatibilityGatewayModule.register(),
         UsersGatewayModule.register(),
-        ProfilesGatewayModule.register(),
         FilesGatewayModule.register(),
         MatchesGatewayModule.register(),
       ],

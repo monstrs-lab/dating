@@ -7,6 +7,7 @@ import type { ListSurveysResponse }       from '@compatibility/compatibility-rpc
 import type { CompatibilityService }      from '@compatibility/compatibility-rpc'
 import type { Questionaire }              from '@compatibility/compatibility-rpc'
 import type { Survey }                    from '@compatibility/compatibility-rpc'
+import type { PartialMessage }            from '@compatibility/compatibility-rpc'
 import type { PromiseClient }             from '@connectrpc/connect'
 
 import { Inject }                         from '@nestjs/common'
@@ -96,7 +97,7 @@ export class CompatibilityClient {
   }
 
   async listQuestionaires(
-    request: Partial<ListQuestionairesRequest> = {}
+    request: PartialMessage<ListQuestionairesRequest> = {}
   ): Promise<ListQuestionairesResponse> {
     return this.client.listQuestionaires(request)
   }
@@ -128,7 +129,9 @@ export class CompatibilityClient {
     })
   }
 
-  async listSurveys(request: Partial<ListSurveysRequest> = {}): Promise<ListSurveysResponse> {
+  async listSurveys(
+    request: PartialMessage<ListSurveysRequest> = {}
+  ): Promise<ListSurveysResponse> {
     return this.client.listSurveys(request)
   }
 

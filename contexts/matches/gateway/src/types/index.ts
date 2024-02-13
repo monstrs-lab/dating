@@ -1,1 +1,1 @@
-export * from './my-matches.js'
+export * from './my-matches.type.js'

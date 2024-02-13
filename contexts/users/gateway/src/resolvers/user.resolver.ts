@@ -14,4 +14,9 @@ export class UserResolver {
   matches(): Record<string, never> {
     return {}
   }
+
+  @ResolveField()
+  compatibility(): Record<string, never> {
+    return {}
+  }
 }

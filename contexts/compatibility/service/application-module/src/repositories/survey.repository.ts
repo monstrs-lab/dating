@@ -3,6 +3,7 @@ import type { Query }  from '@monstrs/query-types'
 
 export interface SurveysQuery {
   id?: Query.IDType
+  status?: Query.NumberType
   intervieweeId?: Query.IDType
   questionaireId?: Query.IDType
 }

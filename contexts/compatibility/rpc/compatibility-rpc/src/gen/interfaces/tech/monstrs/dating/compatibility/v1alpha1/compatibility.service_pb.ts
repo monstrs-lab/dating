@@ -6,6 +6,7 @@
 import type { Timestamp }    from '@bufbuild/protobuf'
 
 import type { Query_ID }     from '../../../queries/v1alpha1/queries_pb.js'
+import type { Query_Int }    from '../../../queries/v1alpha1/queries_pb.js'
 import type { Query_Order }  from '../../../queries/v1alpha1/queries_pb.js'
 import type { Query_Pager }  from '../../../queries/v1alpha1/queries_pb.js'
 import type { Query_Search } from '../../../queries/v1alpha1/queries_pb.js'
@@ -348,6 +349,11 @@ export interface ListQuestionairesRequest_QuestionairesQuery {
    * @generated from field: tech.monstrs.queries.v1alpha1.Query.ID id = 1;
    */
   id?: Query_ID
+
+  /**
+   * @generated from field: tech.monstrs.queries.v1alpha1.Query.Int status = 2;
+   */
+  status?: Query_Int
 }
 
 /**
@@ -453,6 +459,21 @@ export interface ListSurveysRequest_SurveysQuery {
    * @generated from field: tech.monstrs.queries.v1alpha1.Query.ID id = 1;
    */
   id?: Query_ID
+
+  /**
+   * @generated from field: tech.monstrs.queries.v1alpha1.Query.Int status = 2;
+   */
+  status?: Query_Int
+
+  /**
+   * @generated from field: tech.monstrs.queries.v1alpha1.Query.ID interviewee_id = 3;
+   */
+  intervieweeId?: Query_ID
+
+  /**
+   * @generated from field: tech.monstrs.queries.v1alpha1.Query.ID questionaire_id = 4;
+   */
+  questionaireId?: Query_ID
 }
 
 /**

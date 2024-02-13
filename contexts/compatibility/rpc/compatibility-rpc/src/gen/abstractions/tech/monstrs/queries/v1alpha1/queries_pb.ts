@@ -116,6 +116,26 @@ export abstract class Query_StringValues {
 }
 
 /**
+ * @generated from message tech.monstrs.queries.v1alpha1.Query.IntValue
+ */
+export abstract class Query_IntValue {
+  /**
+   * @generated from field: int32 value = 1;
+   */
+  abstract readonly value: number
+}
+
+/**
+ * @generated from message tech.monstrs.queries.v1alpha1.Query.IntValues
+ */
+export abstract class Query_IntValues {
+  /**
+   * @generated from field: repeated int32 values = 1;
+   */
+  abstract readonly values: number[]
+}
+
+/**
  * @generated from message tech.monstrs.queries.v1alpha1.Query.BooleanValue
  */
 export abstract class Query_BooleanValue {
@@ -263,4 +283,34 @@ export abstract class Query_String {
    * @generated from field: tech.monstrs.queries.v1alpha1.Query.StringConditions conditions = 2;
    */
   abstract readonly conditions?: Query_StringConditions
+}
+
+/**
+ * @generated from message tech.monstrs.queries.v1alpha1.Query.IntConditions
+ */
+export abstract class Query_IntConditions {
+  /**
+   * @generated from field: tech.monstrs.queries.v1alpha1.Query.IntValues in = 1;
+   */
+  abstract readonly in?: Query_IntValues
+
+  /**
+   * @generated from field: tech.monstrs.queries.v1alpha1.Query.IntValue eq = 2;
+   */
+  abstract readonly eq?: Query_IntValue
+}
+
+/**
+ * @generated from message tech.monstrs.queries.v1alpha1.Query.Int
+ */
+export abstract class Query_Int {
+  /**
+   * @generated from field: tech.monstrs.queries.v1alpha1.Query.Operator operator = 1;
+   */
+  abstract readonly operator: Query_Operator
+
+  /**
+   * @generated from field: tech.monstrs.queries.v1alpha1.Query.IntConditions conditions = 2;
+   */
+  abstract readonly conditions?: Query_IntConditions
 }

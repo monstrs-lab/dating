@@ -126,6 +126,7 @@ message DeleteQuestionaireQuestionResponse {
 message ListQuestionairesRequest {
   message QuestionairesQuery {
     tech.monstrs.queries.v1alpha1.Query.ID id = 1;
+    tech.monstrs.queries.v1alpha1.Query.Int status = 2;
   }
 
   tech.monstrs.queries.v1alpha1.Query.Pager pager = 1;
@@ -161,6 +162,9 @@ message AddSurveyAnswerResponse {
 message ListSurveysRequest {
   message SurveysQuery {
     tech.monstrs.queries.v1alpha1.Query.ID id = 1;
+    tech.monstrs.queries.v1alpha1.Query.Int status = 2;
+    tech.monstrs.queries.v1alpha1.Query.ID interviewee_id = 3;
+    tech.monstrs.queries.v1alpha1.Query.ID questionaire_id = 4;
   }
 
   tech.monstrs.queries.v1alpha1.Query.Pager pager = 1;
