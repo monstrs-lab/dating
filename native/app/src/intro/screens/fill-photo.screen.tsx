@@ -42,10 +42,12 @@ export const FillPhotoScreen = ({ navigation }: FillPhotoScreenProps): ReactElem
 
     if (image) {
       try {
+        const size = image.fileSize || ((await FileSystem.getInfoAsync(image.uri)) as any).size
+
         const { createUpload } = await operations.createUpload({
           bucket: 'photos',
           name: image.fileName || image.uri.split('/').reverse().at(0)!,
-          size: image.fileSize!,
+          size,
         })
 
         await FileSystem.uploadAsync(createUpload.result!.url, image.uri, {
