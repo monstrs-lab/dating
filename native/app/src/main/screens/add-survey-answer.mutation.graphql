@@ -1,0 +1,26 @@
+mutation addSurveyAnswer($input: AddSurveyAnswerInput!) {
+  addSurveyAnswer(input: $input) {
+    result {
+      id
+      status
+      answers {
+        id
+        value
+      }
+    }
+    errors {
+      surveyId {
+        id
+        message
+      }
+      questionId {
+        id
+        message
+      }
+      answer {
+        id
+        message
+      }
+    }
+  }
+}

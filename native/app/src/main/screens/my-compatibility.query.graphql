@@ -1,0 +1,27 @@
+query myCompatibility {
+  my {
+    compatibility {
+      questionaires {
+        id
+        status
+        name
+        photo {
+          id
+          url
+        }
+        questions {
+          id
+          content
+        }
+        survey {
+          id
+          status
+          answers {
+            id
+            value
+          }
+        }
+      }
+    }
+  }
+}
