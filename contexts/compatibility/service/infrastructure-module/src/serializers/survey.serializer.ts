@@ -26,7 +26,7 @@ export class SurveySerializer extends rpc.Survey {
   }
 
   get answers(): Record<string, number> {
-    return this.survey.answers as Record<string, number>
+    return JSON.parse(JSON.stringify(this.survey.answers)) as Record<string, number>
   }
 
   get createdAt(): Timestamp {

@@ -4,6 +4,7 @@ import type { ListSurveysRequest_SurveysQuery } from '@compatibility/compatibili
 import type { ListSurveysRequest }              from '@compatibility/compatibility-rpc/interfaces'
 
 import { IdQueryPayload }                       from '@monstrs/rpc-query-payloads'
+import { IntQueryPayload }                      from '@monstrs/rpc-query-payloads'
 import { OrderPayload }                         from '@monstrs/rpc-query-payloads'
 import { PagerPayload }                         from '@monstrs/rpc-query-payloads'
 import { SearchPayload }                        from '@monstrs/rpc-query-payloads'
@@ -17,6 +18,24 @@ export class ListSurveysQueryPayload {
   @ValidateNested()
   get id(): IdQueryPayload {
     return new IdQueryPayload(this.query.id)
+  }
+
+  @IsOptional()
+  @ValidateNested()
+  get status(): IntQueryPayload {
+    return new IntQueryPayload(this.query.status)
+  }
+
+  @IsOptional()
+  @ValidateNested()
+  get intervieweeId(): IdQueryPayload {
+    return new IdQueryPayload(this.query.intervieweeId)
+  }
+
+  @IsOptional()
+  @ValidateNested()
+  get questionaireId(): IdQueryPayload {
+    return new IdQueryPayload(this.query.questionaireId)
   }
 }
 
