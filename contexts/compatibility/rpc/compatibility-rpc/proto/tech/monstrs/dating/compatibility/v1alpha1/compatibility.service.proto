@@ -21,8 +21,8 @@ service CompatibilityService {
 }
 
 enum QuestionaireStatus {
-  ACTIVE = 0;
-  INACTIVE = 1;
+  INACTIVE = 0;
+  ACTIVE = 1;
 }
 
 enum SurveyStatus {

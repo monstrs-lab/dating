@@ -55,7 +55,7 @@
     "@profiles/gateway-module": "workspace:0.0.1",
     "@profiles/infrastructure-module": "workspace:0.0.1",
     "@types/express": "^4.17.21",
-    "@types/node": "^20.11.17",
+    "@types/node": "^20.11.19",
     "@types/pg": "^8.11.0",
     "@users/gateway-module": "workspace:0.0.1",
     "cache-manager": "^5.4.0",
