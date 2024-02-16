@@ -16,14 +16,14 @@ import type { Query_Search } from '../../../queries/v1alpha1/queries_pb.js'
  */
 export enum QuestionaireStatus {
   /**
-   * @generated from enum value: ACTIVE = 0;
+   * @generated from enum value: INACTIVE = 0;
    */
-  ACTIVE = 0,
+  INACTIVE = 0,
 
   /**
-   * @generated from enum value: INACTIVE = 1;
+   * @generated from enum value: ACTIVE = 1;
    */
-  INACTIVE = 1,
+  ACTIVE = 1,
 }
 
 /**

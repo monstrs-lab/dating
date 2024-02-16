@@ -25,22 +25,22 @@ import { Query_Search }           from '../../../queries/v1alpha1/queries_pb.js'
  */
 export enum QuestionaireStatus {
   /**
-   * @generated from enum value: ACTIVE = 0;
+   * @generated from enum value: INACTIVE = 0;
    */
-  ACTIVE = 0,
+  INACTIVE = 0,
 
   /**
-   * @generated from enum value: INACTIVE = 1;
+   * @generated from enum value: ACTIVE = 1;
    */
-  INACTIVE = 1,
+  ACTIVE = 1,
 }
 // Retrieve enum metadata with: proto3.getEnumType(QuestionaireStatus)
 proto3.util.setEnumType(
   QuestionaireStatus,
   'tech.monstrs.dating.compatibility.v1alpha1.QuestionaireStatus',
   [
-    { no: 0, name: 'ACTIVE' },
-    { no: 1, name: 'INACTIVE' },
+    { no: 0, name: 'INACTIVE' },
+    { no: 1, name: 'ACTIVE' },
   ]
 )
 
@@ -122,7 +122,7 @@ export class Questionaire extends Message<Questionaire> {
   /**
    * @generated from field: tech.monstrs.dating.compatibility.v1alpha1.QuestionaireStatus status = 2;
    */
-  status = QuestionaireStatus.ACTIVE
+  status = QuestionaireStatus.INACTIVE
 
   /**
    * @generated from field: string name = 3;
