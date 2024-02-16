@@ -46,6 +46,7 @@ export const QuestionnaireScreen: FC<QuestionnaireProps> = ({ route, navigation 
   const [inProgress, setInProgress] = useState<boolean>(false)
   const [questionaires, setQuestionaires] = useState<Array<Questionnaire>>([])
   const [activeQuestionnaire, setActiveQuestionnaire] = useState<Questionnaire>()
+  const [activeQuestion, setActiveQuestion] = useState<number>(0)
   const [answerValue, setAnswerValue] = useState<number | undefined>()
 
   useEffect(() => {
@@ -85,39 +86,44 @@ export const QuestionnaireScreen: FC<QuestionnaireProps> = ({ route, navigation 
     }
   }, [activeQuestionnaire, setInProgress])
 
-  const onAddAnswer = useCallback(
-    async (surveyId: string) => {
-      if (activeQuestionnaire && typeof answerValue === 'number') {
-        setInProgress(true)
+  const onAddAnswer = useCallback(async () => {
+    if (activeQuestionnaire?.survey && typeof answerValue === 'number') {
+      setInProgress(true)
 
-        try {
-          const { addSurveyAnswer } = await operations.addSurveyAnswer({
-            input: {
-              questionId: activeQuestionnaire.id,
-              answer: answerValue,
-              surveyId,
-            },
-          })
+      try {
+        const { addSurveyAnswer } = await operations.addSurveyAnswer({
+          input: {
+            questionId: activeQuestionnaire.questions[activeQuestion].id,
+            answer: answerValue,
+            surveyId: activeQuestionnaire.survey.id,
+          },
+        })
 
-          if (addSurveyAnswer.result) {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
-            if (addSurveyAnswer.result.status === SurveyStatus.Completed) {
-              navigation.navigate('Questionnaires')
-            } else {
-              setActiveQuestionnaire({
-                ...activeQuestionnaire,
-                survey: addSurveyAnswer.result,
-              })
-            }
+        if (addSurveyAnswer.result) {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
+          if (addSurveyAnswer.result.status === SurveyStatus.Completed) {
+            navigation.navigate('Questionnaires')
+          } else {
+            setActiveQuestion((prev) => prev + 1)
+            setActiveQuestionnaire({
+              ...activeQuestionnaire,
+              survey: addSurveyAnswer.result,
+            })
           }
-        } finally {
-          setAnswerValue(undefined)
-          setInProgress(false)
         }
+      } finally {
+        setAnswerValue(undefined)
+        setInProgress(false)
       }
-    },
-    [navigation, answerValue, activeQuestionnaire, setInProgress]
-  )
+    }
+  }, [
+    navigation,
+    answerValue,
+    activeQuestion,
+    activeQuestionnaire,
+    setInProgress,
+    setActiveQuestion,
+  ])
 
   if (!activeQuestionnaire) return null
 
@@ -154,7 +160,7 @@ export const QuestionnaireScreen: FC<QuestionnaireProps> = ({ route, navigation 
       </Box>
       <Box flexGrow={1} alignItems='center' mt='10x'>
         <Text fontSize={16} textAlign='center'>
-          {activeQuestionnaire.questions[0].content}
+          {activeQuestionnaire.questions[activeQuestion].content}
         </Text>
       </Box>
       <Box flexDirection='row' alignItems='center'>
@@ -213,9 +219,7 @@ export const QuestionnaireScreen: FC<QuestionnaireProps> = ({ route, navigation 
         <Button
           disabled={typeof answerValue !== 'number'}
           onPress={(): void => {
-            if (activeQuestionnaire?.survey?.id) {
-              onAddAnswer(activeQuestionnaire.survey.id)
-            }
+            onAddAnswer()
           }}
         >
           Следующий вопрос
