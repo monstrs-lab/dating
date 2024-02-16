@@ -16,7 +16,13 @@ export class SurveyMapper {
       status: entity.status,
       intervieweeId: entity.intervieweeId,
       questionaireId: entity.questionaireId,
-      answers: entity.answers,
+      answers: Object.keys(entity.answers).reduce(
+        (result, key) => ({
+          ...result,
+          [key]: entity.answers[key] === null ? undefined : entity.answers[key],
+        }),
+        {}
+      ),
       createdAt: entity.createdAt,
     }
 
@@ -28,7 +34,15 @@ export class SurveyMapper {
     entity.status = aggregate.status
     entity.intervieweeId = aggregate.intervieweeId
     entity.questionaireId = aggregate.questionaireId
-    entity.answers = aggregate.answers
+
+    entity.answers = Object.keys(aggregate.answers).reduce(
+      (result, key) => ({
+        ...result,
+        [key]: aggregate.answers[key] === undefined ? null : aggregate.answers[key],
+      }),
+      {}
+    )
+
     entity.createdAt = aggregate.createdAt
 
     return entity

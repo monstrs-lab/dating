@@ -4,6 +4,7 @@ import type { ListQuestionairesRequest_QuestionairesQuery } from '@compatibility
 import type { ListQuestionairesRequest }                    from '@compatibility/compatibility-rpc/interfaces'
 
 import { IdQueryPayload }                                   from '@monstrs/rpc-query-payloads'
+import { IntQueryPayload }                                  from '@monstrs/rpc-query-payloads'
 import { OrderPayload }                                     from '@monstrs/rpc-query-payloads'
 import { PagerPayload }                                     from '@monstrs/rpc-query-payloads'
 import { SearchPayload }                                    from '@monstrs/rpc-query-payloads'
@@ -17,6 +18,12 @@ export class ListQuestionairesQueryPayload {
   @ValidateNested()
   get id(): IdQueryPayload {
     return new IdQueryPayload(this.query.id)
+  }
+
+  @IsOptional()
+  @ValidateNested()
+  get status(): IntQueryPayload {
+    return new IntQueryPayload(this.query.status)
   }
 }
 
