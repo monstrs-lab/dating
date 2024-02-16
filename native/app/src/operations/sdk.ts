@@ -40,6 +40,31 @@ export type AddProfilePhotoResponse = {
   result?: Maybe<Profile>
 }
 
+export type AddSurveyAnswerErrors = {
+  __typename?: 'AddSurveyAnswerErrors'
+  answer?: Maybe<ValidationError>
+  questionId?: Maybe<ValidationError>
+  surveyId?: Maybe<ValidationError>
+}
+
+export type AddSurveyAnswerInput = {
+  answer: Scalars['Float']['input']
+  questionId: Scalars['String']['input']
+  surveyId: Scalars['String']['input']
+}
+
+export type AddSurveyAnswerResponse = {
+  __typename?: 'AddSurveyAnswerResponse'
+  errors?: Maybe<AddSurveyAnswerErrors>
+  result?: Maybe<Survey>
+}
+
+export type Answer = {
+  __typename?: 'Answer'
+  id: Scalars['String']['output']
+  value?: Maybe<Scalars['Float']['output']>
+}
+
 export type ConfirmUploadErrors = {
   __typename?: 'ConfirmUploadErrors'
   id?: Maybe<ValidationError>
@@ -130,15 +155,21 @@ export type FillProfileNameResponse = {
 export type Mutation = {
   __typename?: 'Mutation'
   addProfilePhoto: AddProfilePhotoResponse
+  addSurveyAnswer: AddSurveyAnswerResponse
   confirmUpload: ConfirmUploadResponse
   createUpload: CreateUploadResponse
   fillProfileGender: FillProfileGenderResponse
   fillProfileGeoposition: FillProfileGeopositionResponse
   fillProfileName: FillProfileNameResponse
+  startSurvey: StartSurveyResponse
 }
 
 export type MutationAddProfilePhotoArgs = {
   input: AddProfilePhotoInput
+}
+
+export type MutationAddSurveyAnswerArgs = {
+  input: AddSurveyAnswerInput
 }
 
 export type MutationConfirmUploadArgs = {
@@ -159,6 +190,15 @@ export type MutationFillProfileGeopositionArgs = {
 
 export type MutationFillProfileNameArgs = {
   input: FillProfileNameInput
+}
+
+export type MutationStartSurveyArgs = {
+  input: StartSurveyInput
+}
+
+export type MyCompatibility = {
+  __typename?: 'MyCompatibility'
+  questionaires: Array<Questionaire>
 }
 
 export type MyMatches = {
@@ -190,6 +230,54 @@ export type Query = {
   my: User
 }
 
+export type Question = {
+  __typename?: 'Question'
+  content: Scalars['String']['output']
+  id: Scalars['String']['output']
+}
+
+export type Questionaire = {
+  __typename?: 'Questionaire'
+  id: Scalars['String']['output']
+  name: Scalars['String']['output']
+  photo?: Maybe<File>
+  questions: Array<Question>
+  status: QuestionaireStatus
+  survey?: Maybe<Survey>
+}
+
+export enum QuestionaireStatus {
+  Active = 'ACTIVE',
+  Inactive = 'INACTIVE',
+}
+
+export type StartSurveyErrors = {
+  __typename?: 'StartSurveyErrors'
+  questionaireId?: Maybe<ValidationError>
+}
+
+export type StartSurveyInput = {
+  questionaireId: Scalars['String']['input']
+}
+
+export type StartSurveyResponse = {
+  __typename?: 'StartSurveyResponse'
+  errors?: Maybe<StartSurveyErrors>
+  result?: Maybe<Survey>
+}
+
+export type Survey = {
+  __typename?: 'Survey'
+  answers: Array<Answer>
+  id: Scalars['String']['output']
+  status: SurveyStatus
+}
+
+export enum SurveyStatus {
+  Completed = 'COMPLETED',
+  Started = 'STARTED',
+}
+
 export type Upload = {
   __typename?: 'Upload'
   id: Scalars['String']['output']
@@ -198,6 +286,7 @@ export type Upload = {
 
 export type User = {
   __typename?: 'User'
+  compatibility: MyCompatibility
   id: Scalars['String']['output']
   matches: MyMatches
   profile: MyProfile
@@ -265,6 +354,61 @@ export type FillProfileNameMutation = {
   }
 }
 
+export type AddSurveyAnswerMutationVariables = Exact<{
+  input: AddSurveyAnswerInput
+}>
+
+export type AddSurveyAnswerMutation = {
+  __typename?: 'Mutation'
+  addSurveyAnswer: {
+    __typename?: 'AddSurveyAnswerResponse'
+    result?:
+      | {
+          __typename?: 'Survey'
+          id: string
+          status: SurveyStatus
+          answers: Array<{ __typename?: 'Answer'; id: string; value?: number | undefined }>
+        }
+      | undefined
+    errors?:
+      | {
+          __typename?: 'AddSurveyAnswerErrors'
+          surveyId?: { __typename?: 'ValidationError'; id: string; message: string } | undefined
+          questionId?: { __typename?: 'ValidationError'; id: string; message: string } | undefined
+          answer?: { __typename?: 'ValidationError'; id: string; message: string } | undefined
+        }
+      | undefined
+  }
+}
+
+export type MyCompatibilityQueryVariables = Exact<{ [key: string]: never }>
+
+export type MyCompatibilityQuery = {
+  __typename?: 'Query'
+  my: {
+    __typename?: 'User'
+    compatibility: {
+      __typename?: 'MyCompatibility'
+      questionaires: Array<{
+        __typename?: 'Questionaire'
+        id: string
+        status: QuestionaireStatus
+        name: string
+        photo?: { __typename?: 'File'; id: string; url: string } | undefined
+        questions: Array<{ __typename?: 'Question'; id: string; content: string }>
+        survey?:
+          | {
+              __typename?: 'Survey'
+              id: string
+              status: SurveyStatus
+              answers: Array<{ __typename?: 'Answer'; id: string; value?: number | undefined }>
+            }
+          | undefined
+      }>
+    }
+  }
+}
+
 export type MyMatchesQueryVariables = Exact<{ [key: string]: never }>
 
 export type MyMatchesQuery = {
@@ -275,6 +419,33 @@ export type MyMatchesQuery = {
       __typename?: 'MyMatches'
       profiles: Array<{ __typename?: 'Profile' } & ProfileFragmentFragment>
     }
+  }
+}
+
+export type StartSurveyMutationVariables = Exact<{
+  questionaireId: Scalars['String']['input']
+}>
+
+export type StartSurveyMutation = {
+  __typename?: 'Mutation'
+  startSurvey: {
+    __typename?: 'StartSurveyResponse'
+    result?:
+      | {
+          __typename?: 'Survey'
+          id: string
+          status: SurveyStatus
+          answers: Array<{ __typename?: 'Answer'; id: string; value?: number | undefined }>
+        }
+      | undefined
+    errors?:
+      | {
+          __typename?: 'StartSurveyErrors'
+          questionaireId?:
+            | { __typename?: 'ValidationError'; id: string; message: string }
+            | undefined
+        }
+      | undefined
   }
 }
 
@@ -408,6 +579,63 @@ export const FillProfileNameDocument = gql`
   }
   ${ProfileFragmentFragmentDoc}
 `
+export const AddSurveyAnswerDocument = gql`
+  mutation addSurveyAnswer($input: AddSurveyAnswerInput!) {
+    addSurveyAnswer(input: $input) {
+      result {
+        id
+        status
+        answers {
+          id
+          value
+        }
+      }
+      errors {
+        surveyId {
+          id
+          message
+        }
+        questionId {
+          id
+          message
+        }
+        answer {
+          id
+          message
+        }
+      }
+    }
+  }
+`
+export const MyCompatibilityDocument = gql`
+  query myCompatibility {
+    my {
+      compatibility {
+        questionaires {
+          id
+          status
+          name
+          photo {
+            id
+            url
+          }
+          questions {
+            id
+            content
+          }
+          survey {
+            id
+            status
+            answers {
+              id
+              value
+            }
+          }
+        }
+      }
+    }
+  }
+`
 export const MyMatchesDocument = gql`
   query myMatches {
     my {
@@ -419,6 +647,26 @@ export const MyMatchesDocument = gql`
     }
   }
   ${ProfileFragmentFragmentDoc}
+`
+export const StartSurveyDocument = gql`
+  mutation startSurvey($questionaireId: String!) {
+    startSurvey(input: { questionaireId: $questionaireId }) {
+      result {
+        id
+        status
+        answers {
+          id
+          value
+        }
+      }
+      errors {
+        questionaireId {
+          id
+          message
+        }
+      }
+    }
+  }
 `
 export const MyProfileDocument = gql`
   query myProfile {
@@ -527,6 +775,36 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
         variables
       )
     },
+    addSurveyAnswer(
+      variables: AddSurveyAnswerMutationVariables,
+      requestHeaders?: GraphQLClientRequestHeaders
+    ): Promise<AddSurveyAnswerMutation> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<AddSurveyAnswerMutation>(AddSurveyAnswerDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        'addSurveyAnswer',
+        'mutation',
+        variables
+      )
+    },
+    myCompatibility(
+      variables?: MyCompatibilityQueryVariables,
+      requestHeaders?: GraphQLClientRequestHeaders
+    ): Promise<MyCompatibilityQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<MyCompatibilityQuery>(MyCompatibilityDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        'myCompatibility',
+        'query',
+        variables
+      )
+    },
     myMatches(
       variables?: MyMatchesQueryVariables,
       requestHeaders?: GraphQLClientRequestHeaders
@@ -539,6 +817,21 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
           }),
         'myMatches',
         'query',
+        variables
+      )
+    },
+    startSurvey(
+      variables: StartSurveyMutationVariables,
+      requestHeaders?: GraphQLClientRequestHeaders
+    ): Promise<StartSurveyMutation> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<StartSurveyMutation>(StartSurveyDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        'startSurvey',
+        'mutation',
         variables
       )
     },

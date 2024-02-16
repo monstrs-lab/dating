@@ -1,0 +1,226 @@
+import type { StackScreenProps }    from '@react-navigation/stack'
+import type { FC }                  from 'react'
+
+import type { TestsStackParamList } from '../../navigation.component'
+import type { Questionnaire }       from './questionnaires.screen'
+
+import { Pressable }                from 'react-native'
+import { ImageBackground }          from 'react-native'
+import { useEffect }                from 'react'
+import { useState }                 from 'react'
+import { useCallback }              from 'react'
+import React                        from 'react'
+
+import { Button }                   from '../../ui/button'
+import { Box }                      from '../../ui/layout'
+import { Text }                     from '../../ui/text'
+import { SurveyStatus }             from './questionnaires.screen'
+import operations                   from '../../operations'
+
+export type QuestionnaireProps = StackScreenProps<TestsStackParamList, 'Questionnaire'>
+
+export interface SelectQuestionProps {
+  size: number
+  active: boolean
+  onSelect: () => void
+}
+
+const SelectQuestion: FC<SelectQuestionProps> = ({ size, active, onSelect }) => (
+  <Pressable style={{ flexGrow: 1, alignItems: 'center' }} onPress={onSelect}>
+    <Box
+      width={size}
+      height={size}
+      borderColor='primary'
+      borderRadius='24'
+      borderWidth={2}
+      borderStyle='solid'
+      overflow='hidden'
+      p='0.5x'
+    >
+      {!!active && <Box width='100%' height='100%' borderRadius='24' backgroundColor='primary' />}
+    </Box>
+  </Pressable>
+)
+
+export const QuestionnaireScreen: FC<QuestionnaireProps> = ({ route, navigation }) => {
+  const [inProgress, setInProgress] = useState<boolean>(false)
+  const [questionaires, setQuestionaires] = useState<Array<Questionnaire>>([])
+  const [activeQuestionnaire, setActiveQuestionnaire] = useState<Questionnaire>()
+  const [answerValue, setAnswerValue] = useState<number | undefined>()
+
+  useEffect(() => {
+    const loadMatches = async (): Promise<void> => {
+      const { my } = await operations.myCompatibility()
+
+      setQuestionaires(my.compatibility.questionaires)
+    }
+
+    loadMatches()
+  }, [setQuestionaires])
+
+  useEffect(() => {
+    if (questionaires && route?.params?.id) {
+      setActiveQuestionnaire(questionaires.find((item) => item.id === route.params.id))
+    }
+  }, [questionaires, route, setActiveQuestionnaire])
+
+  const onStart = useCallback(async () => {
+    if (activeQuestionnaire) {
+      setInProgress(true)
+
+      try {
+        const { startSurvey } = await operations.startSurvey({
+          questionaireId: activeQuestionnaire.id,
+        })
+
+        if (startSurvey.result) {
+          setActiveQuestionnaire({
+            ...activeQuestionnaire,
+            survey: startSurvey.result,
+          })
+        }
+      } finally {
+        setInProgress(false)
+      }
+    }
+  }, [activeQuestionnaire, setInProgress])
+
+  const onAddAnswer = useCallback(
+    async (surveyId: string) => {
+      if (activeQuestionnaire && typeof answerValue === 'number') {
+        setInProgress(true)
+
+        try {
+          const { addSurveyAnswer } = await operations.addSurveyAnswer({
+            input: {
+              questionId: activeQuestionnaire.id,
+              answer: answerValue,
+              surveyId,
+            },
+          })
+
+          if (addSurveyAnswer.result) {
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
+            if (addSurveyAnswer.result.status === SurveyStatus.Completed) {
+              navigation.navigate('Questionnaires')
+            } else {
+              setActiveQuestionnaire({
+                ...activeQuestionnaire,
+                survey: addSurveyAnswer.result,
+              })
+            }
+          }
+        } finally {
+          setAnswerValue(undefined)
+          setInProgress(false)
+        }
+      }
+    },
+    [navigation, answerValue, activeQuestionnaire, setInProgress]
+  )
+
+  if (!activeQuestionnaire) return null
+
+  if (!activeQuestionnaire.survey)
+    return (
+      <Box flex={1} backgroundColor='gray' overflow='hidden'>
+        <ImageBackground
+          source={{ uri: activeQuestionnaire?.photo?.url }}
+          src={activeQuestionnaire?.photo?.url}
+          resizeMode='cover'
+          style={{
+            flex: 1,
+            justifyContent: 'center',
+          }}
+        >
+          <Box margin='5x'>
+            <Button
+              disabled={inProgress}
+              onPress={(): void => {
+                onStart()
+              }}
+            >
+              Начать тест
+            </Button>
+          </Box>
+        </ImageBackground>
+      </Box>
+    )
+
+  return (
+    <Box flex={1} m='5x'>
+      <Box alignItems='center'>
+        <Text fontSize={24}>{activeQuestionnaire.name}</Text>
+      </Box>
+      <Box flexGrow={1} alignItems='center' mt='10x'>
+        <Text fontSize={16} textAlign='center'>
+          {activeQuestionnaire.questions[0].content}
+        </Text>
+      </Box>
+      <Box flexDirection='row' alignItems='center'>
+        <SelectQuestion
+          size={44}
+          active={answerValue === 0}
+          onSelect={(): void => {
+            setAnswerValue(0)
+          }}
+        />
+        <SelectQuestion
+          size={38}
+          active={answerValue === 1}
+          onSelect={(): void => {
+            setAnswerValue(1)
+          }}
+        />
+        <SelectQuestion
+          size={32}
+          active={answerValue === 2}
+          onSelect={(): void => {
+            setAnswerValue(2)
+          }}
+        />
+        <SelectQuestion
+          size={26}
+          active={answerValue === 3}
+          onSelect={(): void => {
+            setAnswerValue(3)
+          }}
+        />
+        <SelectQuestion
+          size={32}
+          active={answerValue === 4}
+          onSelect={(): void => {
+            setAnswerValue(4)
+          }}
+        />
+        <SelectQuestion
+          size={38}
+          active={answerValue === 5}
+          onSelect={(): void => {
+            setAnswerValue(5)
+          }}
+        />
+        <SelectQuestion
+          size={44}
+          active={answerValue === 6}
+          onSelect={(): void => {
+            setAnswerValue(6)
+          }}
+        />
+      </Box>
+      <Box flexGrow={1} flexBasis={16} />
+      <Box>
+        <Button
+          disabled={typeof answerValue !== 'number'}
+          onPress={(): void => {
+            if (activeQuestionnaire?.survey?.id) {
+              onAddAnswer(activeQuestionnaire.survey.id)
+            }
+          }}
+        >
+          Следующий вопрос
+        </Button>
+      </Box>
+    </Box>
+  )
+}

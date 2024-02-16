@@ -25,10 +25,18 @@ import { FillGenderScreen }           from './intro/screens'
 import { FillGeopositionScreen }      from './intro/screens'
 import { ProfileScreen }              from './main/screens'
 import { MatchesScreen }              from './main/screens'
+import { QuestionnairesScreen }       from './main/screens'
+import { QuestionnaireScreen }        from './main/screens'
+
+export type TestsStackParamList = {
+  Questionnaires: undefined
+  Questionnaire: { id: string }
+}
 
 export type MainTabsParamList = {
   Matches: undefined
   Profile: undefined
+  Tests: NavigatorScreenParams<TestsStackParamList>
 }
 
 export type RootStackParamList = {
@@ -52,11 +60,20 @@ export type RootStackParamList = {
 
 const Tabs = createBottomTabNavigator<MainTabsParamList>()
 const Stack = createStackNavigator<RootStackParamList>()
+const TestsStack = createStackNavigator<TestsStackParamList>()
+
+export const Tests = (): ReactElement => (
+  <TestsStack.Navigator screenOptions={{ headerShown: false }}>
+    <TestsStack.Screen name='Questionnaires' component={QuestionnairesScreen} />
+    <TestsStack.Screen name='Questionnaire' component={QuestionnaireScreen} />
+  </TestsStack.Navigator>
+)
 
 export const Main = (): ReactElement => (
   <Tabs.Navigator>
     <Tabs.Screen name='Matches' component={MatchesScreen} />
     <Tabs.Screen name='Profile' component={ProfileScreen} />
+    <Tabs.Screen name='Tests' component={Tests} />
   </Tabs.Navigator>
 )
 

@@ -1,0 +1,18 @@
+mutation startSurvey($questionaireId: String!) {
+  startSurvey(input: { questionaireId: $questionaireId }) {
+    result {
+      id
+      status
+      answers {
+        id
+        value
+      }
+    }
+    errors {
+      questionaireId {
+        id
+        message
+      }
+    }
+  }
+}
