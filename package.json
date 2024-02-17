@@ -8,6 +8,7 @@
     "shared/**/*"
   ],
   "resolutions": {
+    "@nestjs/bull": "patch:@nestjs/bull@npm%3A10.1.0#~/.yarn/patches/@nestjs-bull-npm-10.1.0-f90a2cb17e.patch",
     "@opentelemetry/api-logs": "0.40.0",
     "@opentelemetry/core": "1.14.0",
     "graphql-request@npm:^6.0.0": "patch:graphql-request@npm%3A6.1.0#~/.yarn/patches/graphql-request-npm-6.1.0-d265ce919d.patch",

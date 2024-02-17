@@ -11,7 +11,10 @@ import { Migrator }                  from '@mikro-orm/migrations'
 import { MikroOrmModule }            from '@mikro-orm/nestjs'
 import { PostgreSqlDriver }          from '@mikro-orm/postgresql'
 import { CqrsModule }                from '@monstrs/nestjs-cqrs'
+import { RedisModule }               from '@monstrs/nestjs-redis'
+import { RedisFactory }              from '@monstrs/nestjs-redis'
 import { ApolloDriver }              from '@nestjs/apollo'
+import { BullModule }                from '@nestjs/bull'
 import { Module }                    from '@nestjs/common'
 import { APP_INTERCEPTOR }           from '@nestjs/core'
 import { GraphQLModule }             from '@nestjs/graphql'
@@ -49,6 +52,25 @@ export class StandaloneServiceConfigModule implements OnModuleInit {
             })),
           },
           extensions: [Migrator],
+        }),
+        BullModule.forRootAsync({
+          imports: [RedisModule.register()],
+          useFactory: (redisFactory: RedisFactory) => ({
+            createClient: (type): ReturnType<typeof redisFactory.create> => {
+              if (['bclient', 'subscriber'].includes(type)) {
+                return redisFactory.create({
+                  host: process.env.REDIS_HOST || 'localhost',
+                  maxRetriesPerRequest: null,
+                  enableReadyCheck: false,
+                })
+              }
+
+              return redisFactory.create({
+                host: process.env.REDIS_HOST || 'localhost',
+              })
+            },
+          }),
+          inject: [RedisFactory],
         }),
         GraphQLModule.forRoot<ApolloDriverConfig>({
           driver: ApolloDriver,

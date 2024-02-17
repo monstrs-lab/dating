@@ -1,18 +1,22 @@
-import type { DynamicModule }        from '@nestjs/common'
+import type { DynamicModule }          from '@nestjs/common'
 
-import { MikroOrmModule }            from '@mikro-orm/nestjs'
-import { ValidationModule }          from '@monstrs/nestjs-validation'
-import { Module }                    from '@nestjs/common'
+import { MikroOrmModule }              from '@mikro-orm/nestjs'
+import { ValidationModule }            from '@monstrs/nestjs-validation'
+import { Module }                      from '@nestjs/common'
 
-import { ProfilesApplicationModule } from '@profiles/application-module'
-import { ProfileRepository }         from '@profiles/application-module'
-import { GeocoderPort }              from '@profiles/application-module'
+import { ProfilesApplicationModule }   from '@profiles/application-module'
+import { ProfileRepository }           from '@profiles/application-module'
+import { CompatibilityRepository }     from '@profiles/application-module'
+import { SimilarityRepository }        from '@profiles/application-module'
+import { GeocoderPort }                from '@profiles/application-module'
 
-import * as controllers              from '../controllers/index.js'
-import * as entities                 from '../entities/index.js'
-import * as mappers                  from '../mappers/index.js'
-import { GeocoderPortImpl }          from '../ports/index.js'
-import { ProfileRepositoryImpl }     from '../repositories/index.js'
+import * as controllers                from '../controllers/index.js'
+import * as entities                   from '../entities/index.js'
+import * as mappers                    from '../mappers/index.js'
+import { GeocoderPortImpl }            from '../ports/index.js'
+import { ProfileRepositoryImpl }       from '../repositories/index.js'
+import { CompatibilityRepositoryImpl } from '../repositories/index.js'
+import { SimilarityRepositoryImpl }    from '../repositories/index.js'
 
 @Module({})
 export class ProfilesInfrastructureModule {
@@ -33,6 +37,14 @@ export class ProfilesInfrastructureModule {
           useClass: ProfileRepositoryImpl,
         },
         {
+          provide: CompatibilityRepository,
+          useClass: CompatibilityRepositoryImpl,
+        },
+        {
+          provide: SimilarityRepository,
+          useClass: SimilarityRepositoryImpl,
+        },
+        {
           provide: GeocoderPort,
           useClass: GeocoderPortImpl,
         },
@@ -41,6 +53,14 @@ export class ProfilesInfrastructureModule {
         {
           provide: ProfileRepository,
           useClass: ProfileRepositoryImpl,
+        },
+        {
+          provide: CompatibilityRepository,
+          useClass: CompatibilityRepositoryImpl,
+        },
+        {
+          provide: SimilarityRepository,
+          useClass: SimilarityRepositoryImpl,
         },
         {
           provide: GeocoderPort,
