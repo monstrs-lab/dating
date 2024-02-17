@@ -6,6 +6,7 @@ import { Module }                      from '@nestjs/common'
 
 import { ProfilesApplicationModule }   from '@profiles/application-module'
 import { ProfileRepository }           from '@profiles/application-module'
+import { SkipRepository }              from '@profiles/application-module'
 import { CompatibilityRepository }     from '@profiles/application-module'
 import { SimilarityRepository }        from '@profiles/application-module'
 import { GeocoderPort }                from '@profiles/application-module'
@@ -17,6 +18,7 @@ import { GeocoderPortImpl }            from '../ports/index.js'
 import { ProfileRepositoryImpl }       from '../repositories/index.js'
 import { CompatibilityRepositoryImpl } from '../repositories/index.js'
 import { SimilarityRepositoryImpl }    from '../repositories/index.js'
+import { SkipRepositoryImpl }          from '../repositories/index.js'
 
 @Module({})
 export class ProfilesInfrastructureModule {
@@ -45,6 +47,10 @@ export class ProfilesInfrastructureModule {
           useClass: SimilarityRepositoryImpl,
         },
         {
+          provide: SkipRepository,
+          useClass: SkipRepositoryImpl,
+        },
+        {
           provide: GeocoderPort,
           useClass: GeocoderPortImpl,
         },
@@ -61,6 +67,10 @@ export class ProfilesInfrastructureModule {
         {
           provide: SimilarityRepository,
           useClass: SimilarityRepositoryImpl,
+        },
+        {
+          provide: SkipRepository,
+          useClass: SkipRepositoryImpl,
         },
         {
           provide: GeocoderPort,

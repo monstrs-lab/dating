@@ -186,6 +186,31 @@ export abstract class AddProfilePhotoResponse {
 }
 
 /**
+ * @generated from message tech.monstrs.dating.profiles.v1alpha1.SkipProfileRequest
+ */
+export abstract class SkipProfileRequest {
+  /**
+   * @generated from field: string profile_id = 1;
+   */
+  abstract readonly profileId: string
+
+  /**
+   * @generated from field: string target_id = 2;
+   */
+  abstract readonly targetId: string
+}
+
+/**
+ * @generated from message tech.monstrs.dating.profiles.v1alpha1.SkipProfileResponse
+ */
+export abstract class SkipProfileResponse {
+  /**
+   * @generated from field: tech.monstrs.dating.profiles.v1alpha1.Profile result = 1;
+   */
+  abstract readonly result?: Profile
+}
+
+/**
  * @generated from message tech.monstrs.dating.profiles.v1alpha1.ListProfilesRequest
  */
 export abstract class ListProfilesRequest {

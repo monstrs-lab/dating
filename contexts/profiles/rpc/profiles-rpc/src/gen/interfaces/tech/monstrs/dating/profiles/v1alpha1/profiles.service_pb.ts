@@ -186,6 +186,31 @@ export interface AddProfilePhotoResponse {
 }
 
 /**
+ * @generated from message tech.monstrs.dating.profiles.v1alpha1.SkipProfileRequest
+ */
+export interface SkipProfileRequest {
+  /**
+   * @generated from field: string profile_id = 1;
+   */
+  profileId: string
+
+  /**
+   * @generated from field: string target_id = 2;
+   */
+  targetId: string
+}
+
+/**
+ * @generated from message tech.monstrs.dating.profiles.v1alpha1.SkipProfileResponse
+ */
+export interface SkipProfileResponse {
+  /**
+   * @generated from field: tech.monstrs.dating.profiles.v1alpha1.Profile result = 1;
+   */
+  result?: Profile
+}
+
+/**
  * @generated from message tech.monstrs.dating.profiles.v1alpha1.ListProfilesRequest
  */
 export interface ListProfilesRequest {

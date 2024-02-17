@@ -15,6 +15,8 @@ import { FillProfileNameRequest }         from './profiles.service_pb.js'
 import { FillProfileNameResponse }        from './profiles.service_pb.js'
 import { ListProfilesRequest }            from './profiles.service_pb.js'
 import { ListProfilesResponse }           from './profiles.service_pb.js'
+import { SkipProfileRequest }             from './profiles.service_pb.js'
+import { SkipProfileResponse }            from './profiles.service_pb.js'
 
 /**
  * @generated from service tech.monstrs.dating.profiles.v1alpha1.ProfilesService
@@ -56,6 +58,15 @@ export const ProfilesService = {
       name: 'AddProfilePhoto',
       I: AddProfilePhotoRequest,
       O: AddProfilePhotoResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc tech.monstrs.dating.profiles.v1alpha1.ProfilesService.SkipProfile
+     */
+    skipProfile: {
+      name: 'SkipProfile',
+      I: SkipProfileRequest,
+      O: SkipProfileResponse,
       kind: MethodKind.Unary,
     },
     /**

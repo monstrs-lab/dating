@@ -5,6 +5,7 @@ import type { FillProfileGenderErrors }      from '../errors/index.js'
 import type { FillProfileNameErrors }        from '../errors/index.js'
 import type { FillProfileGeopositionErrors } from '../errors/index.js'
 import type { AddProfilePhotoErrors }        from '../errors/index.js'
+import type { SkipProfileErrors }            from '../errors/index.js'
 
 import { Mutation }                          from '@nestjs/graphql'
 import { Resolver }                          from '@nestjs/graphql'
@@ -15,11 +16,13 @@ import { findValidationErrorDetails }        from '@monstrs/protobuf-rpc'
 import { ProfilesClient }                    from '@profiles/client-module'
 
 import { FillProfileGenderInput }            from '../inputs/index.js'
+import { SkipProfileInput }                  from '../inputs/index.js'
 import { AddProfilePhotoInput }              from '../inputs/index.js'
 import { FillProfileGeopositionInput }       from '../inputs/index.js'
 import { FillProfileNameInput }              from '../inputs/index.js'
 import { FillProfileGenderResponse }         from '../responses/index.js'
 import { FillProfileGeopositionResponse }    from '../responses/index.js'
+import { SkipProfileResponse }               from '../responses/index.js'
 import { AddProfilePhotoResponse }           from '../responses/index.js'
 import { FillProfileNameResponse }           from '../responses/index.js'
 import { Profile }                           from '../types/index.js'
@@ -126,6 +129,36 @@ export class ProfileMutations {
   ): Promise<{ result?: rpc.Profile; errors?: AddProfilePhotoErrors }> {
     try {
       return await this.client.addProfilePhoto(profileId, input.photoId)
+    } catch (error) {
+      const details: Array<ValidationError> = findValidationErrorDetails(error)
+
+      if (details.length > 0) {
+        return {
+          errors: details.reduce(
+            (result, detail) => ({
+              ...result,
+              [detail.id]: {
+                id: detail.messages.at(0)!.id,
+                message: detail.messages.at(0)!.constraint,
+              },
+            }),
+            {}
+          ),
+        }
+      }
+
+      throw error
+    }
+  }
+
+  @Mutation(() => SkipProfileResponse)
+  async skipProfile(
+    @Args('input')
+    input: SkipProfileInput,
+    @Context('user') profileId: string
+  ): Promise<{ result?: rpc.Profile; errors?: SkipProfileErrors }> {
+    try {
+      return await this.client.skipProfile(profileId, input.targetId)
     } catch (error) {
       const details: Array<ValidationError> = findValidationErrorDetails(error)
 
