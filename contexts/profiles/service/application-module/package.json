@@ -10,22 +10,27 @@
   },
   "main": "src/index.ts",
   "dependencies": {
+    "@compatibility/domain-module": "workspace:0.0.1",
     "@monstrs/query-types": "^0.0.9",
     "@profiles/domain-module": "workspace:0.0.1"
   },
   "devDependencies": {
+    "@nestjs/bull": "patch:@nestjs/bull@npm%3A10.1.0#~/.yarn/patches/@nestjs-bull-npm-10.1.0-f90a2cb17e.patch",
     "@nestjs/common": "^10.3.3",
     "@nestjs/core": "^10.3.3",
     "@nestjs/cqrs": "^10.2.7",
     "@nestjs/testing": "^10.3.3",
     "@types/node": "^20.11.19",
+    "bull": "^4.12.2",
     "reflect-metadata": "^0.2.1",
     "rxjs": "^7.8.1"
   },
   "peerDependencies": {
+    "@nestjs/bull": "^10.1.0",
     "@nestjs/common": "^10",
     "@nestjs/core": "^10",
     "@nestjs/cqrs": "^10",
+    "bull": "^4.12.2",
     "reflect-metadata": "^0.2",
     "rxjs": "^7"
   }

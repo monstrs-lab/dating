@@ -139,6 +139,7 @@ services:
     image: node:19.9
     depends_on:
       - kafka
+      - redis
       - db
     working_dir: /workspace
     volumes:
@@ -149,6 +150,7 @@ services:
     environment:
       - FILES_SERVICE_URL=http://files:50051
       - KAFKA_BROKERS=kafka:29092
+      - REDIS_HOST=redis
       - DB_HOST=db
 
 volumes:
