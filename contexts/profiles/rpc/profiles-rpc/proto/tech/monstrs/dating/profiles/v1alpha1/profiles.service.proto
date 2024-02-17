@@ -10,6 +10,7 @@ service ProfilesService {
   rpc FillProfileGender(FillProfileGenderRequest) returns (FillProfileGenderResponse) {}
   rpc FillProfileName(FillProfileNameRequest) returns (FillProfileNameResponse) {}
   rpc AddProfilePhoto(AddProfilePhotoRequest) returns (AddProfilePhotoResponse) {}
+  rpc SkipProfile(SkipProfileRequest) returns (SkipProfileResponse) {}
   rpc ListProfiles(ListProfilesRequest) returns (ListProfilesResponse) {}
 }
 
@@ -70,6 +71,15 @@ message AddProfilePhotoResponse {
   Profile result = 1;
 }
 
+message SkipProfileRequest {
+  string profile_id = 1;
+  string target_id = 2;
+}
+
+message SkipProfileResponse {
+  Profile result = 1;
+}
+
 message ListProfilesRequest {
   message ProfilesQuery {
     tech.monstrs.queries.v1alpha1.Query.ID id = 1;
@@ -85,3 +95,4 @@ message ListProfilesResponse {
   repeated Profile profiles = 1;
   bool has_next_page = 2;
 }
+

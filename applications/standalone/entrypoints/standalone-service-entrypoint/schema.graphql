@@ -113,6 +113,10 @@ type AddProfilePhotoErrors {
   photoId: ValidationError
 }
 
+type SkipProfileErrors {
+  targetId: ValidationError
+}
+
 type Profile {
   id: String!
   gender: ProfileGender
@@ -150,6 +154,11 @@ type AddProfilePhotoResponse {
   errors: AddProfilePhotoErrors
 }
 
+type SkipProfileResponse {
+  result: Profile
+  errors: SkipProfileErrors
+}
+
 type MyMatches {
   profiles: [Profile!]!
 }
@@ -170,6 +179,7 @@ type Mutation {
   fillProfileName(input: FillProfileNameInput!): FillProfileNameResponse!
   fillProfileGeoposition(input: FillProfileGeopositionInput!): FillProfileGeopositionResponse!
   addProfilePhoto(input: AddProfilePhotoInput!): AddProfilePhotoResponse!
+  skipProfile(input: SkipProfileInput!): SkipProfileResponse!
   startSurvey(input: StartSurveyInput!): StartSurveyResponse!
   addSurveyAnswer(input: AddSurveyAnswerInput!): AddSurveyAnswerResponse!
   createUpload(input: CreateUploadInput!): CreateUploadResponse!
@@ -191,6 +201,10 @@ input FillProfileGeopositionInput {
 
 input AddProfilePhotoInput {
   photoId: String!
+}
+
+input SkipProfileInput {
+  targetId: String!
 }
 
 input StartSurveyInput {

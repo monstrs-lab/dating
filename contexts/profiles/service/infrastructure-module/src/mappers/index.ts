@@ -1,3 +1,4 @@
 export * from './compatibility.mapper.js'
 export * from './similarity.mapper.js'
 export * from './profile.mapper.js'
+export * from './skip.mapper.js'

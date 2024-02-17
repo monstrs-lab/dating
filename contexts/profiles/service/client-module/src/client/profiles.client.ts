@@ -46,6 +46,13 @@ export class ProfilesClient {
     })
   }
 
+  async skipProfile(profileId: string, targetId: string): Promise<{ result?: Profile }> {
+    return this.client.skipProfile({
+      profileId,
+      targetId,
+    })
+  }
+
   async addProfilePhoto(profileId: string, photoId: string): Promise<{ result?: Profile }> {
     return this.client.addProfilePhoto({
       profileId,
