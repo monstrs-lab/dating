@@ -8,6 +8,7 @@ import type { ListProfilesRequest }            from '@profiles/profiles-rpc/inte
 import type { GetMatchesRequest }              from '@profiles/profiles-rpc/interfaces'
 import type { FillProfileGenderRequest }       from '@profiles/profiles-rpc/interfaces'
 import type { SkipProfileRequest }             from '@profiles/profiles-rpc/interfaces'
+import type { LikeProfileRequest }             from '@profiles/profiles-rpc/interfaces'
 import type { AddProfilePhotoRequest }         from '@profiles/profiles-rpc/interfaces'
 import type { FillProfileGeopositionRequest }  from '@profiles/profiles-rpc/interfaces'
 import type { FillProfileNameRequest }         from '@profiles/profiles-rpc/interfaces'
@@ -17,6 +18,7 @@ import type { GetMatchesResponse }             from '@profiles/profiles-rpc/inte
 import type { AddProfilePhotoResponse }        from '@profiles/profiles-rpc/interfaces'
 import type { FillProfileNameResponse }        from '@profiles/profiles-rpc/interfaces'
 import type { SkipProfileResponse }            from '@profiles/profiles-rpc/interfaces'
+import type { LikeProfileResponse }            from '@profiles/profiles-rpc/interfaces'
 import type { FillProfileGeopositionResponse } from '@profiles/profiles-rpc/interfaces'
 
 import { ConnectRpcMethod }                    from '@monstrs/nestjs-connectrpc'
@@ -31,6 +33,7 @@ import { CommandBus }                          from '@nestjs/cqrs'
 import { GetProfilesQuery }                    from '@profiles/application-module'
 import { GetProfileMatchesQuery }              from '@profiles/application-module'
 import { SkipProfileCommand }                  from '@profiles/application-module'
+import { LikeProfileCommand }                  from '@profiles/application-module'
 import { GetProfileByIdQuery }                 from '@profiles/application-module'
 import { FillProfileGenderCommand }            from '@profiles/application-module'
 import { AddProfilePhotosCommand }             from '@profiles/application-module'
@@ -41,6 +44,7 @@ import { ProfilesService }                     from '@profiles/profiles-rpc/conn
 import { ListProfilesPayload }                 from '../payloads/index.js'
 import { GetMatchesPayload }                   from '../payloads/index.js'
 import { SkipProfilePayload }                  from '../payloads/index.js'
+import { LikeProfilePayload }                  from '../payloads/index.js'
 import { FillProfileGenderPayload }            from '../payloads/index.js'
 import { AddProfilePhotoPayload }              from '../payloads/index.js'
 import { FillProfileGeopositionPayload }       from '../payloads/index.js'
@@ -51,6 +55,7 @@ import { AddProfilePhotoSerializer }           from '../serializers/index.js'
 import { FillProfileNameSerializer }           from '../serializers/index.js'
 import { FillProfileGeopositionSerializer }    from '../serializers/index.js'
 import { SkipProfileSerializer }               from '../serializers/index.js'
+import { LikeProfileSerializer }               from '../serializers/index.js'
 import { GetMatchesSerializer }                from '../serializers/index.js'
 
 @Controller()
@@ -126,21 +131,6 @@ export class ProfilesController implements ServiceImpl<typeof ProfilesService> {
   }
 
   @ConnectRpcMethod()
-  async skipProfile(request: SkipProfileRequest): Promise<SkipProfileResponse> {
-    const payload = new SkipProfilePayload(request)
-
-    await this.validator.validate(payload)
-
-    await this.commandBus.execute(new SkipProfileCommand(payload.profileId, payload.targetId))
-
-    return new SkipProfileSerializer(
-      await this.queryBus.execute<GetProfileByIdQuery, Profile>(
-        new GetProfileByIdQuery(payload.profileId)
-      )
-    )
-  }
-
-  @ConnectRpcMethod()
   async addProfilePhoto(request: AddProfilePhotoRequest): Promise<AddProfilePhotoResponse> {
     const payload = new AddProfilePhotoPayload(request)
 
@@ -151,6 +141,36 @@ export class ProfilesController implements ServiceImpl<typeof ProfilesService> {
     return new AddProfilePhotoSerializer(
       await this.queryBus.execute<GetProfileByIdQuery, Profile>(
         new GetProfileByIdQuery(payload.profileId)
+      )
+    )
+  }
+
+  @ConnectRpcMethod()
+  async skipProfile(request: SkipProfileRequest): Promise<SkipProfileResponse> {
+    const payload = new SkipProfilePayload(request)
+
+    await this.validator.validate(payload)
+
+    await this.commandBus.execute(new SkipProfileCommand(payload.profileId, payload.targetId))
+
+    return new SkipProfileSerializer(
+      await this.queryBus.execute<GetProfileByIdQuery, Profile>(
+        new GetProfileByIdQuery(payload.targetId)
+      )
+    )
+  }
+
+  @ConnectRpcMethod()
+  async likeProfile(request: LikeProfileRequest): Promise<LikeProfileResponse> {
+    const payload = new LikeProfilePayload(request)
+
+    await this.validator.validate(payload)
+
+    await this.commandBus.execute(new LikeProfileCommand(payload.profileId, payload.targetId))
+
+    return new LikeProfileSerializer(
+      await this.queryBus.execute<GetProfileByIdQuery, Profile>(
+        new GetProfileByIdQuery(payload.targetId)
       )
     )
   }

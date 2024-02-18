@@ -70,7 +70,12 @@ export class SimilarityRepositoryImpl extends SimilarityRepository {
         builder.on('skips.target_id', '=', 'similarities.from_id')
         builder.orOn('skips.target_id', '=', 'similarities.to_id')
       })
+      .leftJoin('likes', (builder: Knex.JoinClause) => {
+        builder.on('likes.target_id', '=', 'similarities.from_id')
+        builder.orOn('likes.target_id', '=', 'similarities.to_id')
+      })
       .whereRaw('skips.id is null')
+      .whereRaw('likes.id is null')
       .andWhereRaw(`(similarities.from_id = ? or similarities.to_id = ?)`, [profile.id, profile.id])
       .orderBy('similarities.value', 'desc')
       .offset(0)
