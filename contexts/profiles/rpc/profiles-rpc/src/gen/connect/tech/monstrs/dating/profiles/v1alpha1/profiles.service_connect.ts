@@ -15,6 +15,8 @@ import { FillProfileNameRequest }         from './profiles.service_pb.js'
 import { FillProfileNameResponse }        from './profiles.service_pb.js'
 import { GetMatchesRequest }              from './profiles.service_pb.js'
 import { GetMatchesResponse }             from './profiles.service_pb.js'
+import { LikeProfileRequest }             from './profiles.service_pb.js'
+import { LikeProfileResponse }            from './profiles.service_pb.js'
 import { ListProfilesRequest }            from './profiles.service_pb.js'
 import { ListProfilesResponse }           from './profiles.service_pb.js'
 import { SkipProfileRequest }             from './profiles.service_pb.js'
@@ -69,6 +71,15 @@ export const ProfilesService = {
       name: 'SkipProfile',
       I: SkipProfileRequest,
       O: SkipProfileResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc tech.monstrs.dating.profiles.v1alpha1.ProfilesService.LikeProfile
+     */
+    likeProfile: {
+      name: 'LikeProfile',
+      I: LikeProfileRequest,
+      O: LikeProfileResponse,
       kind: MethodKind.Unary,
     },
     /**

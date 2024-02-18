@@ -241,6 +241,31 @@ export interface SkipProfileResponse {
 }
 
 /**
+ * @generated from message tech.monstrs.dating.profiles.v1alpha1.LikeProfileRequest
+ */
+export interface LikeProfileRequest {
+  /**
+   * @generated from field: string profile_id = 1;
+   */
+  profileId: string
+
+  /**
+   * @generated from field: string target_id = 2;
+   */
+  targetId: string
+}
+
+/**
+ * @generated from message tech.monstrs.dating.profiles.v1alpha1.LikeProfileResponse
+ */
+export interface LikeProfileResponse {
+  /**
+   * @generated from field: tech.monstrs.dating.profiles.v1alpha1.Profile result = 1;
+   */
+  result?: Profile
+}
+
+/**
  * @generated from message tech.monstrs.dating.profiles.v1alpha1.ListProfilesRequest
  */
 export interface ListProfilesRequest {

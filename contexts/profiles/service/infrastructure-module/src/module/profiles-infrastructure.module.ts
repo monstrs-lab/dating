@@ -9,6 +9,7 @@ import { ProfileRepository }           from '@profiles/application-module'
 import { SkipRepository }              from '@profiles/application-module'
 import { CompatibilityRepository }     from '@profiles/application-module'
 import { SimilarityRepository }        from '@profiles/application-module'
+import { LikeRepository }              from '@profiles/application-module'
 import { GeocoderPort }                from '@profiles/application-module'
 
 import * as controllers                from '../controllers/index.js'
@@ -19,6 +20,7 @@ import { ProfileRepositoryImpl }       from '../repositories/index.js'
 import { CompatibilityRepositoryImpl } from '../repositories/index.js'
 import { SimilarityRepositoryImpl }    from '../repositories/index.js'
 import { SkipRepositoryImpl }          from '../repositories/index.js'
+import { LikeRepositoryImpl }          from '../repositories/index.js'
 
 @Module({})
 export class ProfilesInfrastructureModule {
@@ -51,6 +53,10 @@ export class ProfilesInfrastructureModule {
           useClass: SkipRepositoryImpl,
         },
         {
+          provide: LikeRepository,
+          useClass: LikeRepositoryImpl,
+        },
+        {
           provide: GeocoderPort,
           useClass: GeocoderPortImpl,
         },
@@ -71,6 +77,10 @@ export class ProfilesInfrastructureModule {
         {
           provide: SkipRepository,
           useClass: SkipRepositoryImpl,
+        },
+        {
+          provide: LikeRepository,
+          useClass: LikeRepositoryImpl,
         },
         {
           provide: GeocoderPort,

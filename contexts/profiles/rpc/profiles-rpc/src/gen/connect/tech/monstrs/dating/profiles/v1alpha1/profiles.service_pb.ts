@@ -771,6 +771,98 @@ export class SkipProfileResponse extends Message<SkipProfileResponse> {
 }
 
 /**
+ * @generated from message tech.monstrs.dating.profiles.v1alpha1.LikeProfileRequest
+ */
+export class LikeProfileRequest extends Message<LikeProfileRequest> {
+  /**
+   * @generated from field: string profile_id = 1;
+   */
+  profileId = ''
+
+  /**
+   * @generated from field: string target_id = 2;
+   */
+  targetId = ''
+
+  constructor(data?: PartialMessage<LikeProfileRequest>) {
+    super()
+    proto3.util.initPartial(data, this)
+  }
+
+  static readonly runtime: typeof proto3 = proto3
+  static readonly typeName = 'tech.monstrs.dating.profiles.v1alpha1.LikeProfileRequest'
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: 'profile_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'target_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+  ])
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): LikeProfileRequest {
+    return new LikeProfileRequest().fromBinary(bytes, options)
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): LikeProfileRequest {
+    return new LikeProfileRequest().fromJson(jsonValue, options)
+  }
+
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): LikeProfileRequest {
+    return new LikeProfileRequest().fromJsonString(jsonString, options)
+  }
+
+  static equals(
+    a: LikeProfileRequest | PlainMessage<LikeProfileRequest> | undefined,
+    b: LikeProfileRequest | PlainMessage<LikeProfileRequest> | undefined
+  ): boolean {
+    return proto3.util.equals(LikeProfileRequest, a, b)
+  }
+}
+
+/**
+ * @generated from message tech.monstrs.dating.profiles.v1alpha1.LikeProfileResponse
+ */
+export class LikeProfileResponse extends Message<LikeProfileResponse> {
+  /**
+   * @generated from field: tech.monstrs.dating.profiles.v1alpha1.Profile result = 1;
+   */
+  result?: Profile
+
+  constructor(data?: PartialMessage<LikeProfileResponse>) {
+    super()
+    proto3.util.initPartial(data, this)
+  }
+
+  static readonly runtime: typeof proto3 = proto3
+  static readonly typeName = 'tech.monstrs.dating.profiles.v1alpha1.LikeProfileResponse'
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: 'result', kind: 'message', T: Profile },
+  ])
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): LikeProfileResponse {
+    return new LikeProfileResponse().fromBinary(bytes, options)
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): LikeProfileResponse {
+    return new LikeProfileResponse().fromJson(jsonValue, options)
+  }
+
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): LikeProfileResponse {
+    return new LikeProfileResponse().fromJsonString(jsonString, options)
+  }
+
+  static equals(
+    a: LikeProfileResponse | PlainMessage<LikeProfileResponse> | undefined,
+    b: LikeProfileResponse | PlainMessage<LikeProfileResponse> | undefined
+  ): boolean {
+    return proto3.util.equals(LikeProfileResponse, a, b)
+  }
+}
+
+/**
  * @generated from message tech.monstrs.dating.profiles.v1alpha1.ListProfilesRequest
  */
 export class ListProfilesRequest extends Message<ListProfilesRequest> {

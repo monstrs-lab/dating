@@ -11,6 +11,7 @@ service ProfilesService {
   rpc FillProfileName(FillProfileNameRequest) returns (FillProfileNameResponse) {}
   rpc AddProfilePhoto(AddProfilePhotoRequest) returns (AddProfilePhotoResponse) {}
   rpc SkipProfile(SkipProfileRequest) returns (SkipProfileResponse) {}
+  rpc LikeProfile(LikeProfileRequest) returns (LikeProfileResponse) {}
   rpc ListProfiles(ListProfilesRequest) returns (ListProfilesResponse) {}
   rpc GetMatches(GetMatchesRequest) returns (GetMatchesResponse) {}
 }
@@ -88,6 +89,15 @@ message SkipProfileRequest {
 }
 
 message SkipProfileResponse {
+  Profile result = 1;
+}
+
+message LikeProfileRequest {
+  string profile_id = 1;
+  string target_id = 2;
+}
+
+message LikeProfileResponse {
   Profile result = 1;
 }
 

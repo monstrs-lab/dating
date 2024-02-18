@@ -9,9 +9,9 @@ import { SkipRepository }       from '../repositories/index.js'
 
 @CommandHandler(SkipProfileCommand)
 export class SkipProfileCommandHandler implements ICommandHandler<SkipProfileCommand, void> {
-  constructor(private readonly profileRepository: SkipRepository) {}
+  constructor(private readonly skipRepository: SkipRepository) {}
 
   async execute(command: SkipProfileCommand): Promise<void> {
-    await this.profileRepository.save(new Skip().create(command.profileId, command.targetId))
+    await this.skipRepository.save(new Skip().create(command.profileId, command.targetId))
   }
 }

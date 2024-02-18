@@ -241,6 +241,31 @@ export abstract class SkipProfileResponse {
 }
 
 /**
+ * @generated from message tech.monstrs.dating.profiles.v1alpha1.LikeProfileRequest
+ */
+export abstract class LikeProfileRequest {
+  /**
+   * @generated from field: string profile_id = 1;
+   */
+  abstract readonly profileId: string
+
+  /**
+   * @generated from field: string target_id = 2;
+   */
+  abstract readonly targetId: string
+}
+
+/**
+ * @generated from message tech.monstrs.dating.profiles.v1alpha1.LikeProfileResponse
+ */
+export abstract class LikeProfileResponse {
+  /**
+   * @generated from field: tech.monstrs.dating.profiles.v1alpha1.Profile result = 1;
+   */
+  abstract readonly result?: Profile
+}
+
+/**
  * @generated from message tech.monstrs.dating.profiles.v1alpha1.ListProfilesRequest
  */
 export abstract class ListProfilesRequest {

@@ -61,6 +61,13 @@ export class ProfilesClient {
     })
   }
 
+  async likeProfile(profileId: string, targetId: string): Promise<{ result?: Profile }> {
+    return this.client.likeProfile({
+      profileId,
+      targetId,
+    })
+  }
+
   async getMatches(profileId: string): Promise<GetMatchesResponse> {
     return this.client.getMatches({
       profileId,
