@@ -13,6 +13,8 @@ import { FillProfileGeopositionRequest }  from './profiles.service_pb.js'
 import { FillProfileGeopositionResponse } from './profiles.service_pb.js'
 import { FillProfileNameRequest }         from './profiles.service_pb.js'
 import { FillProfileNameResponse }        from './profiles.service_pb.js'
+import { GetMatchesRequest }              from './profiles.service_pb.js'
+import { GetMatchesResponse }             from './profiles.service_pb.js'
 import { ListProfilesRequest }            from './profiles.service_pb.js'
 import { ListProfilesResponse }           from './profiles.service_pb.js'
 import { SkipProfileRequest }             from './profiles.service_pb.js'
@@ -76,6 +78,15 @@ export const ProfilesService = {
       name: 'ListProfiles',
       I: ListProfilesRequest,
       O: ListProfilesResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc tech.monstrs.dating.profiles.v1alpha1.ProfilesService.GetMatches
+     */
+    getMatches: {
+      name: 'GetMatches',
+      I: GetMatchesRequest,
+      O: GetMatchesResponse,
       kind: MethodKind.Unary,
     },
   },

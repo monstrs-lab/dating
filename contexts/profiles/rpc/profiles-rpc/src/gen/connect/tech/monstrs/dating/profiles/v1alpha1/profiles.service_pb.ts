@@ -165,6 +165,98 @@ export class Profile extends Message<Profile> {
 }
 
 /**
+ * @generated from message tech.monstrs.dating.profiles.v1alpha1.Similarity
+ */
+export class Similarity extends Message<Similarity> {
+  /**
+   * @generated from field: string id = 1;
+   */
+  id = ''
+
+  /**
+   * @generated from field: float value = 2;
+   */
+  value = 0
+
+  constructor(data?: PartialMessage<Similarity>) {
+    super()
+    proto3.util.initPartial(data, this)
+  }
+
+  static readonly runtime: typeof proto3 = proto3
+  static readonly typeName = 'tech.monstrs.dating.profiles.v1alpha1.Similarity'
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: 'id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'value', kind: 'scalar', T: 2 /* ScalarType.FLOAT */ },
+  ])
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Similarity {
+    return new Similarity().fromBinary(bytes, options)
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Similarity {
+    return new Similarity().fromJson(jsonValue, options)
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Similarity {
+    return new Similarity().fromJsonString(jsonString, options)
+  }
+
+  static equals(
+    a: Similarity | PlainMessage<Similarity> | undefined,
+    b: Similarity | PlainMessage<Similarity> | undefined
+  ): boolean {
+    return proto3.util.equals(Similarity, a, b)
+  }
+}
+
+/**
+ * @generated from message tech.monstrs.dating.profiles.v1alpha1.Match
+ */
+export class Match extends Message<Match> {
+  /**
+   * @generated from field: tech.monstrs.dating.profiles.v1alpha1.Profile profile = 1;
+   */
+  profile?: Profile
+
+  /**
+   * @generated from field: optional tech.monstrs.dating.profiles.v1alpha1.Similarity similarity = 2;
+   */
+  similarity?: Similarity
+
+  constructor(data?: PartialMessage<Match>) {
+    super()
+    proto3.util.initPartial(data, this)
+  }
+
+  static readonly runtime: typeof proto3 = proto3
+  static readonly typeName = 'tech.monstrs.dating.profiles.v1alpha1.Match'
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: 'profile', kind: 'message', T: Profile },
+    { no: 2, name: 'similarity', kind: 'message', T: Similarity, opt: true },
+  ])
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Match {
+    return new Match().fromBinary(bytes, options)
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Match {
+    return new Match().fromJson(jsonValue, options)
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Match {
+    return new Match().fromJsonString(jsonString, options)
+  }
+
+  static equals(
+    a: Match | PlainMessage<Match> | undefined,
+    b: Match | PlainMessage<Match> | undefined
+  ): boolean {
+    return proto3.util.equals(Match, a, b)
+  }
+}
+
+/**
  * @generated from message tech.monstrs.dating.profiles.v1alpha1.FillProfileGeopositionRequest
  */
 export class FillProfileGeopositionRequest extends Message<FillProfileGeopositionRequest> {
@@ -841,5 +933,94 @@ export class ListProfilesResponse extends Message<ListProfilesResponse> {
     b: ListProfilesResponse | PlainMessage<ListProfilesResponse> | undefined
   ): boolean {
     return proto3.util.equals(ListProfilesResponse, a, b)
+  }
+}
+
+/**
+ * @generated from message tech.monstrs.dating.profiles.v1alpha1.GetMatchesRequest
+ */
+export class GetMatchesRequest extends Message<GetMatchesRequest> {
+  /**
+   * @generated from field: string profile_id = 1;
+   */
+  profileId = ''
+
+  constructor(data?: PartialMessage<GetMatchesRequest>) {
+    super()
+    proto3.util.initPartial(data, this)
+  }
+
+  static readonly runtime: typeof proto3 = proto3
+  static readonly typeName = 'tech.monstrs.dating.profiles.v1alpha1.GetMatchesRequest'
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: 'profile_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+  ])
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetMatchesRequest {
+    return new GetMatchesRequest().fromBinary(bytes, options)
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetMatchesRequest {
+    return new GetMatchesRequest().fromJson(jsonValue, options)
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetMatchesRequest {
+    return new GetMatchesRequest().fromJsonString(jsonString, options)
+  }
+
+  static equals(
+    a: GetMatchesRequest | PlainMessage<GetMatchesRequest> | undefined,
+    b: GetMatchesRequest | PlainMessage<GetMatchesRequest> | undefined
+  ): boolean {
+    return proto3.util.equals(GetMatchesRequest, a, b)
+  }
+}
+
+/**
+ * @generated from message tech.monstrs.dating.profiles.v1alpha1.GetMatchesResponse
+ */
+export class GetMatchesResponse extends Message<GetMatchesResponse> {
+  /**
+   * @generated from field: repeated tech.monstrs.dating.profiles.v1alpha1.Match matches = 1;
+   */
+  matches: Match[] = []
+
+  /**
+   * @generated from field: bool has_next_page = 2;
+   */
+  hasNextPage = false
+
+  constructor(data?: PartialMessage<GetMatchesResponse>) {
+    super()
+    proto3.util.initPartial(data, this)
+  }
+
+  static readonly runtime: typeof proto3 = proto3
+  static readonly typeName = 'tech.monstrs.dating.profiles.v1alpha1.GetMatchesResponse'
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: 'matches', kind: 'message', T: Match, repeated: true },
+    { no: 2, name: 'has_next_page', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
+  ])
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetMatchesResponse {
+    return new GetMatchesResponse().fromBinary(bytes, options)
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetMatchesResponse {
+    return new GetMatchesResponse().fromJson(jsonValue, options)
+  }
+
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): GetMatchesResponse {
+    return new GetMatchesResponse().fromJsonString(jsonString, options)
+  }
+
+  static equals(
+    a: GetMatchesResponse | PlainMessage<GetMatchesResponse> | undefined,
+    b: GetMatchesResponse | PlainMessage<GetMatchesResponse> | undefined
+  ): boolean {
+    return proto3.util.equals(GetMatchesResponse, a, b)
   }
 }

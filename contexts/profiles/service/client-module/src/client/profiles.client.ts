@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/consistent-type-imports */
 
 import type { PromiseClient }        from '@connectrpc/connect'
+import type { GetMatchesResponse }   from '@profiles/profiles-rpc'
 import type { ListProfilesRequest }  from '@profiles/profiles-rpc'
 import type { ListProfilesResponse } from '@profiles/profiles-rpc'
 import type { ProfileGender }        from '@profiles/profiles-rpc'
@@ -46,6 +47,13 @@ export class ProfilesClient {
     })
   }
 
+  async addProfilePhoto(profileId: string, photoId: string): Promise<{ result?: Profile }> {
+    return this.client.addProfilePhoto({
+      profileId,
+      photoId,
+    })
+  }
+
   async skipProfile(profileId: string, targetId: string): Promise<{ result?: Profile }> {
     return this.client.skipProfile({
       profileId,
@@ -53,10 +61,9 @@ export class ProfilesClient {
     })
   }
 
-  async addProfilePhoto(profileId: string, photoId: string): Promise<{ result?: Profile }> {
-    return this.client.addProfilePhoto({
+  async getMatches(profileId: string): Promise<GetMatchesResponse> {
+    return this.client.getMatches({
       profileId,
-      photoId,
     })
   }
 

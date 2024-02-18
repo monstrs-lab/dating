@@ -81,6 +81,36 @@ export abstract class Profile {
 }
 
 /**
+ * @generated from message tech.monstrs.dating.profiles.v1alpha1.Similarity
+ */
+export abstract class Similarity {
+  /**
+   * @generated from field: string id = 1;
+   */
+  abstract readonly id: string
+
+  /**
+   * @generated from field: float value = 2;
+   */
+  abstract readonly value: number
+}
+
+/**
+ * @generated from message tech.monstrs.dating.profiles.v1alpha1.Match
+ */
+export abstract class Match {
+  /**
+   * @generated from field: tech.monstrs.dating.profiles.v1alpha1.Profile profile = 1;
+   */
+  abstract readonly profile?: Profile
+
+  /**
+   * @generated from field: optional tech.monstrs.dating.profiles.v1alpha1.Similarity similarity = 2;
+   */
+  abstract readonly similarity?: Similarity
+}
+
+/**
  * @generated from message tech.monstrs.dating.profiles.v1alpha1.FillProfileGeopositionRequest
  */
 export abstract class FillProfileGeopositionRequest {
@@ -253,6 +283,31 @@ export abstract class ListProfilesResponse {
    * @generated from field: repeated tech.monstrs.dating.profiles.v1alpha1.Profile profiles = 1;
    */
   abstract readonly profiles: Profile[]
+
+  /**
+   * @generated from field: bool has_next_page = 2;
+   */
+  abstract readonly hasNextPage: boolean
+}
+
+/**
+ * @generated from message tech.monstrs.dating.profiles.v1alpha1.GetMatchesRequest
+ */
+export abstract class GetMatchesRequest {
+  /**
+   * @generated from field: string profile_id = 1;
+   */
+  abstract readonly profileId: string
+}
+
+/**
+ * @generated from message tech.monstrs.dating.profiles.v1alpha1.GetMatchesResponse
+ */
+export abstract class GetMatchesResponse {
+  /**
+   * @generated from field: repeated tech.monstrs.dating.profiles.v1alpha1.Match matches = 1;
+   */
+  abstract readonly matches: Match[]
 
   /**
    * @generated from field: bool has_next_page = 2;

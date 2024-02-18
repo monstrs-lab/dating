@@ -1,3 +1,5 @@
+import type { EntityDictionary }                    from '@mikro-orm/core'
+import type { Knex }                                from '@mikro-orm/postgresql'
 import type { Similarity }                          from '@profiles/domain-module'
 
 import { EntityRepository }                         from '@mikro-orm/core'
@@ -11,6 +13,7 @@ import { Inject }                                   from '@nestjs/common'
 import { EventBus }                                 from '@nestjs/cqrs'
 
 import { SimilarityRepository }                     from '@profiles/application-module'
+import { Profile }                                  from '@profiles/domain-module'
 
 import { SimilarityEntity }                         from '../entities/index.js'
 import { SimilarityMapper }                         from '../mappers/index.js'
@@ -52,5 +55,50 @@ export class SimilarityRepositoryImpl extends SimilarityRepository {
     })
 
     return entity ? this.mapper.toDomain(entity) : undefined
+  }
+
+  @CreateRequestContext()
+  async findByProfile(profile: Profile): Promise<{
+    similarities: Array<Similarity>
+    hasNextPage: boolean
+  }> {
+    const results: Array<EntityDictionary<SimilarityEntity>> = await this.em
+      .getKnex()
+      .select('similarities.*')
+      .from('similarities')
+      .leftJoin('skips', (builder: Knex.JoinClause) => {
+        builder.on('skips.target_id', '=', 'similarities.from_id')
+        builder.orOn('skips.target_id', '=', 'similarities.to_id')
+      })
+      .whereRaw('skips.id is null')
+      .andWhereRaw(`(similarities.from_id = ? or similarities.to_id = ?)`, [profile.id, profile.id])
+      .orderBy('similarities.value', 'desc')
+      .offset(0)
+      .limit(51)
+
+    const { unique }: { unique: Array<EntityDictionary<SimilarityEntity>> } = results.reduce(
+      (
+        result: { keys: Array<string>; unique: Array<EntityDictionary<SimilarityEntity>> },
+        item
+      ) => {
+        const profileId: string = item.from_id === profile.id ? item.to_id : item.from_id
+
+        if (result.keys.includes(profileId)) {
+          return result
+        }
+
+        return {
+          keys: [...result.keys, profileId],
+          unique: [...result.unique, item],
+        }
+      },
+      { keys: [], unique: [] }
+    )
+
+    return {
+      hasNextPage: results.length > 50,
+      similarities: unique.map((result) =>
+        this.mapper.toDomain(this.em.map(SimilarityEntity, result))),
+    }
   }
 }
