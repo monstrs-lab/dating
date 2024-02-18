@@ -130,6 +130,25 @@ enum ProfileGender {
   FEMALE
 }
 
+type Similarity {
+  id: String!
+  value: Float!
+}
+
+type Match {
+  profile: Profile!
+  similarity: Similarity
+}
+
+type Matches {
+  matches: [Match!]!
+  hasNextPage: Boolean!
+}
+
+type MyMatching {
+  matches: Matches!
+}
+
 type MyProfile {
   info: Profile!
 }
@@ -166,6 +185,7 @@ type MyMatches {
 type User {
   id: String!
   profile: MyProfile!
+  matching: MyMatching!
   matches: MyMatches!
   compatibility: MyCompatibility!
 }

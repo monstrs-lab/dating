@@ -81,6 +81,36 @@ export interface Profile {
 }
 
 /**
+ * @generated from message tech.monstrs.dating.profiles.v1alpha1.Similarity
+ */
+export interface Similarity {
+  /**
+   * @generated from field: string id = 1;
+   */
+  id: string
+
+  /**
+   * @generated from field: float value = 2;
+   */
+  value: number
+}
+
+/**
+ * @generated from message tech.monstrs.dating.profiles.v1alpha1.Match
+ */
+export interface Match {
+  /**
+   * @generated from field: tech.monstrs.dating.profiles.v1alpha1.Profile profile = 1;
+   */
+  profile?: Profile
+
+  /**
+   * @generated from field: optional tech.monstrs.dating.profiles.v1alpha1.Similarity similarity = 2;
+   */
+  similarity?: Similarity
+}
+
+/**
  * @generated from message tech.monstrs.dating.profiles.v1alpha1.FillProfileGeopositionRequest
  */
 export interface FillProfileGeopositionRequest {
@@ -253,6 +283,31 @@ export interface ListProfilesResponse {
    * @generated from field: repeated tech.monstrs.dating.profiles.v1alpha1.Profile profiles = 1;
    */
   profiles: Profile[]
+
+  /**
+   * @generated from field: bool has_next_page = 2;
+   */
+  hasNextPage: boolean
+}
+
+/**
+ * @generated from message tech.monstrs.dating.profiles.v1alpha1.GetMatchesRequest
+ */
+export interface GetMatchesRequest {
+  /**
+   * @generated from field: string profile_id = 1;
+   */
+  profileId: string
+}
+
+/**
+ * @generated from message tech.monstrs.dating.profiles.v1alpha1.GetMatchesResponse
+ */
+export interface GetMatchesResponse {
+  /**
+   * @generated from field: repeated tech.monstrs.dating.profiles.v1alpha1.Match matches = 1;
+   */
+  matches: Match[]
 
   /**
    * @generated from field: bool has_next_page = 2;

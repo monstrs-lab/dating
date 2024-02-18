@@ -3,7 +3,9 @@
 import type { ServiceImpl }                    from '@connectrpc/connect'
 import type { FindProfilesByQueryResult }      from '@profiles/application-module'
 import type { Profile }                        from '@profiles/domain-module'
+import type { Similarity }                     from '@profiles/domain-module'
 import type { ListProfilesRequest }            from '@profiles/profiles-rpc/interfaces'
+import type { GetMatchesRequest }              from '@profiles/profiles-rpc/interfaces'
 import type { FillProfileGenderRequest }       from '@profiles/profiles-rpc/interfaces'
 import type { SkipProfileRequest }             from '@profiles/profiles-rpc/interfaces'
 import type { AddProfilePhotoRequest }         from '@profiles/profiles-rpc/interfaces'
@@ -11,6 +13,7 @@ import type { FillProfileGeopositionRequest }  from '@profiles/profiles-rpc/inte
 import type { FillProfileNameRequest }         from '@profiles/profiles-rpc/interfaces'
 import type { ListProfilesResponse }           from '@profiles/profiles-rpc/interfaces'
 import type { FillProfileGenderResponse }      from '@profiles/profiles-rpc/interfaces'
+import type { GetMatchesResponse }             from '@profiles/profiles-rpc/interfaces'
 import type { AddProfilePhotoResponse }        from '@profiles/profiles-rpc/interfaces'
 import type { FillProfileNameResponse }        from '@profiles/profiles-rpc/interfaces'
 import type { SkipProfileResponse }            from '@profiles/profiles-rpc/interfaces'
@@ -26,6 +29,7 @@ import { QueryBus }                            from '@nestjs/cqrs'
 import { CommandBus }                          from '@nestjs/cqrs'
 
 import { GetProfilesQuery }                    from '@profiles/application-module'
+import { GetProfileMatchesQuery }              from '@profiles/application-module'
 import { SkipProfileCommand }                  from '@profiles/application-module'
 import { GetProfileByIdQuery }                 from '@profiles/application-module'
 import { FillProfileGenderCommand }            from '@profiles/application-module'
@@ -35,6 +39,7 @@ import { FillProfileGeopositionCommand }       from '@profiles/application-modul
 import { ProfilesService }                     from '@profiles/profiles-rpc/connect'
 
 import { ListProfilesPayload }                 from '../payloads/index.js'
+import { GetMatchesPayload }                   from '../payloads/index.js'
 import { SkipProfilePayload }                  from '../payloads/index.js'
 import { FillProfileGenderPayload }            from '../payloads/index.js'
 import { AddProfilePhotoPayload }              from '../payloads/index.js'
@@ -46,6 +51,7 @@ import { AddProfilePhotoSerializer }           from '../serializers/index.js'
 import { FillProfileNameSerializer }           from '../serializers/index.js'
 import { FillProfileGeopositionSerializer }    from '../serializers/index.js'
 import { SkipProfileSerializer }               from '../serializers/index.js'
+import { GetMatchesSerializer }                from '../serializers/index.js'
 
 @Controller()
 @ConnectRpcService(ProfilesService)
@@ -146,6 +152,23 @@ export class ProfilesController implements ServiceImpl<typeof ProfilesService> {
       await this.queryBus.execute<GetProfileByIdQuery, Profile>(
         new GetProfileByIdQuery(payload.profileId)
       )
+    )
+  }
+
+  @ConnectRpcMethod()
+  async getMatches(request: GetMatchesRequest): Promise<GetMatchesResponse> {
+    const payload = new GetMatchesPayload(request)
+
+    await this.validator.validate(payload)
+
+    return new GetMatchesSerializer(
+      await this.queryBus.execute<
+        GetProfileMatchesQuery,
+        {
+          matches: Array<{ profile: Profile; similarity?: Similarity | undefined }>
+          hasNextPage: boolean
+        }
+      >(new GetProfileMatchesQuery(payload.profileId))
     )
   }
 }

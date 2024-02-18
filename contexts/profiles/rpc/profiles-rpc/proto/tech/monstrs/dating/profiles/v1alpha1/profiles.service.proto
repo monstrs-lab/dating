@@ -12,6 +12,7 @@ service ProfilesService {
   rpc AddProfilePhoto(AddProfilePhotoRequest) returns (AddProfilePhotoResponse) {}
   rpc SkipProfile(SkipProfileRequest) returns (SkipProfileResponse) {}
   rpc ListProfiles(ListProfilesRequest) returns (ListProfilesResponse) {}
+  rpc GetMatches(GetMatchesRequest) returns (GetMatchesResponse) {}
 }
 
 enum ProfileGender {
@@ -32,6 +33,16 @@ message Profile {
   optional ProfileGeoposition geoposition = 5;
   repeated string photos = 6;
   google.protobuf.Timestamp created_at = 7;
+}
+
+message Similarity {
+  string id = 1;
+  float value = 2;
+}
+
+message Match {
+  Profile profile = 1;
+  optional Similarity similarity = 2;
 }
 
 message FillProfileGeopositionRequest {
@@ -96,3 +107,12 @@ message ListProfilesResponse {
   bool has_next_page = 2;
 }
 
+
+message GetMatchesRequest {
+  string profile_id = 1;
+}
+
+message GetMatchesResponse {
+  repeated Match matches = 1;
+  bool has_next_page = 2;
+}

@@ -1,2 +1,5 @@
+export * from './my-matching.type.js'
 export * from './my-profile.type.js'
+export * from './similarity.type.js'
 export * from './profile.type.js'
+export * from './match.type.js'

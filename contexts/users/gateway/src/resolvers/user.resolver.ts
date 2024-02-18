@@ -11,6 +11,11 @@ export class UserResolver {
   }
 
   @ResolveField()
+  matching(): Record<string, never> {
+    return {}
+  }
+
+  @ResolveField()
   matches(): Record<string, never> {
     return {}
   }
