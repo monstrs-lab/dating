@@ -1,24 +1,21 @@
-import type { StackScreenProps }   from '@react-navigation/stack'
-import type { ReactElement }       from 'react'
+import type { ReactElement } from 'react'
 
-import type { RootStackParamList } from '../../navigation.component'
-
-import { useState }                from 'react'
-import { useCallback }             from 'react'
-import React                       from 'react'
+import { useRouter }         from 'expo-router'
+import { useState }          from 'react'
+import { useCallback }       from 'react'
+import React                 from 'react'
 // @ts-expect-error
-import SwitchFillor                from 'react-native-switch-selector'
+import SwitchFillor          from 'react-native-switch-selector'
 
-import { ProfileGender }           from '../../operations'
-import { Button }                  from '../../ui/button'
-import { Box }                     from '../../ui/layout'
-import { Text }                    from '../../ui/text'
-import { useProfile }              from '../../shared'
-import operations                  from '../../operations'
+import { ProfileGender }     from '../../operations'
+import { Button }            from '../../ui/button'
+import { Box }               from '../../ui/layout'
+import { Text }              from '../../ui/text'
+import { useProfile }        from '../../shared'
+import operations            from '../../operations'
 
-export type FillGenderScreenProps = StackScreenProps<RootStackParamList, 'FillGender'>
-
-export const FillGenderScreen = ({ navigation }: FillGenderScreenProps): ReactElement => {
+export const FillGenderScreen = (): ReactElement => {
+  const router = useRouter()
   const { setProfile } = useProfile()
   const [gender, setGender] = useState<ProfileGender>(ProfileGender.Male)
   const [inProgress, setInProgress] = useState<boolean>(false)
@@ -32,12 +29,12 @@ export const FillGenderScreen = ({ navigation }: FillGenderScreenProps): ReactEl
       if (fillProfileGender.result) {
         setProfile(fillProfileGender.result)
 
-        navigation.navigate('FillName')
+        router.push('/(intro)/name')
       }
     } finally {
       setInProgress(false)
     }
-  }, [gender, navigation, setInProgress, setProfile])
+  }, [gender, router, setInProgress, setProfile])
 
   return (
     <Box p='3x' flex={1} justifyContent='center'>

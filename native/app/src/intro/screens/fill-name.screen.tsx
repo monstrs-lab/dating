@@ -1,22 +1,19 @@
-import type { StackScreenProps }   from '@react-navigation/stack'
-import type { ReactElement }       from 'react'
+import type { ReactElement } from 'react'
 
-import type { RootStackParamList } from '../../navigation.component'
+import { useRouter }         from 'expo-router'
+import { useState }          from 'react'
+import { useCallback }       from 'react'
+import React                 from 'react'
 
-import { useState }                from 'react'
-import { useCallback }             from 'react'
-import React                       from 'react'
+import { Button }            from '../../ui/button'
+import { Input }             from '../../ui/input'
+import { Box }               from '../../ui/layout'
+import { Text }              from '../../ui/text'
+import { useProfile }        from '../../shared'
+import operations            from '../../operations'
 
-import { Button }                  from '../../ui/button'
-import { Input }                   from '../../ui/input'
-import { Box }                     from '../../ui/layout'
-import { Text }                    from '../../ui/text'
-import { useProfile }              from '../../shared'
-import operations                  from '../../operations'
-
-export type FillNameScreenProps = StackScreenProps<RootStackParamList, 'FillName'>
-
-export const FillNameScreen = ({ navigation }: FillNameScreenProps): ReactElement => {
+export const FillNameScreen = (): ReactElement => {
+  const router = useRouter()
   const [name, setName] = useState<string>('')
   const [nameValidationError, setNameValidationError] = useState<string | undefined>(undefined)
   const [inProgress, setInProgress] = useState<boolean>(false)
@@ -33,12 +30,12 @@ export const FillNameScreen = ({ navigation }: FillNameScreenProps): ReactElemen
       } else if (fillProfileName.result) {
         setProfile(fillProfileName.result)
 
-        navigation.navigate('FillGeoposition')
+        router.navigate('/(intro)/geoposition')
       }
     } finally {
       setInProgress(false)
     }
-  }, [name, navigation, setInProgress, setProfile])
+  }, [name, router, setInProgress, setProfile])
 
   return (
     <Box p='3x' flex={1} justifyContent='center'>

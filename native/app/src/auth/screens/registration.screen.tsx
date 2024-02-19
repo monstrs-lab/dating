@@ -1,13 +1,11 @@
-import type { StackScreenProps }       from '@react-navigation/stack'
 import type { ReactElement }           from 'react'
-
-import type { RootStackParamList }     from '../../navigation.component'
 
 import { FlowInputNode }               from '@monstrs/react-native-kratos'
 import { FlowMessages }                from '@monstrs/react-native-kratos'
 import { FlowNodeMessages }            from '@monstrs/react-native-kratos'
 import { FlowSubmit }                  from '@monstrs/react-native-kratos'
 import { ReactNativeRegistrationFlow } from '@monstrs/react-native-kratos'
+import { Link }                        from 'expo-router'
 import React                           from 'react'
 
 import { Button }                      from '../../ui/button'
@@ -15,9 +13,7 @@ import { Input }                       from '../../ui/input'
 import { Box }                         from '../../ui/layout'
 import { Text }                        from '../../ui/text'
 
-export type RegistrationScreenProps = StackScreenProps<RootStackParamList, 'Registration'>
-
-export const RegistrationScreen = ({ navigation }: RegistrationScreenProps): ReactElement => (
+export const RegistrationScreen = (): ReactElement => (
   <ReactNativeRegistrationFlow>
     <Box p='3x' flex={1} justifyContent='center'>
       <Box>
@@ -84,13 +80,9 @@ export const RegistrationScreen = ({ navigation }: RegistrationScreenProps): Rea
         </FlowSubmit>
       </Box>
       <Box marginTop='3x'>
-        <Button
-          onPress={() => {
-            navigation.navigate('Login')
-          }}
-        >
-          Войти
-        </Button>
+        <Link asChild href='/(auth)'>
+          <Button>Войти</Button>
+        </Link>
       </Box>
     </Box>
   </ReactNativeRegistrationFlow>
