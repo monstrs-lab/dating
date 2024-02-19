@@ -1,25 +1,22 @@
-import type { StackScreenProps }   from '@react-navigation/stack'
-import type { ReactElement }       from 'react'
+import type { ReactElement } from 'react'
 
-import type { RootStackParamList } from '../../navigation.component'
+import * as Device           from 'expo-device'
+import * as Location         from 'expo-location'
+import { Platform }          from 'react-native'
+import { useRouter }         from 'expo-router'
+import { useState }          from 'react'
+import { useCallback }       from 'react'
+import { useEffect }         from 'react'
+import React                 from 'react'
 
-import * as Device                 from 'expo-device'
-import * as Location               from 'expo-location'
-import { Platform }                from 'react-native'
-import { useState }                from 'react'
-import { useCallback }             from 'react'
-import { useEffect }               from 'react'
-import React                       from 'react'
+import { Button }            from '../../ui/button'
+import { Box }               from '../../ui/layout'
+import { Text }              from '../../ui/text'
+import { useProfile }        from '../../shared'
+import operations            from '../../operations'
 
-import { Button }                  from '../../ui/button'
-import { Box }                     from '../../ui/layout'
-import { Text }                    from '../../ui/text'
-import { useProfile }              from '../../shared'
-import operations                  from '../../operations'
-
-export type FillGeopositionScreenProps = StackScreenProps<RootStackParamList, 'FillGeoposition'>
-
-export const FillGeopositionScreen = ({ navigation }: FillGeopositionScreenProps): ReactElement => {
+export const FillGeopositionScreen = (): ReactElement => {
+  const router = useRouter()
   const { setProfile } = useProfile()
   const [granted, setGranted] = useState<boolean>(false)
 
@@ -53,14 +50,14 @@ export const FillGeopositionScreen = ({ navigation }: FillGeopositionScreenProps
       if (fillProfileGeoposition.result) {
         setProfile(fillProfileGeoposition.result)
 
-        navigation.navigate('FillPhoto')
+        router.navigate('/(intro)/photo')
       }
     }
 
     if (granted) {
       requestLocation()
     }
-  }, [granted, navigation, setProfile])
+  }, [granted, router, setProfile])
 
   const onRequest = useCallback(async () => {
     const { status } = await Location.requestForegroundPermissionsAsync()

@@ -1,38 +1,34 @@
-import type { StackScreenProps }   from '@react-navigation/stack'
-import type { ReactElement }       from 'react'
+import type { ReactElement } from 'react'
 
-import type { RootStackParamList } from '../../navigation.component'
+import { useRouter }         from 'expo-router'
+import { useEffect }         from 'react'
+import React                 from 'react'
 
-import { useEffect }               from 'react'
-import React                       from 'react'
+import { ProfileGender }     from '../../operations'
+import { Box }               from '../../ui/layout'
+import { Text }              from '../../ui/text'
+import { useProfile }        from '../../shared'
 
-import { ProfileGender }           from '../../operations'
-import { Box }                     from '../../ui/layout'
-import { Text }                    from '../../ui/text'
-import { useProfile }              from '../../shared'
-
-export type IntroScreenProps = StackScreenProps<RootStackParamList, 'Intro'>
-
-export const IntroScreen = ({ navigation }: IntroScreenProps): ReactElement => {
+export const IntroScreen = (): ReactElement => {
+  const router = useRouter()
   const { profile } = useProfile()
 
   useEffect(() => {
     if (profile) {
       if (profile.gender !== ProfileGender.Female && profile.gender !== ProfileGender.Male) {
-        navigation.navigate('FillGender')
+        router.navigate('/(intro)/gender')
       } else if (!profile.name) {
-        navigation.navigate('FillName')
+        router.navigate('/(intro)/name')
       } else if (!profile.location) {
-        navigation.navigate('FillGeoposition')
+        router.navigate('/(intro)/geoposition')
         // eslint-disable-next-line
       } else if (!(profile.photos?.length! > 0)) {
-        navigation.navigate('FillPhoto')
+        router.navigate('/(intro)/photo')
       } else {
-        // @ts-expect-error
-        navigation.navigate('Main')
+        router.navigate('/(main)')
       }
     }
-  }, [profile, navigation])
+  }, [profile, router])
 
   return (
     <Box>

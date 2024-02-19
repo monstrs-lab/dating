@@ -1,10 +1,11 @@
 import type { ReactNode }      from 'react'
-import type { FC }             from 'react'
 import type { PressableProps } from 'react-native'
+import type { View }           from 'react-native'
 
 import type { Theme }          from '../theme'
 
 import { useState }            from 'react'
+import { forwardRef }          from 'react'
 import React                   from 'react'
 
 import { ButtonPressable }     from './button-pressable.component'
@@ -16,16 +17,14 @@ interface ButtonProps extends PressableProps {
   children: ReactNode
 }
 
-export const Button: FC<ButtonProps> = ({
-  children,
-  variant = 'primary',
-  size = 'normal',
-  disabled,
-  ...props
-}) => {
+export const Button = forwardRef<View, ButtonProps>((
+  { children, variant = 'primary', size = 'normal', disabled, ...props },
+  ref
+) => {
   const [pressed, setPressed] = useState<boolean>(false)
   return (
     <ButtonPressable
+      ref={ref}
       variant={variant}
       size={size}
       pressed={(pressed && !disabled && variant) || undefined}
@@ -43,4 +42,4 @@ export const Button: FC<ButtonProps> = ({
       </ButtonText>
     </ButtonPressable>
   )
-}
+})

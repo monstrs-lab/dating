@@ -1,25 +1,22 @@
-import type { StackScreenProps }   from '@react-navigation/stack'
-import type { ReactElement }       from 'react'
+import type { ReactElement } from 'react'
 
-import type { RootStackParamList } from '../../navigation.component'
+import * as FileSystem       from 'expo-file-system'
+import * as ImagePicker      from 'expo-image-picker'
+import { Pressable }         from 'react-native'
+import { Image }             from 'react-native'
+import { useRouter }         from 'expo-router'
+import { useState }          from 'react'
+import { useCallback }       from 'react'
+import React                 from 'react'
 
-import * as FileSystem             from 'expo-file-system'
-import * as ImagePicker            from 'expo-image-picker'
-import { Pressable }               from 'react-native'
-import { Image }                   from 'react-native'
-import { useState }                from 'react'
-import { useCallback }             from 'react'
-import React                       from 'react'
+import { Button }            from '../../ui/button'
+import { Box }               from '../../ui/layout'
+import { Text }              from '../../ui/text'
+import { useProfile }        from '../../shared'
+import operations            from '../../operations'
 
-import { Button }                  from '../../ui/button'
-import { Box }                     from '../../ui/layout'
-import { Text }                    from '../../ui/text'
-import { useProfile }              from '../../shared'
-import operations                  from '../../operations'
-
-export type FillPhotoScreenProps = StackScreenProps<RootStackParamList, 'FillPhoto'>
-
-export const FillPhotoScreen = ({ navigation }: FillPhotoScreenProps): ReactElement => {
+export const FillPhotoScreen = (): ReactElement => {
+  const router = useRouter()
   const [image, setImage] = useState<ImagePicker.ImagePickerAsset | undefined>(undefined)
   const [inProgress, setInProgress] = useState<boolean>(false)
   const { setProfile } = useProfile()
@@ -67,8 +64,7 @@ export const FillPhotoScreen = ({ navigation }: FillPhotoScreenProps): ReactElem
 
         setProfile(addProfilePhoto.result!)
 
-        // @ts-expect-error
-        navigation.navigate('Main')
+        router.navigate('/(main)')
       } catch (error) {
         // eslint-disable-next-line
         console.log(error)
@@ -76,7 +72,7 @@ export const FillPhotoScreen = ({ navigation }: FillPhotoScreenProps): ReactElem
         setInProgress(false)
       }
     }
-  }, [image, navigation, setInProgress, setProfile])
+  }, [image, router, setInProgress, setProfile])
 
   return (
     <Box p='3x' flex={1}>

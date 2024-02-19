@@ -1,23 +1,21 @@
-import type { StackScreenProps }    from '@react-navigation/stack'
-import type { FC }                  from 'react'
+import type { FC }              from 'react'
 
-import type { TestsStackParamList } from '../../navigation.component'
-import type { Questionnaire }       from './questionnaires.screen'
+import type { Questionnaire }   from './questionnaires.screen'
 
-import { Pressable }                from 'react-native'
-import { ImageBackground }          from 'react-native'
-import { useEffect }                from 'react'
-import { useState }                 from 'react'
-import { useCallback }              from 'react'
-import React                        from 'react'
+import { Pressable }            from 'react-native'
+import { ImageBackground }      from 'react-native'
+import { useLocalSearchParams } from 'expo-router'
+import { useRouter }            from 'expo-router'
+import { useEffect }            from 'react'
+import { useState }             from 'react'
+import { useCallback }          from 'react'
+import React                    from 'react'
 
-import { Button }                   from '../../ui/button'
-import { Box }                      from '../../ui/layout'
-import { Text }                     from '../../ui/text'
-import { SurveyStatus }             from './questionnaires.screen'
-import operations                   from '../../operations'
-
-export type QuestionnaireProps = StackScreenProps<TestsStackParamList, 'Questionnaire'>
+import { Button }               from '../../ui/button'
+import { Box }                  from '../../ui/layout'
+import { Text }                 from '../../ui/text'
+import { SurveyStatus }         from './questionnaires.screen'
+import operations               from '../../operations'
 
 export interface SelectQuestionProps {
   size: number
@@ -42,7 +40,9 @@ const SelectQuestion: FC<SelectQuestionProps> = ({ size, active, onSelect }) => 
   </Pressable>
 )
 
-export const QuestionnaireScreen: FC<QuestionnaireProps> = ({ route, navigation }) => {
+export const QuestionnaireScreen: FC = () => {
+  const { id } = useLocalSearchParams()
+  const router = useRouter()
   const [inProgress, setInProgress] = useState<boolean>(false)
   const [questionaires, setQuestionaires] = useState<Array<Questionnaire>>([])
   const [activeQuestionnaire, setActiveQuestionnaire] = useState<Questionnaire>()
@@ -60,10 +60,10 @@ export const QuestionnaireScreen: FC<QuestionnaireProps> = ({ route, navigation 
   }, [setQuestionaires])
 
   useEffect(() => {
-    if (questionaires && route?.params?.id) {
-      setActiveQuestionnaire(questionaires.find((item) => item.id === route.params.id))
+    if (questionaires && id) {
+      setActiveQuestionnaire(questionaires.find((item) => item.id === id))
     }
-  }, [questionaires, route, setActiveQuestionnaire])
+  }, [questionaires, id, setActiveQuestionnaire])
 
   const onStart = useCallback(async () => {
     if (activeQuestionnaire) {
@@ -102,7 +102,7 @@ export const QuestionnaireScreen: FC<QuestionnaireProps> = ({ route, navigation 
         if (addSurveyAnswer.result) {
           // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
           if (addSurveyAnswer.result.status === SurveyStatus.Completed) {
-            navigation.navigate('Questionnaires')
+            router.navigate('/tests')
           } else {
             setActiveQuestion((prev) => prev + 1)
             setActiveQuestionnaire({
@@ -116,14 +116,7 @@ export const QuestionnaireScreen: FC<QuestionnaireProps> = ({ route, navigation 
         setInProgress(false)
       }
     }
-  }, [
-    navigation,
-    answerValue,
-    activeQuestion,
-    activeQuestionnaire,
-    setInProgress,
-    setActiveQuestion,
-  ])
+  }, [router, answerValue, activeQuestion, activeQuestionnaire, setInProgress, setActiveQuestion])
 
   if (!activeQuestionnaire) return null
 
