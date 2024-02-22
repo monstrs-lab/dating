@@ -1,0 +1,15 @@
+mutation skipProfile($targetId: String!) {
+  skipProfile(input: { targetId: $targetId }) {
+    result {
+      ...ProfileFragment
+    }
+  }
+}
+
+mutation likeProfile($targetId: String!) {
+  likeProfile(input: { targetId: $targetId }) {
+    result {
+      ...ProfileFragment
+    }
+  }
+}

@@ -54,3 +54,6 @@ next-env.d.ts
 # Temp data folder
 .data/.minio.sys
 .data/photos/data
+
+# Expo data folder
+.expo/
