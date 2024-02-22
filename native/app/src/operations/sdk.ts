@@ -152,6 +152,33 @@ export type FillProfileNameResponse = {
   result?: Maybe<Profile>
 }
 
+export type LikeProfileErrors = {
+  __typename?: 'LikeProfileErrors'
+  targetId?: Maybe<ValidationError>
+}
+
+export type LikeProfileInput = {
+  targetId: Scalars['String']['input']
+}
+
+export type LikeProfileResponse = {
+  __typename?: 'LikeProfileResponse'
+  errors?: Maybe<LikeProfileErrors>
+  result?: Maybe<Profile>
+}
+
+export type Match = {
+  __typename?: 'Match'
+  profile: Profile
+  similarity?: Maybe<Similarity>
+}
+
+export type Matches = {
+  __typename?: 'Matches'
+  hasNextPage: Scalars['Boolean']['output']
+  matches: Array<Match>
+}
+
 export type Mutation = {
   __typename?: 'Mutation'
   addProfilePhoto: AddProfilePhotoResponse
@@ -161,6 +188,8 @@ export type Mutation = {
   fillProfileGender: FillProfileGenderResponse
   fillProfileGeoposition: FillProfileGeopositionResponse
   fillProfileName: FillProfileNameResponse
+  likeProfile: LikeProfileResponse
+  skipProfile: SkipProfileResponse
   startSurvey: StartSurveyResponse
 }
 
@@ -192,6 +221,14 @@ export type MutationFillProfileNameArgs = {
   input: FillProfileNameInput
 }
 
+export type MutationLikeProfileArgs = {
+  input: LikeProfileInput
+}
+
+export type MutationSkipProfileArgs = {
+  input: SkipProfileInput
+}
+
 export type MutationStartSurveyArgs = {
   input: StartSurveyInput
 }
@@ -204,6 +241,11 @@ export type MyCompatibility = {
 export type MyMatches = {
   __typename?: 'MyMatches'
   profiles: Array<Profile>
+}
+
+export type MyMatching = {
+  __typename?: 'MyMatching'
+  matches: Matches
 }
 
 export type MyProfile = {
@@ -251,6 +293,27 @@ export enum QuestionaireStatus {
   Inactive = 'INACTIVE',
 }
 
+export type Similarity = {
+  __typename?: 'Similarity'
+  id: Scalars['String']['output']
+  value: Scalars['Float']['output']
+}
+
+export type SkipProfileErrors = {
+  __typename?: 'SkipProfileErrors'
+  targetId?: Maybe<ValidationError>
+}
+
+export type SkipProfileInput = {
+  targetId: Scalars['String']['input']
+}
+
+export type SkipProfileResponse = {
+  __typename?: 'SkipProfileResponse'
+  errors?: Maybe<SkipProfileErrors>
+  result?: Maybe<Profile>
+}
+
 export type StartSurveyErrors = {
   __typename?: 'StartSurveyErrors'
   questionaireId?: Maybe<ValidationError>
@@ -289,6 +352,7 @@ export type User = {
   compatibility: MyCompatibility
   id: Scalars['String']['output']
   matches: MyMatches
+  matching: MyMatching
   profile: MyProfile
 }
 
@@ -415,10 +479,41 @@ export type MyMatchesQuery = {
   __typename?: 'Query'
   my: {
     __typename?: 'User'
-    matches: {
-      __typename?: 'MyMatches'
-      profiles: Array<{ __typename?: 'Profile' } & ProfileFragmentFragment>
+    matching: {
+      __typename?: 'MyMatching'
+      matches: {
+        __typename?: 'Matches'
+        matches: Array<{
+          __typename?: 'Match'
+          profile: { __typename?: 'Profile' } & ProfileFragmentFragment
+          similarity?: { __typename?: 'Similarity'; id: string; value: number } | undefined
+        }>
+      }
     }
+  }
+}
+
+export type SkipProfileMutationVariables = Exact<{
+  targetId: Scalars['String']['input']
+}>
+
+export type SkipProfileMutation = {
+  __typename?: 'Mutation'
+  skipProfile: {
+    __typename?: 'SkipProfileResponse'
+    result?: ({ __typename?: 'Profile' } & ProfileFragmentFragment) | undefined
+  }
+}
+
+export type LikeProfileMutationVariables = Exact<{
+  targetId: Scalars['String']['input']
+}>
+
+export type LikeProfileMutation = {
+  __typename?: 'Mutation'
+  likeProfile: {
+    __typename?: 'LikeProfileResponse'
+    result?: ({ __typename?: 'Profile' } & ProfileFragmentFragment) | undefined
   }
 }
 
@@ -639,10 +734,38 @@ export const MyCompatibilityDocument = gql`
 export const MyMatchesDocument = gql`
   query myMatches {
     my {
-      matches {
-        profiles {
-          ...ProfileFragment
+      matching {
+        matches {
+          matches {
+            profile {
+              ...ProfileFragment
+            }
+            similarity {
+              id
+              value
+            }
+          }
         }
+      }
+    }
+  }
+  ${ProfileFragmentFragmentDoc}
+`
+export const SkipProfileDocument = gql`
+  mutation skipProfile($targetId: String!) {
+    skipProfile(input: { targetId: $targetId }) {
+      result {
+        ...ProfileFragment
+      }
+    }
+  }
+  ${ProfileFragmentFragmentDoc}
+`
+export const LikeProfileDocument = gql`
+  mutation likeProfile($targetId: String!) {
+    likeProfile(input: { targetId: $targetId }) {
+      result {
+        ...ProfileFragment
       }
     }
   }
@@ -817,6 +940,36 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
           }),
         'myMatches',
         'query',
+        variables
+      )
+    },
+    skipProfile(
+      variables: SkipProfileMutationVariables,
+      requestHeaders?: GraphQLClientRequestHeaders
+    ): Promise<SkipProfileMutation> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<SkipProfileMutation>(SkipProfileDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        'skipProfile',
+        'mutation',
+        variables
+      )
+    },
+    likeProfile(
+      variables: LikeProfileMutationVariables,
+      requestHeaders?: GraphQLClientRequestHeaders
+    ): Promise<LikeProfileMutation> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<LikeProfileMutation>(LikeProfileDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        'likeProfile',
+        'mutation',
         variables
       )
     },

@@ -3649,9 +3649,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@monstrs/tools-runtime@npm:^0.2.19":
-  version: 0.2.19
-  resolution: "@monstrs/tools-runtime@npm:0.2.19"
+"@monstrs/tools-runtime@npm:^0.2.20":
+  version: 0.2.20
+  resolution: "@monstrs/tools-runtime@npm:0.2.20"
   dependencies:
     "@jest/core": "npm:^29.7.0"
     "@monstrs/config-eslint": "npm:0.3.13"
@@ -3663,7 +3663,7 @@ __metadata:
     ts-loader: "npm:^9.5.1"
     typescript: "npm:^5.3.3"
     webpack: "npm:^5.89.0"
-  checksum: b0480676284fb772d108c090509fd6ec33fe4d23f82595a1aa7106ecffa799a90b1bbfbd9fe95a0a511ea26c0f54357e24557d2565443656491e94d65818033b
+  checksum: 3096d34b9f827054daf438bbc4c652ee9e0010ba0d7cf7e3ccb863ea401f1b900b97a7f6f0ca944ea0f27818e9902c76ee53b83f127ea7a3b8db44c9221ebe3b
   languageName: node
   linkType: hard
 
@@ -7696,7 +7696,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "dating@workspace:."
   dependencies:
-    "@monstrs/tools-runtime": "npm:^0.2.19"
+    "@monstrs/tools-runtime": "npm:^0.2.20"
     "@types/node": "npm:^20.11.19"
     "@types/react": "npm:^18.2.55"
     "@types/react-dom": "npm:^18.2.19"
