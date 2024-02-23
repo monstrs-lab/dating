@@ -1,0 +1,15 @@
+{
+  "name": "@dating/operations",
+  "version": "0.0.1",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": "./src/index.ts"
+  },
+  "main": "src/index.ts",
+  "scripts": {
+    "generate": "yarn dlx @openapitools/openapi-generator-cli generate -i ../entrypoints/standalone-service-entrypoint/openapi.schema.json -g typescript-fetch -o src/gen --additional-properties=supportsES6=true,withInterfaces=true,importFileExtension=.js --skip-validate-spec"
+  }
+}

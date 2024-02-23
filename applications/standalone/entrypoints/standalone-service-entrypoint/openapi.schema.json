@@ -1,0 +1,297 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/kratos/webhooks/registration/password/after": {
+      "post": {
+        "operationId": "RegistrationPasswordWebhooksController_after",
+        "parameters": [],
+        "responses": { "201": { "description": "" } }
+      }
+    },
+    "/api/questionaires": {
+      "get": {
+        "operationId": "QuestionairesController_list",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Questionaires list",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ListQuestionairesResponse" }
+              }
+            }
+          }
+        },
+        "tags": ["questionaires"]
+      },
+      "post": {
+        "operationId": "QuestionairesController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/CreateQuestionaireRequest" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Create questionaire",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/QuestionaireEntity" }
+              }
+            }
+          }
+        },
+        "tags": ["questionaires"]
+      }
+    },
+    "/api/questionaires/{id}/name": {
+      "put": {
+        "operationId": "QuestionairesController_changeName",
+        "parameters": [
+          { "name": "id", "required": true, "in": "path", "schema": { "type": "string" } }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/ChangeQuestionaireNameRequest" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Change questionaire name",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/QuestionaireEntity" }
+              }
+            }
+          }
+        },
+        "tags": ["questionaires"]
+      }
+    },
+    "/api/questionaires/{id}/photo": {
+      "put": {
+        "operationId": "QuestionairesController_changePhoto",
+        "parameters": [
+          { "name": "id", "required": true, "in": "path", "schema": { "type": "string" } }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/ChangeQuestionairePhotoRequest" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Change questionaire photo",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/QuestionaireEntity" }
+              }
+            }
+          }
+        },
+        "tags": ["questionaires"]
+      }
+    },
+    "/api/questionaires/{id}/activate": {
+      "post": {
+        "operationId": "QuestionairesController_activate",
+        "parameters": [
+          { "name": "id", "required": true, "in": "path", "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "Activate questionaire",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/QuestionaireEntity" }
+              }
+            }
+          }
+        },
+        "tags": ["questionaires"]
+      }
+    },
+    "/api/questionaires/{id}/deactivate": {
+      "post": {
+        "operationId": "QuestionairesController_deactivate",
+        "parameters": [
+          { "name": "id", "required": true, "in": "path", "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "Activate questionaire",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/QuestionaireEntity" }
+              }
+            }
+          }
+        },
+        "tags": ["questionaires"]
+      }
+    },
+    "/api/questionaires/{id}/questions": {
+      "post": {
+        "operationId": "QuestionairesController_addQuestion",
+        "parameters": [
+          { "name": "id", "required": true, "in": "path", "schema": { "type": "string" } }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/AddQuestionareQuestionRequest" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Add questionaire question",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/QuestionaireEntity" }
+              }
+            }
+          }
+        },
+        "tags": ["questionaires"]
+      }
+    },
+    "/api/questionaires/{id}/questions/{question_id}": {
+      "put": {
+        "operationId": "QuestionairesController_changeQuestion",
+        "parameters": [
+          { "name": "id", "required": true, "in": "path", "schema": { "type": "string" } },
+          { "name": "question_id", "required": true, "in": "path", "schema": { "type": "string" } }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/ChangeQuestionareQuestionRequest" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Change questionaire question",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/QuestionaireEntity" }
+              }
+            }
+          }
+        },
+        "tags": ["questionaires"]
+      },
+      "delete": {
+        "operationId": "QuestionairesController_DeleteQuestion",
+        "parameters": [
+          { "name": "id", "required": true, "in": "path", "schema": { "type": "string" } },
+          { "name": "question_id", "required": true, "in": "path", "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "Delete questionaire question",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/QuestionaireEntity" }
+              }
+            }
+          }
+        },
+        "tags": ["questionaires"]
+      }
+    }
+  },
+  "info": {
+    "title": "Dating backoffice",
+    "description": "The Dating backoffice API description",
+    "version": "1.0",
+    "contact": {}
+  },
+  "tags": [{ "name": "dating", "description": "" }],
+  "servers": [{ "url": "/" }],
+  "components": {
+    "schemas": {
+      "ListQuestionairesResponse": {
+        "type": "object",
+        "properties": {
+          "questionaires": {
+            "type": "array",
+            "description": "List questionaires items",
+            "items": { "$ref": "#/components/schemas/QuestionaireEntity" }
+          },
+          "hasNextPage": { "type": "boolean", "description": "Next page indicator" }
+        },
+        "required": ["questionaires", "hasNextPage"]
+      },
+      "QuestionaireEntity": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "description": "The id of the questionaire", "format": "uuid" },
+          "status": {
+            "type": "number",
+            "description": "The status of the questionaire",
+            "enum": [0, 1]
+          },
+          "name": { "type": "string", "description": "The name of the questionaire" },
+          "questionaires": {
+            "type": "array",
+            "description": "The questions of the questionaire",
+            "items": { "$ref": "#/components/schemas/QuestionEntity" }
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "The creation date of the profile",
+            "format": "date-time"
+          }
+        },
+        "required": ["id", "status", "name", "questionaires", "createdAt"]
+      },
+      "QuestionEntity": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "description": "The id of the question", "format": "uuid" },
+          "content": { "type": "string", "description": "The content of the question" }
+        },
+        "required": ["id", "content"]
+      },
+      "CreateQuestionaireRequest": {
+        "type": "object",
+        "properties": { "name": { "type": "string" } },
+        "required": ["name"]
+      },
+      "ChangeQuestionaireNameRequest": {
+        "type": "object",
+        "properties": { "name": { "type": "string" } },
+        "required": ["name"]
+      },
+      "ChangeQuestionairePhotoRequest": {
+        "type": "object",
+        "properties": { "photoId": { "type": "string", "format": "uuid" } },
+        "required": ["photoId"]
+      },
+      "AddQuestionareQuestionRequest": {
+        "type": "object",
+        "properties": { "content": { "type": "string" } },
+        "required": ["content"]
+      },
+      "ChangeQuestionareQuestionRequest": {
+        "type": "object",
+        "properties": { "content": { "type": "string" } },
+        "required": ["content"]
+      }
+    }
+  }
+}
