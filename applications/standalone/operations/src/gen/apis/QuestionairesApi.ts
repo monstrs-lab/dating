@@ -12,64 +12,83 @@
  * Do not edit the class manually.
  */
 
-import type { AddQuestionareQuestionRequest }       from '../models/index.js'
-import type { ChangeQuestionaireNameRequest }       from '../models/index.js'
-import type { ChangeQuestionairePhotoRequest }      from '../models/index.js'
-import type { ChangeQuestionareQuestionRequest }    from '../models/index.js'
-import type { CreateQuestionaireRequest }           from '../models/index.js'
-import type { ListQuestionairesResponse }           from '../models/index.js'
-import type { QuestionaireEntity }                  from '../models/index.js'
+import type { AddQuestionareQuestionRequest } from '../models/index.js'
 
-import * as runtime                                 from '../runtime.js'
-import { AddQuestionareQuestionRequestFromJSON }    from '../models/index.js'
-import { AddQuestionareQuestionRequestToJSON }      from '../models/index.js'
-import { ChangeQuestionaireNameRequestFromJSON }    from '../models/index.js'
-import { ChangeQuestionaireNameRequestToJSON }      from '../models/index.js'
-import { ChangeQuestionairePhotoRequestFromJSON }   from '../models/index.js'
-import { ChangeQuestionairePhotoRequestToJSON }     from '../models/index.js'
+import type { ChangeQuestionaireNameRequest } from '../models/index.js'
+
+import type { ChangeQuestionairePhotoRequest } from '../models/index.js'
+
+import type { ChangeQuestionareQuestionRequest } from '../models/index.js'
+
+import type { CreateQuestionaireRequest } from '../models/index.js'
+
+import type { ListQuestionairesResponse } from '../models/index.js'
+
+import type { QuestionaireEntity } from '../models/index.js'
+
+import * as runtime from '../runtime.js'
+import { AddQuestionareQuestionRequestFromJSON } from '../models/index.js'
+
+import { AddQuestionareQuestionRequestToJSON } from '../models/index.js'
+
+import { ChangeQuestionaireNameRequestFromJSON } from '../models/index.js'
+
+import { ChangeQuestionaireNameRequestToJSON } from '../models/index.js'
+
+import { ChangeQuestionairePhotoRequestFromJSON } from '../models/index.js'
+
+import { ChangeQuestionairePhotoRequestToJSON } from '../models/index.js'
+
 import { ChangeQuestionareQuestionRequestFromJSON } from '../models/index.js'
-import { ChangeQuestionareQuestionRequestToJSON }   from '../models/index.js'
-import { CreateQuestionaireRequestFromJSON }        from '../models/index.js'
-import { CreateQuestionaireRequestToJSON }          from '../models/index.js'
-import { ListQuestionairesResponseFromJSON }        from '../models/index.js'
-import { ListQuestionairesResponseToJSON }          from '../models/index.js'
-import { QuestionaireEntityFromJSON }               from '../models/index.js'
-import { QuestionaireEntityToJSON }                 from '../models/index.js'
 
-export interface QuestionairesControllerActivateRequest {
+import { ChangeQuestionareQuestionRequestToJSON } from '../models/index.js'
+
+import { CreateQuestionaireRequestFromJSON } from '../models/index.js'
+
+import { CreateQuestionaireRequestToJSON } from '../models/index.js'
+
+import { ListQuestionairesResponseFromJSON } from '../models/index.js'
+
+import { ListQuestionairesResponseToJSON } from '../models/index.js'
+
+import { QuestionaireEntityFromJSON } from '../models/index.js'
+
+import { QuestionaireEntityToJSON } from '../models/index.js'
+
+export interface ActivateRequest {
   id: string
 }
 
-export interface QuestionairesControllerAddQuestionRequest {
+export interface AddQuestionRequest {
   id: string
   addQuestionareQuestionRequest: AddQuestionareQuestionRequest
 }
 
-export interface QuestionairesControllerChangeNameRequest {
+export interface ChangeNameRequest {
   id: string
   changeQuestionaireNameRequest: ChangeQuestionaireNameRequest
 }
 
-export interface QuestionairesControllerChangePhotoRequest {
+export interface ChangePhotoRequest {
   id: string
   changeQuestionairePhotoRequest: ChangeQuestionairePhotoRequest
 }
 
-export interface QuestionairesControllerChangeQuestionRequest {
+export interface ChangeQuestionRequest {
   id: string
   questionId: string
   changeQuestionareQuestionRequest: ChangeQuestionareQuestionRequest
 }
 
-export interface QuestionairesControllerCreateRequest {
+export interface CreateRequest {
   createQuestionaireRequest: CreateQuestionaireRequest
 }
 
-export interface QuestionairesControllerDeactivateRequest {
+export interface DeactivateRequest {
   id: string
 }
 
-export interface QuestionairesControllerDeleteQuestionRequest {
+export interface DeleteQuestionRequest {
   id: string
   questionId: string
 }
@@ -88,15 +107,15 @@ export interface QuestionairesApiInterface {
    * @throws {RequiredError}
    * @memberof QuestionairesApiInterface
    */
-  questionairesControllerActivateRaw(
-    requestParameters: QuestionairesControllerActivateRequest,
+  activateRaw(
+    requestParameters: ActivateRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction
   ): Promise<runtime.ApiResponse<QuestionaireEntity>>
 
   /**
    */
-  questionairesControllerActivate(
-    requestParameters: QuestionairesControllerActivateRequest,
+  activate(
+    requestParameters: ActivateRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction
   ): Promise<QuestionaireEntity>
 
@@ -108,15 +127,15 @@ export interface QuestionairesApiInterface {
    * @throws {RequiredError}
    * @memberof QuestionairesApiInterface
    */
-  questionairesControllerAddQuestionRaw(
-    requestParameters: QuestionairesControllerAddQuestionRequest,
+  addQuestionRaw(
+    requestParameters: AddQuestionRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction
   ): Promise<runtime.ApiResponse<QuestionaireEntity>>
 
   /**
    */
-  questionairesControllerAddQuestion(
-    requestParameters: QuestionairesControllerAddQuestionRequest,
+  addQuestion(
+    requestParameters: AddQuestionRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction
   ): Promise<QuestionaireEntity>
 
@@ -128,15 +147,15 @@ export interface QuestionairesApiInterface {
    * @throws {RequiredError}
    * @memberof QuestionairesApiInterface
    */
-  questionairesControllerChangeNameRaw(
-    requestParameters: QuestionairesControllerChangeNameRequest,
+  changeNameRaw(
+    requestParameters: ChangeNameRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction
   ): Promise<runtime.ApiResponse<QuestionaireEntity>>
 
   /**
    */
-  questionairesControllerChangeName(
-    requestParameters: QuestionairesControllerChangeNameRequest,
+  changeName(
+    requestParameters: ChangeNameRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction
   ): Promise<QuestionaireEntity>
 
@@ -148,15 +167,15 @@ export interface QuestionairesApiInterface {
    * @throws {RequiredError}
    * @memberof QuestionairesApiInterface
    */
-  questionairesControllerChangePhotoRaw(
-    requestParameters: QuestionairesControllerChangePhotoRequest,
+  changePhotoRaw(
+    requestParameters: ChangePhotoRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction
   ): Promise<runtime.ApiResponse<QuestionaireEntity>>
 
   /**
    */
-  questionairesControllerChangePhoto(
-    requestParameters: QuestionairesControllerChangePhotoRequest,
+  changePhoto(
+    requestParameters: ChangePhotoRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction
   ): Promise<QuestionaireEntity>
 
@@ -169,15 +188,15 @@ export interface QuestionairesApiInterface {
    * @throws {RequiredError}
    * @memberof QuestionairesApiInterface
    */
-  questionairesControllerChangeQuestionRaw(
-    requestParameters: QuestionairesControllerChangeQuestionRequest,
+  changeQuestionRaw(
+    requestParameters: ChangeQuestionRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction
   ): Promise<runtime.ApiResponse<QuestionaireEntity>>
 
   /**
    */
-  questionairesControllerChangeQuestion(
-    requestParameters: QuestionairesControllerChangeQuestionRequest,
+  changeQuestion(
+    requestParameters: ChangeQuestionRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction
   ): Promise<QuestionaireEntity>
 
@@ -188,15 +207,15 @@ export interface QuestionairesApiInterface {
    * @throws {RequiredError}
    * @memberof QuestionairesApiInterface
    */
-  questionairesControllerCreateRaw(
-    requestParameters: QuestionairesControllerCreateRequest,
+  createRaw(
+    requestParameters: CreateRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction
   ): Promise<runtime.ApiResponse<QuestionaireEntity>>
 
   /**
    */
-  questionairesControllerCreate(
-    requestParameters: QuestionairesControllerCreateRequest,
+  create(
+    requestParameters: CreateRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction
   ): Promise<QuestionaireEntity>
 
@@ -207,15 +226,15 @@ export interface QuestionairesApiInterface {
    * @throws {RequiredError}
    * @memberof QuestionairesApiInterface
    */
-  questionairesControllerDeactivateRaw(
-    requestParameters: QuestionairesControllerDeactivateRequest,
+  deactivateRaw(
+    requestParameters: DeactivateRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction
   ): Promise<runtime.ApiResponse<QuestionaireEntity>>
 
   /**
    */
-  questionairesControllerDeactivate(
-    requestParameters: QuestionairesControllerDeactivateRequest,
+  deactivate(
+    requestParameters: DeactivateRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction
   ): Promise<QuestionaireEntity>
 
@@ -227,15 +246,15 @@ export interface QuestionairesApiInterface {
    * @throws {RequiredError}
    * @memberof QuestionairesApiInterface
    */
-  questionairesControllerDeleteQuestionRaw(
-    requestParameters: QuestionairesControllerDeleteQuestionRequest,
+  deleteQuestionRaw(
+    requestParameters: DeleteQuestionRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction
   ): Promise<runtime.ApiResponse<QuestionaireEntity>>
 
   /**
    */
-  questionairesControllerDeleteQuestion(
-    requestParameters: QuestionairesControllerDeleteQuestionRequest,
+  deleteQuestion(
+    requestParameters: DeleteQuestionRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction
   ): Promise<QuestionaireEntity>
 
@@ -245,13 +264,13 @@ export interface QuestionairesApiInterface {
    * @throws {RequiredError}
    * @memberof QuestionairesApiInterface
    */
-  questionairesControllerListRaw(
+  listRaw(
     initOverrides?: RequestInit | runtime.InitOverrideFunction
   ): Promise<runtime.ApiResponse<ListQuestionairesResponse>>
 
   /**
    */
-  questionairesControllerList(
+  list(
     initOverrides?: RequestInit | runtime.InitOverrideFunction
   ): Promise<ListQuestionairesResponse>
 }
@@ -262,14 +281,14 @@ export interface QuestionairesApiInterface {
 export class QuestionairesApi extends runtime.BaseAPI implements QuestionairesApiInterface {
   /**
    */
-  async questionairesControllerActivateRaw(
-    requestParameters: QuestionairesControllerActivateRequest,
+  async activateRaw(
+    requestParameters: ActivateRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction
   ): Promise<runtime.ApiResponse<QuestionaireEntity>> {
     if (requestParameters.id === null || requestParameters.id === undefined) {
       throw new runtime.RequiredError(
         'id',
-        'Required parameter requestParameters.id was null or undefined when calling questionairesControllerActivate.'
+        'Required parameter requestParameters.id was null or undefined when calling activate.'
       )
     }
 
@@ -296,24 +315,24 @@ export class QuestionairesApi extends runtime.BaseAPI implements QuestionairesAp
 
   /**
    */
-  async questionairesControllerActivate(
-    requestParameters: QuestionairesControllerActivateRequest,
+  async activate(
+    requestParameters: ActivateRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction
   ): Promise<QuestionaireEntity> {
-    const response = await this.questionairesControllerActivateRaw(requestParameters, initOverrides)
+    const response = await this.activateRaw(requestParameters, initOverrides)
     return await response.value()
   }
 
   /**
    */
-  async questionairesControllerAddQuestionRaw(
-    requestParameters: QuestionairesControllerAddQuestionRequest,
+  async addQuestionRaw(
+    requestParameters: AddQuestionRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction
   ): Promise<runtime.ApiResponse<QuestionaireEntity>> {
     if (requestParameters.id === null || requestParameters.id === undefined) {
       throw new runtime.RequiredError(
         'id',
-        'Required parameter requestParameters.id was null or undefined when calling questionairesControllerAddQuestion.'
+        'Required parameter requestParameters.id was null or undefined when calling addQuestion.'
       )
     }
 
@@ -323,7 +342,7 @@ export class QuestionairesApi extends runtime.BaseAPI implements QuestionairesAp
     ) {
       throw new runtime.RequiredError(
         'addQuestionareQuestionRequest',
-        'Required parameter requestParameters.addQuestionareQuestionRequest was null or undefined when calling questionairesControllerAddQuestion.'
+        'Required parameter requestParameters.addQuestionareQuestionRequest was null or undefined when calling addQuestion.'
       )
     }
 
@@ -353,27 +372,24 @@ export class QuestionairesApi extends runtime.BaseAPI implements QuestionairesAp
 
   /**
    */
-  async questionairesControllerAddQuestion(
-    requestParameters: QuestionairesControllerAddQuestionRequest,
+  async addQuestion(
+    requestParameters: AddQuestionRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction
   ): Promise<QuestionaireEntity> {
-    const response = await this.questionairesControllerAddQuestionRaw(
-      requestParameters,
-      initOverrides
-    )
+    const response = await this.addQuestionRaw(requestParameters, initOverrides)
     return await response.value()
   }
 
   /**
    */
-  async questionairesControllerChangeNameRaw(
-    requestParameters: QuestionairesControllerChangeNameRequest,
+  async changeNameRaw(
+    requestParameters: ChangeNameRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction
   ): Promise<runtime.ApiResponse<QuestionaireEntity>> {
     if (requestParameters.id === null || requestParameters.id === undefined) {
       throw new runtime.RequiredError(
         'id',
-        'Required parameter requestParameters.id was null or undefined when calling questionairesControllerChangeName.'
+        'Required parameter requestParameters.id was null or undefined when calling changeName.'
       )
     }
 
@@ -383,7 +399,7 @@ export class QuestionairesApi extends runtime.BaseAPI implements QuestionairesAp
     ) {
       throw new runtime.RequiredError(
         'changeQuestionaireNameRequest',
-        'Required parameter requestParameters.changeQuestionaireNameRequest was null or undefined when calling questionairesControllerChangeName.'
+        'Required parameter requestParameters.changeQuestionaireNameRequest was null or undefined when calling changeName.'
       )
     }
 
@@ -413,27 +429,24 @@ export class QuestionairesApi extends runtime.BaseAPI implements QuestionairesAp
 
   /**
    */
-  async questionairesControllerChangeName(
-    requestParameters: QuestionairesControllerChangeNameRequest,
+  async changeName(
+    requestParameters: ChangeNameRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction
   ): Promise<QuestionaireEntity> {
-    const response = await this.questionairesControllerChangeNameRaw(
-      requestParameters,
-      initOverrides
-    )
+    const response = await this.changeNameRaw(requestParameters, initOverrides)
     return await response.value()
   }
 
   /**
    */
-  async questionairesControllerChangePhotoRaw(
-    requestParameters: QuestionairesControllerChangePhotoRequest,
+  async changePhotoRaw(
+    requestParameters: ChangePhotoRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction
   ): Promise<runtime.ApiResponse<QuestionaireEntity>> {
     if (requestParameters.id === null || requestParameters.id === undefined) {
       throw new runtime.RequiredError(
         'id',
-        'Required parameter requestParameters.id was null or undefined when calling questionairesControllerChangePhoto.'
+        'Required parameter requestParameters.id was null or undefined when calling changePhoto.'
       )
     }
 
@@ -443,7 +456,7 @@ export class QuestionairesApi extends runtime.BaseAPI implements QuestionairesAp
     ) {
       throw new runtime.RequiredError(
         'changeQuestionairePhotoRequest',
-        'Required parameter requestParameters.changeQuestionairePhotoRequest was null or undefined when calling questionairesControllerChangePhoto.'
+        'Required parameter requestParameters.changeQuestionairePhotoRequest was null or undefined when calling changePhoto.'
       )
     }
 
@@ -475,34 +488,31 @@ export class QuestionairesApi extends runtime.BaseAPI implements QuestionairesAp
 
   /**
    */
-  async questionairesControllerChangePhoto(
-    requestParameters: QuestionairesControllerChangePhotoRequest,
+  async changePhoto(
+    requestParameters: ChangePhotoRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction
   ): Promise<QuestionaireEntity> {
-    const response = await this.questionairesControllerChangePhotoRaw(
-      requestParameters,
-      initOverrides
-    )
+    const response = await this.changePhotoRaw(requestParameters, initOverrides)
     return await response.value()
   }
 
   /**
    */
-  async questionairesControllerChangeQuestionRaw(
-    requestParameters: QuestionairesControllerChangeQuestionRequest,
+  async changeQuestionRaw(
+    requestParameters: ChangeQuestionRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction
   ): Promise<runtime.ApiResponse<QuestionaireEntity>> {
     if (requestParameters.id === null || requestParameters.id === undefined) {
       throw new runtime.RequiredError(
         'id',
-        'Required parameter requestParameters.id was null or undefined when calling questionairesControllerChangeQuestion.'
+        'Required parameter requestParameters.id was null or undefined when calling changeQuestion.'
       )
     }
 
     if (requestParameters.questionId === null || requestParameters.questionId === undefined) {
       throw new runtime.RequiredError(
         'questionId',
-        'Required parameter requestParameters.questionId was null or undefined when calling questionairesControllerChangeQuestion.'
+        'Required parameter requestParameters.questionId was null or undefined when calling changeQuestion.'
       )
     }
 
@@ -512,7 +522,7 @@ export class QuestionairesApi extends runtime.BaseAPI implements QuestionairesAp
     ) {
       throw new runtime.RequiredError(
         'changeQuestionareQuestionRequest',
-        'Required parameter requestParameters.changeQuestionareQuestionRequest was null or undefined when calling questionairesControllerChangeQuestion.'
+        'Required parameter requestParameters.changeQuestionareQuestionRequest was null or undefined when calling changeQuestion.'
       )
     }
 
@@ -543,21 +553,18 @@ export class QuestionairesApi extends runtime.BaseAPI implements QuestionairesAp
 
   /**
    */
-  async questionairesControllerChangeQuestion(
-    requestParameters: QuestionairesControllerChangeQuestionRequest,
+  async changeQuestion(
+    requestParameters: ChangeQuestionRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction
   ): Promise<QuestionaireEntity> {
-    const response = await this.questionairesControllerChangeQuestionRaw(
-      requestParameters,
-      initOverrides
-    )
+    const response = await this.changeQuestionRaw(requestParameters, initOverrides)
     return await response.value()
   }
 
   /**
    */
-  async questionairesControllerCreateRaw(
-    requestParameters: QuestionairesControllerCreateRequest,
+  async createRaw(
+    requestParameters: CreateRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction
   ): Promise<runtime.ApiResponse<QuestionaireEntity>> {
     if (
@@ -566,7 +573,7 @@ export class QuestionairesApi extends runtime.BaseAPI implements QuestionairesAp
     ) {
       throw new runtime.RequiredError(
         'createQuestionaireRequest',
-        'Required parameter requestParameters.createQuestionaireRequest was null or undefined when calling questionairesControllerCreate.'
+        'Required parameter requestParameters.createQuestionaireRequest was null or undefined when calling create.'
       )
     }
 
@@ -593,24 +600,24 @@ export class QuestionairesApi extends runtime.BaseAPI implements QuestionairesAp
 
   /**
    */
-  async questionairesControllerCreate(
-    requestParameters: QuestionairesControllerCreateRequest,
+  async create(
+    requestParameters: CreateRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction
   ): Promise<QuestionaireEntity> {
-    const response = await this.questionairesControllerCreateRaw(requestParameters, initOverrides)
+    const response = await this.createRaw(requestParameters, initOverrides)
     return await response.value()
   }
 
   /**
    */
-  async questionairesControllerDeactivateRaw(
-    requestParameters: QuestionairesControllerDeactivateRequest,
+  async deactivateRaw(
+    requestParameters: DeactivateRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction
   ): Promise<runtime.ApiResponse<QuestionaireEntity>> {
     if (requestParameters.id === null || requestParameters.id === undefined) {
       throw new runtime.RequiredError(
         'id',
-        'Required parameter requestParameters.id was null or undefined when calling questionairesControllerDeactivate.'
+        'Required parameter requestParameters.id was null or undefined when calling deactivate.'
       )
     }
 
@@ -637,34 +644,31 @@ export class QuestionairesApi extends runtime.BaseAPI implements QuestionairesAp
 
   /**
    */
-  async questionairesControllerDeactivate(
-    requestParameters: QuestionairesControllerDeactivateRequest,
+  async deactivate(
+    requestParameters: DeactivateRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction
   ): Promise<QuestionaireEntity> {
-    const response = await this.questionairesControllerDeactivateRaw(
-      requestParameters,
-      initOverrides
-    )
+    const response = await this.deactivateRaw(requestParameters, initOverrides)
     return await response.value()
   }
 
   /**
    */
-  async questionairesControllerDeleteQuestionRaw(
-    requestParameters: QuestionairesControllerDeleteQuestionRequest,
+  async deleteQuestionRaw(
+    requestParameters: DeleteQuestionRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction
   ): Promise<runtime.ApiResponse<QuestionaireEntity>> {
     if (requestParameters.id === null || requestParameters.id === undefined) {
       throw new runtime.RequiredError(
         'id',
-        'Required parameter requestParameters.id was null or undefined when calling questionairesControllerDeleteQuestion.'
+        'Required parameter requestParameters.id was null or undefined when calling deleteQuestion.'
       )
     }
 
     if (requestParameters.questionId === null || requestParameters.questionId === undefined) {
       throw new runtime.RequiredError(
         'questionId',
-        'Required parameter requestParameters.questionId was null or undefined when calling questionairesControllerDeleteQuestion.'
+        'Required parameter requestParameters.questionId was null or undefined when calling deleteQuestion.'
       )
     }
 
@@ -690,20 +694,17 @@ export class QuestionairesApi extends runtime.BaseAPI implements QuestionairesAp
 
   /**
    */
-  async questionairesControllerDeleteQuestion(
-    requestParameters: QuestionairesControllerDeleteQuestionRequest,
+  async deleteQuestion(
+    requestParameters: DeleteQuestionRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction
   ): Promise<QuestionaireEntity> {
-    const response = await this.questionairesControllerDeleteQuestionRaw(
-      requestParameters,
-      initOverrides
-    )
+    const response = await this.deleteQuestionRaw(requestParameters, initOverrides)
     return await response.value()
   }
 
   /**
    */
-  async questionairesControllerListRaw(
+  async listRaw(
     initOverrides?: RequestInit | runtime.InitOverrideFunction
   ): Promise<runtime.ApiResponse<ListQuestionairesResponse>> {
     const queryParameters: any = {}
@@ -726,10 +727,10 @@ export class QuestionairesApi extends runtime.BaseAPI implements QuestionairesAp
 
   /**
    */
-  async questionairesControllerList(
+  async list(
     initOverrides?: RequestInit | runtime.InitOverrideFunction
   ): Promise<ListQuestionairesResponse> {
-    const response = await this.questionairesControllerListRaw(initOverrides)
+    const response = await this.listRaw(initOverrides)
     return await response.value()
   }
 }

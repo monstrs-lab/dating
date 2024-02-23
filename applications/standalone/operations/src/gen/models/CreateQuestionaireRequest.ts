@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists }    from '../runtime.js'
+import { exists }            from '../runtime.js'
 import { mapValues } from '../runtime.js'
 /**
  *
