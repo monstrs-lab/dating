@@ -1,0 +1,33 @@
+{
+  "name": "@controlplane/root-layout",
+  "version": "0.0.1",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": "./src/index.ts"
+  },
+  "main": "src/index.ts",
+  "dependencies": {
+    "@ui-admin/bottom-navigation": "^0.0.14",
+    "@ui-admin/icons": "^0.0.7",
+    "@ui-admin/layout": "^0.0.15",
+    "@ui-admin/sidebar": "^0.0.16"
+  },
+  "devDependencies": {
+    "@effector/next": "^0.7.0",
+    "@types/react": "^18.2.57",
+    "effector": "^22.8.8",
+    "effector-react": "^22.5.4",
+    "next": "^14.1.0",
+    "react": "^18.2.0",
+    "react-intl": "^6.6.2"
+  },
+  "peerDependencies": {
+    "effector": "^22",
+    "effector-react": "^22",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-intl": "^6"
+  }
+}

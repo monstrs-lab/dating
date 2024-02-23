@@ -1,0 +1,15 @@
+.openapi-generator-ignore
+apis/DefaultApi.ts
+apis/QuestionairesApi.ts
+apis/index.ts
+index.ts
+models/AddQuestionareQuestionRequest.ts
+models/ChangeQuestionaireNameRequest.ts
+models/ChangeQuestionairePhotoRequest.ts
+models/ChangeQuestionareQuestionRequest.ts
+models/CreateQuestionaireRequest.ts
+models/ListQuestionairesResponse.ts
+models/QuestionEntity.ts
+models/QuestionaireEntity.ts
+models/index.ts
+runtime.ts

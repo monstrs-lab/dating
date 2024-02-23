@@ -1,3 +1,7 @@
+import { writeFile }                         from 'node:fs/promises'
+import { join }                              from 'node:path'
+import { fileURLToPath }                     from 'node:url'
+
 import { RapidocModule }                     from '@b8n/nestjs-rapidoc'
 import { ConnectRpcServer }                  from '@monstrs/nestjs-connectrpc'
 import { ServerProtocol }                    from '@monstrs/nestjs-connectrpc'
@@ -32,6 +36,11 @@ const bootstrap = async (): Promise<void> => {
     ignoreGlobalPrefix: false,
     extraModels: [],
   })
+
+  await writeFile(
+    join(fileURLToPath(new URL('.', import.meta.url)), '../../openapi.schema.json'),
+    JSON.stringify(document)
+  )
 
   RapidocModule.setup('api', app, document)
 

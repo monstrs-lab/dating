@@ -12,12 +12,13 @@
     "@opentelemetry/api-logs": "0.40.0",
     "@opentelemetry/core": "1.14.0",
     "graphql-request@npm:^6.0.0": "patch:graphql-request@npm%3A6.1.0#~/.yarn/patches/graphql-request-npm-6.1.0-d265ce919d.patch",
-    "pg": "8.10.0"
+    "pg": "8.10.0",
+    "postcss": "8.4.35"
   },
   "devDependencies": {
     "@monstrs/tools-runtime": "^0.2.20",
     "@types/node": "^20.11.19",
-    "@types/react": "^18.2.55",
+    "@types/react": "^18.2.57",
     "@types/react-dom": "^18.2.19",
     "typescript": "^5.3.3"
   },

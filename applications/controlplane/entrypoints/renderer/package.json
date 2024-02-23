@@ -1,0 +1,41 @@
+{
+  "name": "@controlplane/renderer-entrypoint",
+  "version": "0.0.1",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "build": "yarn renderer build",
+    "dev": "yarn renderer dev",
+    "prepack": "run build",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "next": "^14.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-intl": "^6.6.2",
+    "sharp": "^0.33.2",
+    "tldjs": "^2.3.1"
+  },
+  "devDependencies": {
+    "@controlplane/root-layout": "workspace:0.0.1",
+    "@effector/next": "^0.7.0",
+    "@monstrs/protobuf-rpc": "^0.0.7",
+    "@monstrs/react-identity-user-provider": "^0.0.6",
+    "@monstrs/react-user": "^0.1.4",
+    "@types/node": "^20.11.19",
+    "@types/react": "^18.2.57",
+    "@types/react-dom": "^18.2.19",
+    "@types/tldjs": "^2.3.4",
+    "@vanilla-extract/next-plugin": "^2.3.6",
+    "effector": "^22.8.8",
+    "effector-react": "^22.5.4",
+    "typescript": "^5.3.3"
+  },
+  "tools": {
+    "tunnel": {
+      "host": "https://tunnel.unitaet-stage.ru",
+      "port": 3000
+    }
+  }
+}
