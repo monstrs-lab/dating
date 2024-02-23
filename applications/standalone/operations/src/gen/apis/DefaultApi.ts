@@ -27,15 +27,13 @@ export interface DefaultApiInterface {
    * @throws {RequiredError}
    * @memberof DefaultApiInterface
    */
-  registrationPasswordWebhooksControllerAfterRaw(
+  afterRaw(
     initOverrides?: RequestInit | runtime.InitOverrideFunction
   ): Promise<runtime.ApiResponse<void>>
 
   /**
    */
-  registrationPasswordWebhooksControllerAfter(
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
-  ): Promise<void>
+  after(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>
 }
 
 /**
@@ -44,7 +42,7 @@ export interface DefaultApiInterface {
 export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
   /**
    */
-  async registrationPasswordWebhooksControllerAfterRaw(
+  async afterRaw(
     initOverrides?: RequestInit | runtime.InitOverrideFunction
   ): Promise<runtime.ApiResponse<void>> {
     const queryParameters: any = {}
@@ -66,9 +64,7 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
 
   /**
    */
-  async registrationPasswordWebhooksControllerAfter(
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
-  ): Promise<void> {
-    await this.registrationPasswordWebhooksControllerAfterRaw(initOverrides)
+  async after(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    await this.afterRaw(initOverrides)
   }
 }

@@ -12,13 +12,14 @@
  * Do not edit the class manually.
  */
 
-import type { QuestionaireEntity }         from './QuestionaireEntity.js'
+import type { QuestionaireEntity } from './QuestionaireEntity.js'
 
-import { QuestionaireEntityFromJSON }      from './QuestionaireEntity.js'
+import { QuestionaireEntityFromJSON } from './QuestionaireEntity.js'
 import { QuestionaireEntityFromJSONTyped } from './QuestionaireEntity.js'
-import { QuestionaireEntityToJSON }        from './QuestionaireEntity.js'
-import { exists }                          from '../runtime.js'
-import { mapValues }                       from '../runtime.js'
+import { QuestionaireEntityToJSON } from './QuestionaireEntity.js'
+import { exists }                  from '../runtime.js'
+
+import { mapValues }       from '../runtime.js'
 
 /**
  *

@@ -3,14 +3,14 @@
   "paths": {
     "/kratos/webhooks/registration/password/after": {
       "post": {
-        "operationId": "RegistrationPasswordWebhooksController_after",
+        "operationId": "after",
         "parameters": [],
         "responses": { "201": { "description": "" } }
       }
     },
     "/api/questionaires": {
       "get": {
-        "operationId": "QuestionairesController_list",
+        "operationId": "list",
         "parameters": [],
         "responses": {
           "200": {
@@ -25,7 +25,7 @@
         "tags": ["questionaires"]
       },
       "post": {
-        "operationId": "QuestionairesController_create",
+        "operationId": "create",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -50,7 +50,7 @@
     },
     "/api/questionaires/{id}/name": {
       "put": {
-        "operationId": "QuestionairesController_changeName",
+        "operationId": "changeName",
         "parameters": [
           { "name": "id", "required": true, "in": "path", "schema": { "type": "string" } }
         ],
@@ -77,7 +77,7 @@
     },
     "/api/questionaires/{id}/photo": {
       "put": {
-        "operationId": "QuestionairesController_changePhoto",
+        "operationId": "changePhoto",
         "parameters": [
           { "name": "id", "required": true, "in": "path", "schema": { "type": "string" } }
         ],
@@ -104,7 +104,7 @@
     },
     "/api/questionaires/{id}/activate": {
       "post": {
-        "operationId": "QuestionairesController_activate",
+        "operationId": "activate",
         "parameters": [
           { "name": "id", "required": true, "in": "path", "schema": { "type": "string" } }
         ],
@@ -123,7 +123,7 @@
     },
     "/api/questionaires/{id}/deactivate": {
       "post": {
-        "operationId": "QuestionairesController_deactivate",
+        "operationId": "deactivate",
         "parameters": [
           { "name": "id", "required": true, "in": "path", "schema": { "type": "string" } }
         ],
@@ -142,7 +142,7 @@
     },
     "/api/questionaires/{id}/questions": {
       "post": {
-        "operationId": "QuestionairesController_addQuestion",
+        "operationId": "addQuestion",
         "parameters": [
           { "name": "id", "required": true, "in": "path", "schema": { "type": "string" } }
         ],
@@ -169,7 +169,7 @@
     },
     "/api/questionaires/{id}/questions/{question_id}": {
       "put": {
-        "operationId": "QuestionairesController_changeQuestion",
+        "operationId": "changeQuestion",
         "parameters": [
           { "name": "id", "required": true, "in": "path", "schema": { "type": "string" } },
           { "name": "question_id", "required": true, "in": "path", "schema": { "type": "string" } }
@@ -195,7 +195,7 @@
         "tags": ["questionaires"]
       },
       "delete": {
-        "operationId": "QuestionairesController_DeleteQuestion",
+        "operationId": "DeleteQuestion",
         "parameters": [
           { "name": "id", "required": true, "in": "path", "schema": { "type": "string" } },
           { "name": "question_id", "required": true, "in": "path", "schema": { "type": "string" } }

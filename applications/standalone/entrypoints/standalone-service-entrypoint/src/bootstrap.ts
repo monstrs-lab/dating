@@ -32,9 +32,7 @@ const bootstrap = async (): Promise<void> => {
     .build()
 
   const document = SwaggerModule.createDocument(app, options, {
-    deepScanRoutes: true,
-    ignoreGlobalPrefix: false,
-    extraModels: [],
+    operationIdFactory: (_: string, methodKey: string): string => methodKey,
   })
 
   await writeFile(
