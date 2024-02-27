@@ -32,7 +32,7 @@ export class QuestionaireEntity {
       $ref: getSchemaPath(QuestionEntity),
     },
   })
-  questionaires!: Array<QuestionEntity>
+  questions!: Array<QuestionEntity>
 
   @ApiProperty({
     description: 'The creation date of the profile',
