@@ -1,24 +1,22 @@
-import type { ReactElement }  from 'react'
+import type { ReactElement } from 'react'
 
-import type { Questionaire }  from '../interfaces/index.js'
+import type { Questionaire } from '../interfaces/index.js'
 
-import { Avatar }             from '@ui-admin/avatar'
-import { IconButton }         from '@ui-admin/button'
-import { Drawer }             from '@ui-admin/drawer'
-import { DropdownMenu }       from '@ui-admin/dropdown-menu'
-import { DropdownMenuItem }   from '@ui-admin/dropdown-menu'
-import { MoreIcon }           from '@ui-admin/icons'
-import { Column }             from '@ui-admin/layout'
-import { Row }                from '@ui-admin/layout'
-import { Layout }             from '@ui-admin/layout'
-import { Navigation }         from '@ui-admin/navigation'
-import { NavigationActions }  from '@ui-admin/navigation'
-import { NavigationTitle }    from '@ui-admin/navigation'
-import { Text }               from '@ui-admin/text'
-import LinkPkg                from 'next/link.js'
-import React                  from 'react'
-
-import { QuestionaireStatus } from '../interfaces/index.js'
+import { Avatar }            from '@ui-admin/avatar'
+import { IconButton }        from '@ui-admin/button'
+import { Drawer }            from '@ui-admin/drawer'
+import { DropdownMenu }      from '@ui-admin/dropdown-menu'
+import { DropdownMenuItem }  from '@ui-admin/dropdown-menu'
+import { MoreIcon }          from '@ui-admin/icons'
+import { Column }            from '@ui-admin/layout'
+import { Row }               from '@ui-admin/layout'
+import { Layout }            from '@ui-admin/layout'
+import { Navigation }        from '@ui-admin/navigation'
+import { NavigationActions } from '@ui-admin/navigation'
+import { NavigationTitle }   from '@ui-admin/navigation'
+import { Text }              from '@ui-admin/text'
+import LinkPkg               from 'next/link.js'
+import React                 from 'react'
 
 const Link = LinkPkg.default || LinkPkg
 
@@ -85,7 +83,7 @@ export const Questionaires = ({
             </Layout>
             <Layout flexBasis='3x' flexShrink={0} />
             <Layout>
-              <Text>{QuestionaireStatus[questionaire.status]}</Text>
+              <Text>{questionaire.status}</Text>
             </Layout>
           </Row>
         </Link>

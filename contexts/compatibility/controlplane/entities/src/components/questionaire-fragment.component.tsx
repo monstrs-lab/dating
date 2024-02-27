@@ -1,24 +1,22 @@
-import type { ReactElement }  from 'react'
+import type { ReactElement } from 'react'
 
-import type { Questionaire }  from '../interfaces/index.js'
+import type { Questionaire } from '../interfaces/index.js'
 
-import { IconButton }         from '@ui-admin/button'
-import { Drawer }             from '@ui-admin/drawer'
-import { DropdownMenu }       from '@ui-admin/dropdown-menu'
-import { DropdownMenuItem }   from '@ui-admin/dropdown-menu'
-import { ArrowLeftIcon }      from '@ui-admin/icons'
-import { MoreIcon }           from '@ui-admin/icons'
-import { Column }             from '@ui-admin/layout'
-import { Row }                from '@ui-admin/layout'
-import { Layout }             from '@ui-admin/layout'
-import { Navigation }         from '@ui-admin/navigation'
-import { NavigationActions }  from '@ui-admin/navigation'
-import { NavigationTitle }    from '@ui-admin/navigation'
-import { Text }               from '@ui-admin/text'
-import LinkPkg                from 'next/link.js'
-import React                  from 'react'
-
-import { QuestionaireStatus } from '../interfaces/index.js'
+import { IconButton }        from '@ui-admin/button'
+import { Drawer }            from '@ui-admin/drawer'
+import { DropdownMenu }      from '@ui-admin/dropdown-menu'
+import { DropdownMenuItem }  from '@ui-admin/dropdown-menu'
+import { ArrowLeftIcon }     from '@ui-admin/icons'
+import { MoreIcon }          from '@ui-admin/icons'
+import { Column }            from '@ui-admin/layout'
+import { Row }               from '@ui-admin/layout'
+import { Layout }            from '@ui-admin/layout'
+import { Navigation }        from '@ui-admin/navigation'
+import { NavigationActions } from '@ui-admin/navigation'
+import { NavigationTitle }   from '@ui-admin/navigation'
+import { Text }              from '@ui-admin/text'
+import LinkPkg               from 'next/link.js'
+import React                 from 'react'
 
 const Link = LinkPkg.default || LinkPkg
 
@@ -28,7 +26,7 @@ export interface QuestionaireFragmentProps extends Questionaire {
   changeNameAction: ReactElement
   addQuestionAction: ReactElement
   deleteQuestionAction: (questionId: string) => ReactElement
-  changeQuestionAction: (questionId: string) => ReactElement
+  changeQuestionAction: (questionId: string, content: string) => ReactElement
   activateModalOpen: boolean
   changeNameModalOpen: boolean
   addQuestionModalOpen: boolean
@@ -43,7 +41,7 @@ export interface QuestionaireFragmentProps extends Questionaire {
 
 export const QuestionaireFragment = ({
   name,
-  questionaires,
+  questions,
   status,
   activateAction,
   deactivateAction,
@@ -80,9 +78,7 @@ export const QuestionaireFragment = ({
                 <Drawer
                   direction='right'
                   open={activateModalOpen}
-                  content={
-                    (status === QuestionaireStatus.ACTIVE && deactivateAction) || activateAction
-                  }
+                  content={(status === 'ACTIVE' && deactivateAction) || activateAction}
                   onOpenChange={onActivateModalOpenChange}
                 >
                   <div>
@@ -91,9 +87,7 @@ export const QuestionaireFragment = ({
                         ev.preventDefault()
                       }}
                     >
-                      {status === QuestionaireStatus.ACTIVE
-                        ? 'Деактивировать анкету'
-                        : 'Активировать анкету'}
+                      {status === 'ACTIVE' ? 'Деактивировать анкету' : 'Активировать анкету'}
                     </DropdownMenuItem>
                   </div>
                 </Drawer>
@@ -145,14 +139,14 @@ export const QuestionaireFragment = ({
       </Layout>
       <Layout flexBasis='2x' />
       <Layout>
-        <Text>Статус анкеты: {QuestionaireStatus[status]}</Text>
+        <Text>Статус анкеты: {status}</Text>
       </Layout>
       <Layout flexBasis='2x' />
       <Layout justifyContent='center'>
         <Text fontSize='regular'>Вопросы</Text>
       </Layout>
       <Layout flexBasis='2x' />
-      {questionaires.map((question) => (
+      {questions.map((question) => (
         <Row key={question.id} mb='2x' alignItems='center'>
           <Layout>
             <Text>{question.content}</Text>
@@ -165,7 +159,7 @@ export const QuestionaireFragment = ({
                   <Drawer
                     direction='right'
                     open={changeQuestionModalOpen}
-                    content={changeQuestionAction(question.id)}
+                    content={changeQuestionAction(question.id, question.content)}
                     onOpenChange={onChangeQuestionModalOpenChange}
                   >
                     <div>

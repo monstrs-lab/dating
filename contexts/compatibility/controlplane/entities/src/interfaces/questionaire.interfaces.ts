@@ -3,15 +3,12 @@ export interface Question {
   content: string
 }
 
-export enum QuestionaireStatus {
-  INACTIVE = 0,
-  ACTIVE = 1,
-}
+export type QuestionaireStatus = 'ACTIVE' | 'INACTIVE'
 
 export interface Questionaire {
   id: string
   createdAt: Date
   name: string
-  questionaires: Array<Question>
+  questions: Array<Question>
   status: QuestionaireStatus
 }

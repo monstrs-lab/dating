@@ -195,8 +195,12 @@ export const QuestionairePage = ({ id }: QuestionairePageProps): ReactElement | 
           }}
         />
       )}
-      changeQuestionAction={(questionId: string): ReactElement => (
-        <ChangeQuestion questionId={questionId} onConfirm={changeQuestion} />
+      changeQuestionAction={(questionId: string, defaultContent: string): ReactElement => (
+        <ChangeQuestion
+          questionId={questionId}
+          defaultContent={defaultContent}
+          onConfirm={changeQuestion}
+        />
       )}
       onActivateModalOpenChange={setActivateModalOpen}
       onChangeNameModalOpenChange={setChangeNameModalOpen}

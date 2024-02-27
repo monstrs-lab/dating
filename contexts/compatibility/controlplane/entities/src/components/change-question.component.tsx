@@ -13,11 +13,16 @@ import React                 from 'react'
 
 export interface ChangeQuestionProps {
   questionId: string
+  defaultContent: string
   onConfirm: (questionId: string, content: string) => void
 }
 
-export const ChangeQuestion = ({ questionId, onConfirm }: ChangeQuestionProps): ReactElement => {
-  const [content, setContent] = useState<string>('')
+export const ChangeQuestion = ({
+  questionId,
+  defaultContent,
+  onConfirm,
+}: ChangeQuestionProps): ReactElement => {
+  const [content, setContent] = useState<string>(defaultContent)
 
   return (
     <Column minHeight='100%' p='2x' overflow='auto'>
