@@ -18,6 +18,8 @@
     "tldjs": "^2.3.1"
   },
   "devDependencies": {
+    "@compatibility/controlplane-questionaire-page": "workspace:0.0.1",
+    "@compatibility/controlplane-questionaires-page": "workspace:0.0.1",
     "@controlplane/root-layout": "workspace:0.0.1",
     "@effector/next": "^0.7.0",
     "@monstrs/protobuf-rpc": "^0.0.7",

@@ -12,48 +12,29 @@
  * Do not edit the class manually.
  */
 
-import type { AddQuestionareQuestionRequest } from '../models/index.js'
+import type { AddQuestionareQuestionRequest }       from '../models/index.js'
+import type { ChangeQuestionaireNameRequest }       from '../models/index.js'
+import type { ChangeQuestionairePhotoRequest }      from '../models/index.js'
+import type { ChangeQuestionareQuestionRequest }    from '../models/index.js'
+import type { CreateQuestionaireRequest }           from '../models/index.js'
+import type { ListQuestionairesResponse }           from '../models/index.js'
+import type { QuestionaireEntity }                  from '../models/index.js'
 
-import type { ChangeQuestionaireNameRequest } from '../models/index.js'
-
-import type { ChangeQuestionairePhotoRequest } from '../models/index.js'
-
-import type { ChangeQuestionareQuestionRequest } from '../models/index.js'
-
-import type { CreateQuestionaireRequest } from '../models/index.js'
-
-import type { ListQuestionairesResponse } from '../models/index.js'
-
-import type { QuestionaireEntity } from '../models/index.js'
-
-import * as runtime from '../runtime.js'
-import { AddQuestionareQuestionRequestFromJSON } from '../models/index.js'
-
-import { AddQuestionareQuestionRequestToJSON } from '../models/index.js'
-
-import { ChangeQuestionaireNameRequestFromJSON } from '../models/index.js'
-
-import { ChangeQuestionaireNameRequestToJSON } from '../models/index.js'
-
-import { ChangeQuestionairePhotoRequestFromJSON } from '../models/index.js'
-
-import { ChangeQuestionairePhotoRequestToJSON } from '../models/index.js'
-
+import * as runtime                                 from '../runtime.js'
+import { AddQuestionareQuestionRequestFromJSON }    from '../models/index.js'
+import { AddQuestionareQuestionRequestToJSON }      from '../models/index.js'
+import { ChangeQuestionaireNameRequestFromJSON }    from '../models/index.js'
+import { ChangeQuestionaireNameRequestToJSON }      from '../models/index.js'
+import { ChangeQuestionairePhotoRequestFromJSON }   from '../models/index.js'
+import { ChangeQuestionairePhotoRequestToJSON }     from '../models/index.js'
 import { ChangeQuestionareQuestionRequestFromJSON } from '../models/index.js'
-
-import { ChangeQuestionareQuestionRequestToJSON } from '../models/index.js'
-
-import { CreateQuestionaireRequestFromJSON } from '../models/index.js'
-
-import { CreateQuestionaireRequestToJSON } from '../models/index.js'
-
-import { ListQuestionairesResponseFromJSON } from '../models/index.js'
-
-import { ListQuestionairesResponseToJSON } from '../models/index.js'
-
-import { QuestionaireEntityFromJSON } from '../models/index.js'
-
-import { QuestionaireEntityToJSON } from '../models/index.js'
+import { ChangeQuestionareQuestionRequestToJSON }   from '../models/index.js'
+import { CreateQuestionaireRequestFromJSON }        from '../models/index.js'
+import { CreateQuestionaireRequestToJSON }          from '../models/index.js'
+import { ListQuestionairesResponseFromJSON }        from '../models/index.js'
+import { ListQuestionairesResponseToJSON }          from '../models/index.js'
+import { QuestionaireEntityFromJSON }               from '../models/index.js'
+import { QuestionaireEntityToJSON }                 from '../models/index.js'
 
 export interface ActivateRequest {
   id: string
