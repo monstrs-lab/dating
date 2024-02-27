@@ -1,9 +1,12 @@
-import { ApiProperty }        from '@nestjs/swagger'
-import { getSchemaPath }      from '@nestjs/swagger'
+import { ApiProperty }    from '@nestjs/swagger'
+import { getSchemaPath }  from '@nestjs/swagger'
 
-import { QuestionaireStatus } from '@compatibility/client-module'
+import { QuestionEntity } from './question.entity.js'
 
-import { QuestionEntity }     from './question.entity.js'
+enum QuestionaireEntityStatus {
+  ACTIVE = 'ACTIVE',
+  INACTIVE = 'INACTIVE',
+}
 
 export class QuestionaireEntity {
   @ApiProperty({
@@ -15,9 +18,9 @@ export class QuestionaireEntity {
 
   @ApiProperty({
     description: 'The status of the questionaire',
-    enum: QuestionaireStatus,
+    enum: QuestionaireEntityStatus,
   })
-  status!: QuestionaireStatus
+  status!: QuestionaireEntityStatus
 
   @ApiProperty({
     description: 'The name of the questionaire',

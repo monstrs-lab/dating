@@ -34,7 +34,7 @@ export interface QuestionaireEntity {
   id: string
   /**
    * The status of the questionaire
-   * @type {number}
+   * @type {string}
    * @memberof QuestionaireEntity
    */
   status: QuestionaireEntityStatusEnum
@@ -62,8 +62,8 @@ export interface QuestionaireEntity {
  * @export
  */
 export const QuestionaireEntityStatusEnum = {
-  NUMBER_0: 0,
-  NUMBER_1: 1,
+  Active: 'ACTIVE',
+  Inactive: 'INACTIVE',
 } as const
 export type QuestionaireEntityStatusEnum =
   (typeof QuestionaireEntityStatusEnum)[keyof typeof QuestionaireEntityStatusEnum]
