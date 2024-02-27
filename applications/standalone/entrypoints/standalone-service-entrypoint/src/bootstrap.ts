@@ -15,6 +15,10 @@ const bootstrap = async (): Promise<void> => {
   const app = await NestFactory.create(StandaloneServiceEntrypointModule.build(), {})
 
   app.enableShutdownHooks()
+  app.enableCors({
+    origin: true,
+    credentials: true,
+  })
 
   app.connectMicroservice({
     strategy: new ConnectRpcServer({
