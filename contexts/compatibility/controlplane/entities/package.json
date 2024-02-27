@@ -1,0 +1,41 @@
+{
+  "name": "@compatibility/controlplane-entities",
+  "version": "0.0.1",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": "./src/index.ts"
+  },
+  "main": "src/index.ts",
+  "dependencies": {
+    "@ui-admin/avatar": "^0.0.14",
+    "@ui-admin/button": "^0.0.14",
+    "@ui-admin/drawer": "^0.0.2",
+    "@ui-admin/dropdown-menu": "^0.0.2",
+    "@ui-admin/icons": "^0.0.7",
+    "@ui-admin/input": "^0.0.17",
+    "@ui-admin/layout": "^0.0.15",
+    "@ui-admin/navigation": "^0.0.17",
+    "@ui-admin/select": "^0.0.2",
+    "@ui-admin/table": "^0.0.18",
+    "@ui-admin/text": "^0.0.15"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.57",
+    "effector": "^22.8.8",
+    "effector-react": "^22.5.4",
+    "next": "^14.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-intl": "^6.6.2"
+  },
+  "peerDependencies": {
+    "effector": "^22",
+    "effector-react": "^22",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-intl": "^6"
+  }
+}

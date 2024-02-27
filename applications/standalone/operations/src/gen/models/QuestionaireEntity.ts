@@ -12,14 +12,13 @@
  * Do not edit the class manually.
  */
 
-import type { QuestionEntity } from './QuestionEntity.js'
+import type { QuestionEntity }         from './QuestionEntity.js'
 
-import { QuestionEntityFromJSON } from './QuestionEntity.js'
+import { QuestionEntityFromJSON }      from './QuestionEntity.js'
 import { QuestionEntityFromJSONTyped } from './QuestionEntity.js'
-import { QuestionEntityToJSON } from './QuestionEntity.js'
-import { exists }              from '../runtime.js'
-
-import { mapValues }   from '../runtime.js'
+import { QuestionEntityToJSON }        from './QuestionEntity.js'
+import { exists }                      from '../runtime.js'
+import { mapValues }                   from '../runtime.js'
 
 /**
  *
@@ -35,7 +34,7 @@ export interface QuestionaireEntity {
   id: string
   /**
    * The status of the questionaire
-   * @type {number}
+   * @type {string}
    * @memberof QuestionaireEntity
    */
   status: QuestionaireEntityStatusEnum
@@ -50,7 +49,7 @@ export interface QuestionaireEntity {
    * @type {Array<QuestionEntity>}
    * @memberof QuestionaireEntity
    */
-  questionaires: Array<QuestionEntity>
+  questions: Array<QuestionEntity>
   /**
    * The creation date of the profile
    * @type {Date}
@@ -63,8 +62,8 @@ export interface QuestionaireEntity {
  * @export
  */
 export const QuestionaireEntityStatusEnum = {
-  NUMBER_0: 0,
-  NUMBER_1: 1,
+  Active: 'ACTIVE',
+  Inactive: 'INACTIVE',
 } as const
 export type QuestionaireEntityStatusEnum =
   (typeof QuestionaireEntityStatusEnum)[keyof typeof QuestionaireEntityStatusEnum]
@@ -77,7 +76,7 @@ export function instanceOfQuestionaireEntity(value: object): boolean {
   isInstance = isInstance && 'id' in value
   isInstance = isInstance && 'status' in value
   isInstance = isInstance && 'name' in value
-  isInstance = isInstance && 'questionaires' in value
+  isInstance = isInstance && 'questions' in value
   isInstance = isInstance && 'createdAt' in value
 
   return isInstance
@@ -98,7 +97,7 @@ export function QuestionaireEntityFromJSONTyped(
     id: json['id'],
     status: json['status'],
     name: json['name'],
-    questionaires: (json['questionaires'] as Array<any>).map(QuestionEntityFromJSON),
+    questions: (json['questions'] as Array<any>).map(QuestionEntityFromJSON),
     createdAt: new Date(json['createdAt']),
   }
 }
@@ -114,7 +113,7 @@ export function QuestionaireEntityToJSON(value?: QuestionaireEntity | null): any
     id: value.id,
     status: value.status,
     name: value.name,
-    questionaires: (value.questionaires as Array<any>).map(QuestionEntityToJSON),
+    questions: (value.questions as Array<any>).map(QuestionEntityToJSON),
     createdAt: value.createdAt.toISOString(),
   }
 }

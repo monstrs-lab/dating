@@ -241,12 +241,12 @@
         "properties": {
           "id": { "type": "string", "description": "The id of the questionaire", "format": "uuid" },
           "status": {
-            "type": "number",
+            "type": "string",
             "description": "The status of the questionaire",
-            "enum": [0, 1]
+            "enum": ["ACTIVE", "INACTIVE"]
           },
           "name": { "type": "string", "description": "The name of the questionaire" },
-          "questionaires": {
+          "questions": {
             "type": "array",
             "description": "The questions of the questionaire",
             "items": { "$ref": "#/components/schemas/QuestionEntity" }
@@ -257,7 +257,7 @@
             "format": "date-time"
           }
         },
-        "required": ["id", "status", "name", "questionaires", "createdAt"]
+        "required": ["id", "status", "name", "questions", "createdAt"]
       },
       "QuestionEntity": {
         "type": "object",

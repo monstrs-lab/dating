@@ -7,9 +7,15 @@ import { Row }               from '@ui-admin/layout'
 import { Column }            from '@ui-admin/layout'
 import { Layout }            from '@ui-admin/layout'
 import { Sidebar }           from '@ui-admin/sidebar'
+import { Roboto }            from 'next/font/google'
 import React                 from 'react'
 
 import { QuestionairesLink } from './navigation.component.jsx'
+
+const roboto = Roboto({
+  weight: ['300', '400', '500', '700', '900'],
+  subsets: ['cyrillic'],
+})
 
 const items: Array<any> = [{ icon: QuestionairesLink }]
 
@@ -19,7 +25,7 @@ export interface RootLayoutProps {
 
 export const RootLayout = ({ children }: RootLayoutProps): ReactElement => (
   <EffectorNext>
-    <html style={{ height: '100%', overflow: 'hidden' }}>
+    <html style={{ height: '100%', overflow: 'hidden' }} className={roboto.className}>
       <body style={{ height: '100%', background: '#000000' }}>
         <Row height='100%'>
           <Layout display={['none', 'flex', 'flex']}>

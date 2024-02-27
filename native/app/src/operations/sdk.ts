@@ -1,9 +1,9 @@
 /* eslint-disable */
 // @ts-nocheck
-import type { GraphQLClient }               from 'graphql-request'
-import type { GraphQLClientRequestHeaders } from 'graphql-request/build/esm/types.js'
+import type { GraphQLClient }  from 'graphql-request'
+import type { RequestOptions } from 'graphql-request'
 
-import gql                                  from 'graphql-tag'
+import gql                     from 'graphql-tag'
 
 export type Maybe<T> = T | undefined
 export type InputMaybe<T> = T | undefined
@@ -16,6 +16,7 @@ export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> =
 export type Incremental<T> =
   | T
   | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never }
+type GraphQLClientRequestHeaders = RequestOptions['requestHeaders']
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: { input: string; output: string }
@@ -473,26 +474,6 @@ export type MyCompatibilityQuery = {
   }
 }
 
-export type MyMatchesQueryVariables = Exact<{ [key: string]: never }>
-
-export type MyMatchesQuery = {
-  __typename?: 'Query'
-  my: {
-    __typename?: 'User'
-    matching: {
-      __typename?: 'MyMatching'
-      matches: {
-        __typename?: 'Matches'
-        matches: Array<{
-          __typename?: 'Match'
-          profile: { __typename?: 'Profile' } & ProfileFragmentFragment
-          similarity?: { __typename?: 'Similarity'; id: string; value: number } | undefined
-        }>
-      }
-    }
-  }
-}
-
 export type SkipProfileMutationVariables = Exact<{
   targetId: Scalars['String']['input']
 }>
@@ -514,6 +495,26 @@ export type LikeProfileMutation = {
   likeProfile: {
     __typename?: 'LikeProfileResponse'
     result?: ({ __typename?: 'Profile' } & ProfileFragmentFragment) | undefined
+  }
+}
+
+export type MyMatchesQueryVariables = Exact<{ [key: string]: never }>
+
+export type MyMatchesQuery = {
+  __typename?: 'Query'
+  my: {
+    __typename?: 'User'
+    matching: {
+      __typename?: 'MyMatching'
+      matches: {
+        __typename?: 'Matches'
+        matches: Array<{
+          __typename?: 'Match'
+          profile: { __typename?: 'Profile' } & ProfileFragmentFragment
+          similarity?: { __typename?: 'Similarity'; id: string; value: number } | undefined
+        }>
+      }
+    }
   }
 }
 
@@ -731,26 +732,6 @@ export const MyCompatibilityDocument = gql`
     }
   }
 `
-export const MyMatchesDocument = gql`
-  query myMatches {
-    my {
-      matching {
-        matches {
-          matches {
-            profile {
-              ...ProfileFragment
-            }
-            similarity {
-              id
-              value
-            }
-          }
-        }
-      }
-    }
-  }
-  ${ProfileFragmentFragmentDoc}
-`
 export const SkipProfileDocument = gql`
   mutation skipProfile($targetId: String!) {
     skipProfile(input: { targetId: $targetId }) {
@@ -766,6 +747,26 @@ export const LikeProfileDocument = gql`
     likeProfile(input: { targetId: $targetId }) {
       result {
         ...ProfileFragment
+      }
+    }
+  }
+  ${ProfileFragmentFragmentDoc}
+`
+export const MyMatchesDocument = gql`
+  query myMatches {
+    my {
+      matching {
+        matches {
+          matches {
+            profile {
+              ...ProfileFragment
+            }
+            similarity {
+              id
+              value
+            }
+          }
+        }
       }
     }
   }
@@ -847,7 +848,7 @@ export type SdkFunctionWrapper = <T>(
   variables?: any
 ) => Promise<T>
 
-const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationType, variables) =>
+const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationType, _variables) =>
   action()
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
@@ -928,21 +929,6 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
         variables
       )
     },
-    myMatches(
-      variables?: MyMatchesQueryVariables,
-      requestHeaders?: GraphQLClientRequestHeaders
-    ): Promise<MyMatchesQuery> {
-      return withWrapper(
-        (wrappedRequestHeaders) =>
-          client.request<MyMatchesQuery>(MyMatchesDocument, variables, {
-            ...requestHeaders,
-            ...wrappedRequestHeaders,
-          }),
-        'myMatches',
-        'query',
-        variables
-      )
-    },
     skipProfile(
       variables: SkipProfileMutationVariables,
       requestHeaders?: GraphQLClientRequestHeaders
@@ -970,6 +956,21 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
           }),
         'likeProfile',
         'mutation',
+        variables
+      )
+    },
+    myMatches(
+      variables?: MyMatchesQueryVariables,
+      requestHeaders?: GraphQLClientRequestHeaders
+    ): Promise<MyMatchesQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<MyMatchesQuery>(MyMatchesDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        'myMatches',
+        'query',
         variables
       )
     },
